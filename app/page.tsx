@@ -170,7 +170,7 @@ export default function LandingPage() {
 
       <ProfitCalculator language={language} currency={currency} />
       <CompactAbout language={language} />
-      <HowItWorks language={language} />
+      <HowItWorks language={language} currency={currency} />
       <CompactFeatures language={language} />
       <HalalInfo language={language} />
 

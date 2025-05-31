@@ -103,7 +103,7 @@ export default function ProfitCalculator({ language, currency }: ProfitCalculato
                         value={investment}
                         onChange={(e) => handleInputChange(e.target.value)}
                         className="pl-10 bg-slate-700/50 border-slate-600 text-white text-lg h-12 focus:border-cyan-500"
-                        placeholder="100"
+                        placeholder={currency === "USD" ? "100" : "1200000"}
                       />
                     </div>
                     <p className="text-xs text-slate-500 mt-2">
@@ -179,7 +179,10 @@ export default function ProfitCalculator({ language, currency }: ProfitCalculato
                         <Calculator className="w-10 h-10 text-slate-500" />
                       </div>
                       <h4 className="text-lg font-semibold text-slate-400 mb-2">Введи сумму инвестиций</h4>
-                      <p className="text-slate-500 text-sm">Минимальная сумма: $60</p>
+                      <p className="text-slate-500 text-sm">
+                        {language === "ru" ? "Минимальная сумма:" : "Minimal summa:"}{" "}
+                        {formatCurrency(minInvestment, currency)}
+                      </p>
                     </div>
                   )}
                 </div>

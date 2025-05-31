@@ -23,7 +23,7 @@ export const translations = {
     howItWorksSubtitle: "Простая схема — ты инвестируешь, я работаю, ты получаешь прибыль",
     step1Title: "Ты просто переводишь деньги",
     step1Description:
-      "Никакого опыта не нужно. Переводишь от $60 на торговый счет — и всё. Дальше я беру всю работу на себя.",
+      "Никакого опыта не нужно. Переводишь минимальную сумму на торговый счет — и всё. Дальше я беру всю работу на себя.",
     step2Title: "Я торгую за тебя",
     step2Description:
       "Ты отдыхаешь, а я использую свой 7-летний опыт для роста твоего капитала. Никаких знаний от тебя не требуется.",
@@ -125,7 +125,7 @@ export const translations = {
     howItWorksSubtitle: "Oddiy sxema — siz investitsiya qilasiz, men ishlayman, siz foyda olasiz",
     step1Title: "Siz shunchaki pul o'tkazasiz",
     step1Description:
-      "Hech qanday tajriba kerak emas. $60 dan savdo hisobiga o'tkazasiz — va hammasi. Keyin men barcha ishni o'z zimmamga olaman.",
+      "Hech qanday tajriba kerak emas. Minimal summani savdo hisobiga o'tkazasiz — va hammasi. Keyin men barcha ishni o'z zimmamga olaman.",
     step2Title: "Men siz uchun savdo qilaman",
     step2Description:
       "Siz dam olasiz, men esa 7 yillik tajribamdan foydalanib kapitalingizni oshiraman. Sizdan hech qanday bilim talab qilinmaydi.",

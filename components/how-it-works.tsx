@@ -4,12 +4,14 @@ import { ArrowRight, DollarSign, TrendingUp, PiggyBank } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 import Image from "next/image"
+import { formatCurrency, getMinimumInvestment, type Currency } from "@/lib/currency"
 
 interface HowItWorksProps {
   language: Language
+  currency: Currency
 }
 
-export default function HowItWorks({ language }: HowItWorksProps) {
+export default function HowItWorks({ language, currency }: HowItWorksProps) {
   const t = (key: TranslationKey) => translations[language][key]
 
   const steps = [
@@ -35,6 +37,8 @@ export default function HowItWorks({ language }: HowItWorksProps) {
       delay: "0.4s",
     },
   ]
+
+  const minInvestment = getMinimumInvestment(currency)
 
   return (
     <section id="how-it-works" className="py-16 sm:py-20 lg:py-24 bg-slate-900/30 relative overflow-hidden">
@@ -147,8 +151,8 @@ export default function HowItWorks({ language }: HowItWorksProps) {
             </div>
             <p className="text-slate-300 text-sm">
               {language === "ru"
-                ? "Использую только проверенную криптобиржу Binance — лидера рынка с лицензиями и страхованием депозитов до $1 млрд"
-                : "Faqat tekshirilgan Binance kripto birjasidan foydalanaman — litsenziyalar va 1 milliard dollargacha depozit sug'urtasi bilan bozor lideri"}
+                ? `Использую только проверенную криптобиржу Binance — лидера рынка с лицензиями и страхованием депозитов до $1 млрд (минимальная инвестиция ${formatCurrency(minInvestment, currency, language)})`
+                : `Faqat tekshirilgan Binance kripto birjasidan foydalanaman — litsenziyalar va 1 milliard dollargacha depozit sug'urtasi bilan bozor lideri (minimal sarmoya ${formatCurrency(minInvestment, currency, language)})`}
             </p>
           </div>
         </div>
