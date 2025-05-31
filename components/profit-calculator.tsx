@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Calculator, DollarSign, TrendingUp, Zap } from "lucide-react"
+import { Calculator, DollarSign, TrendingUp, Zap, Clock, UserCheck } from "lucide-react"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 
 interface ProfitCalculatorProps {
@@ -33,6 +33,28 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
     setInvestment(numValue)
     setIsCalculated(false)
   }
+
+  // Ключевые преимущества (самые важные)
+  const keyFeatures = [
+    {
+      icon: Clock,
+      title: language === "ru" ? "1-2 дня" : "1-2 kun",
+      description: language === "ru" ? "Быстрый результат без ожидания" : "Kutmasdan tez natija",
+      color: "text-green-400",
+    },
+    {
+      icon: UserCheck,
+      title: language === "ru" ? "Без опыта" : "Tajribasiz",
+      description: language === "ru" ? "Никаких знаний не требуется" : "Hech qanday bilim talab qilinmaydi",
+      color: "text-blue-400",
+    },
+    {
+      icon: DollarSign,
+      title: language === "ru" ? "70% тебе" : "70% sizga",
+      description: language === "ru" ? "Большая часть прибыли твоя" : "Foydaning katta qismi sizniki",
+      color: "text-purple-400",
+    },
+  ]
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-900/50 to-slate-800/50 relative overflow-hidden">
@@ -134,9 +156,14 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
                           Готов получить ${clientProfit.toLocaleString()}?
                         </h4>
                         <p className="text-slate-400 text-sm mb-4">Ты ничего не делаешь — я работаю за тебя</p>
-                        <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-2 rounded-lg">
+                        <a
+                          href="https://t.me/+iawpP4pwqW42YmM6"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-2 rounded-lg"
+                        >
                           Начать инвестировать
-                        </Button>
+                        </a>
                       </div>
                     </div>
                   ) : (
@@ -153,32 +180,23 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
             </CardContent>
           </Card>
 
-          {/* Benefits below calculator */}
+          {/* Ключевые преимущества под калькулятором */}
           <div
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-slide-up"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="text-center p-4 bg-slate-800/30 rounded-xl border border-slate-700">
-              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <TrendingUp className="w-6 h-6 text-green-400" />
+            {keyFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="text-center p-4 bg-slate-800/30 rounded-xl border border-slate-700 hover:border-cyan-500/30 transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                </div>
+                <h4 className="font-semibold text-white mb-1">{feature.title}</h4>
+                <p className="text-slate-400 text-sm">{feature.description}</p>
               </div>
-              <h4 className="font-semibold text-white mb-1">Без опыта</h4>
-              <p className="text-slate-400 text-sm">Я делаю всю работу</p>
-            </div>
-            <div className="text-center p-4 bg-slate-800/30 rounded-xl border border-slate-700">
-              <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Zap className="w-6 h-6 text-cyan-400" />
-              </div>
-              <h4 className="font-semibold text-white mb-1">1-2 дня</h4>
-              <p className="text-slate-400 text-sm">Быстрый результат</p>
-            </div>
-            <div className="text-center p-4 bg-slate-800/30 rounded-xl border border-slate-700">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <DollarSign className="w-6 h-6 text-purple-400" />
-              </div>
-              <h4 className="font-semibold text-white mb-1">70% тебе</h4>
-              <p className="text-slate-400 text-sm">Справедливая доля</p>
-            </div>
+            ))}
           </div>
         </div>
       </div>

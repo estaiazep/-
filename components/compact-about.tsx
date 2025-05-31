@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { TrendingUp, Award, Shield, Target, Play, Pause, ExternalLink } from "lucide-react"
+import { TrendingUp, Award, Shield, Target, Play, Pause } from "lucide-react"
 import AnimatedCounter from "./animated-counter"
 import ExpandableSection from "./expandable-section"
 import PhotoGallery from "./photo-gallery"
@@ -15,9 +15,6 @@ interface CompactAboutProps {
 export default function CompactAbout({ language }: CompactAboutProps) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const t = (key: TranslationKey) => translations[language][key]
-
-  // Telegram канал
-  const telegramChannel = "https://t.me/+iawpP4pwqW42YmM6"
 
   const achievements = [
     {
@@ -49,10 +46,6 @@ export default function CompactAbout({ language }: CompactAboutProps) {
       color: "text-purple-400",
     },
   ]
-
-  const handleCTAClick = () => {
-    window.open(telegramChannel, "_blank")
-  }
 
   return (
     <section id="about" className="py-12 sm:py-16 bg-slate-900/30 relative overflow-hidden">
@@ -174,17 +167,6 @@ export default function CompactAbout({ language }: CompactAboutProps) {
                 </Button>
               </div>
             </ExpandableSection>
-
-            {/* CTA кнопка */}
-            <div className="text-center">
-              <Button
-                onClick={handleCTAClick}
-                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
-              >
-                {t("trustCapital")}
-                <ExternalLink className="ml-2 w-4 h-4" />
-              </Button>
-            </div>
           </div>
         </div>
       </div>

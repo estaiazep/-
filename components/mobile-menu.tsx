@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, TrendingUp, Shield, Target, Users, MessageCircle, ExternalLink } from "lucide-react"
+import { Menu, X, TrendingUp, Shield, Target, Users, MessageCircle } from "lucide-react"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 
 interface MobileMenuProps {
@@ -13,9 +13,6 @@ export default function MobileMenu({ language }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const t = (key: TranslationKey) => translations[language][key]
 
-  // Telegram канал
-  const telegramChannel = "https://t.me/+iawpP4pwqW42YmM6"
-
   const menuItems = [
     { icon: TrendingUp, label: "О трейдере", href: "#about" },
     { icon: Target, label: "Как работаю", href: "#how-it-works" },
@@ -23,11 +20,6 @@ export default function MobileMenu({ language }: MobileMenuProps) {
     { icon: Users, label: "Отзывы", href: "#testimonials" },
     { icon: MessageCircle, label: "Контакты", href: "#contact" },
   ]
-
-  const handleCTAClick = () => {
-    window.open(telegramChannel, "_blank")
-    setIsOpen(false)
-  }
 
   return (
     <>
@@ -73,12 +65,8 @@ export default function MobileMenu({ language }: MobileMenuProps) {
               </ul>
 
               <div className="mt-8 pt-6 border-t border-slate-700">
-                <Button
-                  onClick={handleCTAClick}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold"
-                >
+                <Button className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold">
                   {t("trustCapital")}
-                  <ExternalLink className="ml-2 w-4 h-4" />
                 </Button>
               </div>
             </nav>
