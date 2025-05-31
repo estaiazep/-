@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { TrendingUp, Award, Shield, Target, Play, Pause } from "lucide-react"
 import AnimatedCounter from "./animated-counter"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
+import Image from "next/image"
 
 interface AboutSectionProps {
   language: Language
@@ -25,7 +26,7 @@ export default function AboutSection({ language }: AboutSectionProps) {
     },
     {
       icon: Award,
-      value: 850,
+      value: 1500,
       suffix: "%",
       label: language === "ru" ? "Максимальная прибыль" : "Maksimal foyda",
       color: "text-green-400",
@@ -39,7 +40,7 @@ export default function AboutSection({ language }: AboutSectionProps) {
     },
     {
       icon: Target,
-      value: 150,
+      value: 250,
       suffix: "+",
       label: language === "ru" ? "Довольных клиентов" : "Mamnun mijozlar",
       color: "text-purple-400",
@@ -73,25 +74,42 @@ export default function AboutSection({ language }: AboutSectionProps) {
           {/* Photo and video section */}
           <div className="order-2 lg:order-1 animate-slide-left">
             <div className="relative">
-              {/* Main photo */}
+              {/* Main professional photo */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-2 hover:border-cyan-500/50 transition-all duration-500 animate-glow">
-                  <div className="w-full h-[500px] rounded-xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-3xl font-bold text-white">S</span>
+                  <div className="relative w-full h-[500px] rounded-xl overflow-hidden">
+                    <Image
+                      src="/images/shahmir-professional.jpg"
+                      alt="Shahmir - Professional Trader"
+                      fill
+                      className="object-cover object-center"
+                      priority
+                    />
+                    {/* Elegant overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+
+                    {/* Professional badge */}
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 rounded-xl p-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
+                            <TrendingUp className="w-6 h-6 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white">Shahmir</h3>
+                            <p className="text-cyan-400 text-sm font-medium">
+                              {language === "ru" ? "Профессиональный трейдер" : "Professional treyder"}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-semibold text-white mb-2">Shahmir</h3>
-                      <p className="text-slate-400">
-                        {language === "ru" ? "Профессиональный трейдер" : "Professional treyder"}
-                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Video placeholder */}
+              {/* Video presentation card */}
               <div className="mt-6">
                 <Card className="bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 transition-all duration-300 group cursor-pointer">
                   <CardContent className="p-6">
@@ -130,8 +148,8 @@ export default function AboutSection({ language }: AboutSectionProps) {
                 </h3>
                 <p className="text-slate-300 leading-relaxed mb-6">
                   {language === "ru"
-                    ? "Начал торговать в 2017 году с небольшого капитала. За 7 лет превратил трейдинг в профессию, изучив все тонкости рынка. Сейчас помогаю другим людям зарабатывать, используя мой опыт и проверенные стратегии."
-                    : "2017 yilda kichik kapital bilan savdo qilishni boshladim. 7 yil davomida treydingni kasbga aylantirdim, bozorning barcha nozik tomonlarini o'rgandim. Hozir boshqa odamlarga mening tajribam va isbotlangan strategiyalarimdan foydalanib daromad topishga yordam beraman."}
+                    ? "Начал торговать в 2017 году с небольшого капитала. За 7 лет превратил трейдинг в профессию, изучив все тонкости рынка. Сейчас помогаю другим людям зарабатывать, используя мой опыт и проверенные стратегии быстрого роста капитала."
+                    : "2017 yilda kichik kapital bilan savdo qilishni boshladim. 7 yil davomida treydingni kasbga aylantirdim, bozorning barcha nozik tomonlarini o'rgandim. Hozir boshqa odamlarga mening tajribam va isbotlangan tez kapital o'sish strategiyalarimdan foydalanib daromad topishga yordam beraman."}
                 </p>
 
                 {/* Achievements grid */}
