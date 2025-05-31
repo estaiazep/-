@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 import { TrendingUp, Award, Shield, Target, Play, Pause } from "lucide-react"
 import AnimatedCounter from "./animated-counter"
 import ExpandableSection from "./expandable-section"
+import PhotoGallery from "./photo-gallery"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
-import Image from "next/image"
 
 interface CompactAboutProps {
   language: Language
@@ -67,40 +67,9 @@ export default function CompactAbout({ language }: CompactAboutProps) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start max-w-5xl mx-auto">
-          {/* Компактное фото */}
+          {/* Галерея фотографий */}
           <div className="order-2 lg:order-1">
-            <div className="relative">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-2 hover:border-cyan-500/50 transition-all duration-500">
-                  <div className="relative w-full h-[350px] rounded-lg overflow-hidden">
-                    <Image
-                      src="/images/shahmir-professional.jpg"
-                      alt="Shahmir - Professional Trader"
-                      fill
-                      className="object-cover object-center"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
-                            <TrendingUp className="w-4 h-4 text-white" />
-                          </div>
-                          <div>
-                            <h3 className="text-sm font-semibold text-white">Shahmir</h3>
-                            <p className="text-cyan-400 text-xs">
-                              {language === "ru" ? "Профессиональный трейдер" : "Professional treyder"}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <PhotoGallery language={language} />
           </div>
 
           {/* Компактная информация */}
