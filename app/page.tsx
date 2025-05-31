@@ -14,9 +14,13 @@ import AnimatedCounter from "@/components/animated-counter"
 import ExpandableSection from "@/components/expandable-section"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 import Image from "next/image"
+import CurrencySwitcher, { type Currency } from "@/components/currency-switcher"
+import HalalInfo from "@/components/halal-info"
+import { formatCurrency, convertCurrency } from "@/lib/currency"
 
 export default function LandingPage() {
   const [language, setLanguage] = useState<Language>("ru")
+  const [currency, setCurrency] = useState<Currency>("USD")
   const [isScrolled, setIsScrolled] = useState(false)
 
   const t = (key: TranslationKey) => translations[language][key]
@@ -32,24 +36,24 @@ export default function LandingPage() {
   const testimonials = [
     {
       name: "Алексей М. / Aleksey M.",
-      investment: "$85",
-      result: "$1,340",
+      investment: formatCurrency(convertCurrency(85, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(1340, "USD", currency), currency),
       period: language === "ru" ? "2 дня" : "2 kun",
       text: t("testimonial1"),
       avatar: "AM",
     },
     {
       name: "Мария К. / Mariya K.",
-      investment: "$150",
-      result: "$1,850",
+      investment: formatCurrency(convertCurrency(150, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(1850, "USD", currency), currency),
       period: language === "ru" ? "3 дня" : "3 kun",
       text: t("testimonial2"),
       avatar: "MK",
     },
     {
       name: "Дмитрий П. / Dmitriy P.",
-      investment: "$120",
-      result: "$1,680",
+      investment: formatCurrency(convertCurrency(120, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(1680, "USD", currency), currency),
       period: language === "ru" ? "1 день" : "1 kun",
       text: t("testimonial3"),
       avatar: "DP",
@@ -72,6 +76,7 @@ export default function LandingPage() {
               Shahmir
             </div>
             <div className="flex items-center gap-3">
+              <CurrencySwitcher currentCurrency={currency} onCurrencyChange={setCurrency} />
               <LanguageSwitcher currentLanguage={language} onLanguageChange={setLanguage} />
               <MobileMenu language={language} />
             </div>
@@ -163,10 +168,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <ProfitCalculator language={language} />
+      <ProfitCalculator language={language} currency={currency} />
       <CompactAbout language={language} />
       <HowItWorks language={language} />
       <CompactFeatures language={language} />
+      <HalalInfo language={language} />
 
       {/* Компактные отзывы */}
       <section id="testimonials" className="py-12 sm:py-16 relative overflow-hidden">
@@ -263,7 +269,10 @@ export default function LandingPage() {
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
               <div className="flex items-center gap-1">
                 <CheckCircle className="w-3 h-3 text-green-400" />
-                <span>{t("minimum")}</span>
+                <span>
+                  {language === "ru" ? "Минимум" : "Minimal"}{" "}
+                  {formatCurrency(convertCurrency(60, "USD", currency), currency)}
+                </span>
               </div>
               <div className="flex items-center gap-1">
                 <CheckCircle className="w-3 h-3 text-green-400" />

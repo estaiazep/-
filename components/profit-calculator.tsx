@@ -6,13 +6,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Calculator, DollarSign, TrendingUp, Zap, Clock, UserCheck } from "lucide-react"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
+import { type Currency, formatCurrency, getMinimumInvestment, convertCurrency } from "@/lib/currency"
 
 interface ProfitCalculatorProps {
   language: Language
+  currency: Currency
 }
 
-export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
-  const [investment, setInvestment] = useState<number>(100)
+export default function ProfitCalculator({ language, currency }: ProfitCalculatorProps) {
+  const minInvestment = getMinimumInvestment(currency)
+  const [investment, setInvestment] = useState<number>(currency === "USD" ? 100 : convertCurrency(100, "USD", currency))
   const [isCalculated, setIsCalculated] = useState(false)
   const t = (key: TranslationKey) => translations[language][key]
 
@@ -23,7 +26,7 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
   const myCommission = totalProfit * 0.3 // 30% мне
 
   const handleCalculate = () => {
-    if (investment >= 60) {
+    if (investment >= minInvestment) {
       setIsCalculated(true)
     }
   }
@@ -103,12 +106,14 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
                         placeholder="100"
                       />
                     </div>
-                    <p className="text-xs text-slate-500 mt-2">{t("minInvestment")}</p>
+                    <p className="text-xs text-slate-500 mt-2">
+                      {language === "ru" ? "Минимум" : "Minimal"} {formatCurrency(minInvestment, currency)}
+                    </p>
                   </div>
 
                   <Button
                     onClick={handleCalculate}
-                    disabled={investment < 60}
+                    disabled={investment < minInvestment}
                     className="w-full bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white font-semibold py-3 rounded-xl shadow-lg shadow-green-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Calculator className="w-5 h-5 mr-2" />
@@ -118,7 +123,7 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
 
                 {/* Results */}
                 <div className="space-y-4">
-                  {isCalculated && investment >= 60 ? (
+                  {isCalculated && investment >= minInvestment ? (
                     <div className="space-y-4 animate-slide-up">
                       {/* Total Profit */}
                       <div className="bg-gradient-to-r from-green-500/10 to-cyan-500/10 border border-green-500/20 rounded-xl p-6">
@@ -126,7 +131,7 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
                           <TrendingUp className="w-6 h-6 text-green-400" />
                           <h4 className="text-lg font-semibold text-white">{t("totalProfit")}</h4>
                         </div>
-                        <div className="text-3xl font-bold text-green-400">${totalProfit.toLocaleString()}</div>
+                        <div className="text-3xl font-bold text-green-400">{formatCurrency(totalProfit, currency)}</div>
                         <div className="text-sm text-slate-400 mt-1">{multiplier}x рост за 1-2 дня</div>
                       </div>
 
@@ -136,7 +141,7 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
                           <DollarSign className="w-6 h-6 text-cyan-400" />
                           <h4 className="text-lg font-semibold text-white">{t("yourProfit")}</h4>
                         </div>
-                        <div className="text-2xl font-bold text-cyan-400">${clientProfit.toLocaleString()}</div>
+                        <div className="text-2xl font-bold text-cyan-400">{formatCurrency(clientProfit, currency)}</div>
                         <div className="text-sm text-slate-400 mt-1">Твоя чистая прибыль</div>
                       </div>
 
@@ -146,14 +151,16 @@ export default function ProfitCalculator({ language }: ProfitCalculatorProps) {
                           <Zap className="w-6 h-6 text-purple-400" />
                           <h4 className="text-lg font-semibold text-white">{t("myCommission")}</h4>
                         </div>
-                        <div className="text-xl font-bold text-purple-400">${myCommission.toLocaleString()}</div>
+                        <div className="text-xl font-bold text-purple-400">
+                          {formatCurrency(myCommission, currency)}
+                        </div>
                         <div className="text-sm text-slate-400 mt-1">Только с результата</div>
                       </div>
 
                       {/* Call to Action */}
                       <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-6 text-center">
                         <h4 className="text-lg font-semibold text-white mb-2">
-                          Готов получить ${clientProfit.toLocaleString()}?
+                          {language === "ru" ? "Готов получить" : "Tayyor"} {formatCurrency(clientProfit, currency)}?
                         </h4>
                         <p className="text-slate-400 text-sm mb-4">Ты ничего не делаешь — я работаю за тебя</p>
                         <a
