@@ -132,13 +132,13 @@ export default function HowItWorks({ language }: HowItWorksProps) {
           {/* Binance Security Info */}
           <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-xl">
             <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center p-1">
+              <div className="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center p-1.5 overflow-hidden">
                 <Image
                   src="/images/binance-logo.jpeg"
                   alt="Binance Logo"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6 object-contain"
+                  width={28}
+                  height={28}
+                  className="w-7 h-7 object-cover scale-110"
                 />
               </div>
               <h4 className="text-lg font-semibold text-white">

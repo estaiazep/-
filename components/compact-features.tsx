@@ -111,13 +111,13 @@ export default function CompactFeatures({ language }: CompactFeaturesProps) {
               {additionalFeatures.map((feature, index) => (
                 <div key={index} className="text-center p-4 bg-slate-700/30 rounded-xl">
                   {feature.customIcon ? (
-                    <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mx-auto mb-3 p-1">
+                    <div className="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 p-1.5 overflow-hidden">
                       <Image
                         src="/images/binance-logo.jpeg"
                         alt="Binance Logo"
-                        width={24}
-                        height={24}
-                        className="w-6 h-6 object-contain"
+                        width={28}
+                        height={28}
+                        className="w-7 h-7 object-cover scale-110"
                       />
                     </div>
                   ) : (

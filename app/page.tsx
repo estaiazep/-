@@ -104,13 +104,13 @@ export default function LandingPage() {
 
             {/* Binance Trust Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full px-4 py-2 mb-6">
-              <div className="w-6 h-6 bg-slate-800 rounded-full flex items-center justify-center p-1">
+              <div className="w-6 h-6 bg-slate-800 rounded-full flex items-center justify-center p-1 overflow-hidden">
                 <Image
                   src="/images/binance-logo.jpeg"
                   alt="Binance Logo"
-                  width={16}
-                  height={16}
-                  className="w-4 h-4 object-contain"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 object-cover scale-125"
                 />
               </div>
               <span className="text-yellow-300 text-sm font-medium">

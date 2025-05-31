@@ -88,13 +88,13 @@ export default function CompactAbout({ language }: CompactAboutProps) {
 
               {/* Binance Security Badge */}
               <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-lg mb-4">
-                <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center p-1">
+                <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center p-1.5 overflow-hidden">
                   <Image
                     src="/images/binance-logo.jpeg"
                     alt="Binance Logo"
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 object-contain"
+                    width={36}
+                    height={36}
+                    className="w-9 h-9 object-cover scale-110"
                   />
                 </div>
                 <div>
