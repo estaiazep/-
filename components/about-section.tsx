@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { TrendingUp, Award, Shield, Target, Play, Pause } from "lucide-react"
@@ -78,14 +77,17 @@ export default function AboutSection({ language }: AboutSectionProps) {
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-2 hover:border-cyan-500/50 transition-all duration-500 animate-glow">
-                  <Image
-                    src="/images/shahmir-photo.jpg"
-                    alt="Shahmir - Professional Trader"
-                    width={400}
-                    height={500}
-                    className="w-full h-auto rounded-xl object-cover"
-                    priority
-                  />
+                  <div className="w-full h-[500px] rounded-xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-24 h-24 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-3xl font-bold text-white">S</span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2">Shahmir</h3>
+                      <p className="text-slate-400">
+                        {language === "ru" ? "Профессиональный трейдер" : "Professional treyder"}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
