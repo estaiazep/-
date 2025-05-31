@@ -64,7 +64,7 @@ export default function HowItWorks({ language, currency }: HowItWorksProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
+        <div className="space-y-6 lg:grid lg:grid-cols-3 lg:gap-6 lg:space-y-0 max-w-6xl mx-auto">
           {steps.map((step, index) => (
             <div key={index} className="relative animate-slide-up" style={{ animationDelay: step.delay }}>
               <Card className="bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 transition-all duration-500 group hover:scale-105 h-full relative overflow-hidden">
@@ -73,17 +73,17 @@ export default function HowItWorks({ language, currency }: HowItWorksProps) {
                   className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                 ></div>
 
-                <CardContent className="p-4 sm:p-5 text-center relative z-10">
+                <CardContent className="p-6 sm:p-5 text-center relative z-10">
                   <div
                     className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-500 animate-pulse-glow`}
                   >
                     <step.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
                   <div className="text-xl sm:text-2xl font-bold text-cyan-400 mb-2">{index + 1}</div>
-                  <h3 className="text-sm sm:text-base font-semibold text-white mb-3 min-h-[2.5rem] flex items-center justify-center">
+                  <h3 className="text-base sm:text-base font-semibold text-white mb-3 min-h-[2.5rem] flex items-center justify-center">
                     {step.title}
                   </h3>
-                  <p className="text-slate-400 leading-relaxed text-xs sm:text-sm">{step.description}</p>
+                  <p className="text-slate-400 leading-relaxed text-sm sm:text-sm">{step.description}</p>
                 </CardContent>
               </Card>
 

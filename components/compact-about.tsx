@@ -67,7 +67,7 @@ export default function CompactAbout({ language }: CompactAboutProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start max-w-5xl mx-auto">
+        <div className="space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start lg:space-y-0 max-w-5xl mx-auto">
           {/* Галерея фотографий */}
           <div className="order-2 lg:order-1">
             <PhotoGallery language={language} />
@@ -183,7 +183,7 @@ export default function CompactAbout({ language }: CompactAboutProps) {
                 </p>
                 <Button
                   onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white text-sm px-4 py-2"
+                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white text-base px-6 py-3 min-h-[48px]"
                 >
                   {isVideoPlaying ? "Пауза" : "Смотреть видео"}
                 </Button>

@@ -158,3 +158,60 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #0891b2;
 }
+
+/* Mobile-first optimizations */
+@media (max-width: 640px) {
+  /* Увеличить размер кликабельных элементов */
+  .mobile-touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Улучшить читаемость текста */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Оптимизировать отступы для мобильных */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Убрать hover эффекты на мобильных */
+  .card-hover:hover {
+    transform: none !important;
+  }
+
+  /* Увеличить размер кнопок */
+  button,
+  .btn {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  /* Оптимизировать input поля */
+  input[type="number"],
+  input[type="text"] {
+    font-size: 16px;
+    min-height: 48px;
+  }
+}
+
+/* Улучшить видимость на маленьких экранах */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* Увеличить отступы между кликабельными элементами */
+  .mobile-spacing > * + * {
+    margin-top: 1rem;
+  }
+}

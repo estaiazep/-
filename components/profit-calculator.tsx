@@ -83,7 +83,7 @@ export default function ProfitCalculator({ language, currency }: ProfitCalculato
         <div className="max-w-4xl mx-auto">
           <Card className="bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 transition-all duration-500 animate-slide-up">
             <CardContent className="p-4 sm:p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+              <div className="space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-center lg:space-y-0">
                 {/* Calculator Input */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-3 mb-4">
@@ -102,7 +102,7 @@ export default function ProfitCalculator({ language, currency }: ProfitCalculato
                         min="60"
                         value={investment}
                         onChange={(e) => handleInputChange(e.target.value)}
-                        className="pl-9 bg-slate-700/50 border-slate-600 text-white text-base h-10 focus:border-cyan-500"
+                        className="pl-9 bg-slate-700/50 border-slate-600 text-white text-lg h-14 focus:border-cyan-500"
                         placeholder={currency === "USD" ? "100" : "1200000"}
                       />
                     </div>
@@ -114,7 +114,7 @@ export default function ProfitCalculator({ language, currency }: ProfitCalculato
                   <Button
                     onClick={handleCalculate}
                     disabled={investment < minInvestment}
-                    className="w-full bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-green-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 text-white font-semibold py-4 rounded-xl shadow-lg shadow-green-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-lg min-h-[56px]"
                   >
                     <Calculator className="w-4 h-4 mr-2" />
                     {t("calculateButton")}
@@ -167,7 +167,7 @@ export default function ProfitCalculator({ language, currency }: ProfitCalculato
                           href="https://t.me/+iawpP4pwqW42YmM6"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-4 py-2 rounded-lg text-sm"
+                          className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-lg text-base min-h-[48px] flex items-center justify-center"
                         >
                           Начать инвестировать
                         </a>

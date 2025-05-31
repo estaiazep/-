@@ -99,13 +99,15 @@ export default function LandingPage() {
               <span className="text-cyan-300 text-xs font-medium">{t("trustBadge")}</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-2 sm:mb-3 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-4xl sm:text-4xl lg:text-5xl font-black mb-4 sm:mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent leading-tight">
               {t("heroTitle")}
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-300 mb-1 font-medium">{t("heroSubtitle")}</p>
+            <p className="text-lg sm:text-lg text-slate-300 mb-3 font-medium">{t("heroSubtitle")}</p>
 
-            <p className="text-xs sm:text-sm text-slate-400 mb-4 sm:mb-5 max-w-2xl mx-auto">{t("heroDescription")}</p>
+            <p className="text-base sm:text-base text-slate-400 mb-5 sm:mb-5 max-w-2xl mx-auto leading-relaxed">
+              {t("heroDescription")}
+            </p>
 
             {/* Binance Trust Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full px-3 py-1 mb-4">
@@ -123,12 +125,12 @@ export default function LandingPage() {
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-4 sm:mb-5">
+            <div className="flex flex-col gap-3 justify-center items-center mb-5 sm:mb-5">
               <a
                 href="https://t.me/+iawpP4pwqW42YmM6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-sm"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-lg min-h-[56px]"
               >
                 {t("trustCapital")}
                 <ArrowRight className="ml-2 w-3 h-3" />
@@ -137,28 +139,28 @@ export default function LandingPage() {
                 href="https://t.me/+iawpP4pwqW42YmM6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-5 py-2.5 rounded-xl inline-flex items-center justify-center text-sm"
+                className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-4 rounded-xl inline-flex items-center justify-center text-lg min-h-[56px]"
               >
                 {t("viewResults")}
               </a>
             </div>
 
             {/* Компактная статистика */}
-            <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
-              <div className="text-center p-2 bg-slate-800/30 rounded-lg border border-slate-700">
-                <div className="text-lg font-bold text-cyan-400">
+            <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto">
+              <div className="text-center p-3 bg-slate-800/30 rounded-lg border border-slate-700">
+                <div className="text-xl font-bold text-cyan-400">
                   <AnimatedCounter end={7} suffix="+" />
                 </div>
                 <div className="text-slate-400 text-xs">{t("yearsTrading")}</div>
               </div>
-              <div className="text-center p-2 bg-slate-800/30 rounded-lg border border-slate-700">
-                <div className="text-lg font-bold text-cyan-400">
+              <div className="text-center p-3 bg-slate-800/30 rounded-lg border border-slate-700">
+                <div className="text-xl font-bold text-cyan-400">
                   <AnimatedCounter end={15} prefix="x" />
                 </div>
                 <div className="text-slate-400 text-xs">{t("avgGrowth")}</div>
               </div>
-              <div className="text-center p-2 bg-slate-800/30 rounded-lg border border-slate-700">
-                <div className="text-lg font-bold text-cyan-400">
+              <div className="text-center p-3 bg-slate-800/30 rounded-lg border border-slate-700">
+                <div className="text-xl font-bold text-cyan-400">
                   <AnimatedCounter end={30} suffix="%" />
                 </div>
                 <div className="text-slate-400 text-xs">{t("commission")}</div>
@@ -260,7 +262,7 @@ export default function LandingPage() {
               href="https://t.me/+iawpP4pwqW42YmM6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-4 text-sm"
+              className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-4 text-lg min-h-[56px] flex items-center justify-center"
             >
               {t("discussInvestment")}
               <ArrowRight className="ml-2 w-3 h-3 inline-block" />
