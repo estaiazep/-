@@ -1,13 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ArrowRight, Star, CheckCircle } from "lucide-react"
+import { Star, CheckCircle, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import HowItWorks from "@/components/how-it-works"
 import CompactAbout from "@/components/compact-about"
 import CompactFeatures from "@/components/compact-features"
-import ProfitCalculator from "@/components/profit-calculator"
 import LanguageSwitcher from "@/components/language-switcher"
 import MobileMenu from "@/components/mobile-menu"
 import FloatingElements from "@/components/floating-elements"
@@ -20,6 +19,9 @@ export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
 
   const t = (key: TranslationKey) => translations[language][key]
+
+  // Telegram канал для всех CTA кнопок
+  const telegramChannel = "https://t.me/+iawpP4pwqW42YmM6"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +57,10 @@ export default function LandingPage() {
       avatar: "DP",
     },
   ]
+
+  const handleCTAClick = () => {
+    window.open(telegramChannel, "_blank")
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-x-hidden">
@@ -105,14 +111,16 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6 sm:mb-8">
               <Button
                 size="lg"
+                onClick={handleCTAClick}
                 className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
               >
                 {t("trustCapital")}
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ExternalLink className="ml-2 w-4 h-4" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
+                onClick={handleCTAClick}
                 className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-800 px-6 py-3 rounded-xl"
               >
                 {t("viewResults")}
@@ -144,7 +152,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <ProfitCalculator language={language} />
       <CompactAbout language={language} />
       <HowItWorks language={language} />
       <CompactFeatures language={language} />
@@ -210,7 +217,7 @@ export default function LandingPage() {
                     ? "Здесь будут дополнительные отзывы, скриншоты переписок и видео-отзывы клиентов"
                     : "Bu yerda qo'shimcha sharhlar, yozishmalar skrinshotlari va mijozlarning video sharhlari bo'ladi"}
                 </p>
-                <Button variant="outline" className="border-cyan-500 text-cyan-400">
+                <Button variant="outline" className="border-cyan-500 text-cyan-400" onClick={handleCTAClick}>
                   {language === "ru" ? "Смотреть все отзывы" : "Barcha sharhlarni ko'rish"}
                 </Button>
               </div>
@@ -228,10 +235,11 @@ export default function LandingPage() {
 
             <Button
               size="lg"
+              onClick={handleCTAClick}
               className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-6"
             >
               {t("discussInvestment")}
-              <ArrowRight className="ml-2 w-4 h-4" />
+              <ExternalLink className="ml-2 w-4 h-4" />
             </Button>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
