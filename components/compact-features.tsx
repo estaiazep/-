@@ -60,35 +60,35 @@ export default function CompactFeatures({ language }: CompactFeaturesProps) {
   ]
 
   return (
-    <section id="features" className="py-12 sm:py-16 bg-slate-900/50 relative overflow-hidden">
+    <section id="features" className="py-8 sm:py-10 bg-slate-900/50 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-0 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
             {t("whyTrustTitle")}
           </h2>
-          <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">{t("whyTrustSubtitle")}</p>
+          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto">{t("whyTrustSubtitle")}</p>
         </div>
 
         {/* Основные преимущества */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto mb-6">
           {mainFeatures.map((feature, index) => (
             <Card
               key={index}
               className="bg-slate-800/50 border-slate-700 hover:border-cyan-500/50 transition-all duration-300 group hover:scale-105"
             >
-              <CardContent className="p-4 sm:p-6 text-center">
+              <CardContent className="p-3 sm:p-4 text-center">
                 <div
-                  className={`w-12 h-12 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-10 h-10 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <feature.icon className="w-6 h-6 text-white" />
+                  <feature.icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-cyan-300 mb-2">{feature.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-sm sm:text-base font-semibold text-cyan-300 mb-2">{feature.title}</h3>
+                <p className="text-slate-400 text-xs leading-relaxed">{feature.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -107,23 +107,23 @@ export default function CompactFeatures({ language }: CompactFeaturesProps) {
             }
             variant="gradient"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {additionalFeatures.map((feature, index) => (
-                <div key={index} className="text-center p-4 bg-slate-700/30 rounded-xl">
+                <div key={index} className="text-center p-3 bg-slate-700/30 rounded-xl">
                   {feature.customIcon ? (
-                    <div className="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 p-1.5 overflow-hidden">
+                    <div className="w-6 h-6 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-2 p-1.5 overflow-hidden">
                       <Image
                         src="/images/binance-logo.jpeg"
                         alt="Binance Logo"
-                        width={28}
-                        height={28}
-                        className="w-7 h-7 object-cover scale-110"
+                        width={20}
+                        height={20}
+                        className="w-5 h-5 object-cover scale-110"
                       />
                     </div>
                   ) : (
-                    <feature.icon className={`w-8 h-8 ${feature.color} mx-auto mb-3`} />
+                    <feature.icon className={`w-6 h-6 ${feature.color} mx-auto mb-2`} />
                   )}
-                  <h4 className="font-semibold text-white mb-2 text-sm">{feature.title}</h4>
+                  <h4 className="font-semibold text-white mb-1 text-xs">{feature.title}</h4>
                   <p className="text-slate-400 text-xs leading-relaxed">{feature.description}</p>
                 </div>
               ))}

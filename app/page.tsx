@@ -71,11 +71,11 @@ export default function LandingPage() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-14 sm:h-16">
+          <div className="flex items-center justify-between h-12 sm:h-14">
             <div className="text-lg sm:text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Shahmir
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <CurrencySwitcher currentCurrency={currency} onCurrencyChange={setCurrency} />
               <LanguageSwitcher currentLanguage={language} onLanguageChange={setLanguage} />
               <MobileMenu language={language} />
@@ -85,80 +85,80 @@ export default function LandingPage() {
       </header>
 
       {/* Компактный Hero Section */}
-      <section className="relative overflow-hidden pt-16 sm:pt-20 pb-8 sm:pb-12">
+      <section className="relative overflow-hidden pt-12 sm:pt-16 pb-6 sm:pb-8">
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="relative container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="relative container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           <div className="text-center max-w-3xl mx-auto">
             {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-3 py-1 mb-4 sm:mb-6">
+            <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-3 py-1 mb-3 sm:mb-4">
               <Star className="w-3 h-3 text-cyan-400 fill-cyan-400" />
               <span className="text-cyan-300 text-xs font-medium">{t("trustBadge")}</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-2 sm:mb-3 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent leading-tight">
               {t("heroTitle")}
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-300 mb-2 font-medium">{t("heroSubtitle")}</p>
+            <p className="text-sm sm:text-base text-slate-300 mb-1 font-medium">{t("heroSubtitle")}</p>
 
-            <p className="text-sm sm:text-base text-slate-400 mb-6 sm:mb-8 max-w-2xl mx-auto">{t("heroDescription")}</p>
+            <p className="text-xs sm:text-sm text-slate-400 mb-4 sm:mb-5 max-w-2xl mx-auto">{t("heroDescription")}</p>
 
             {/* Binance Trust Badge */}
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full px-4 py-2 mb-6">
-              <div className="w-6 h-6 bg-slate-800 rounded-full flex items-center justify-center p-1 overflow-hidden">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full px-3 py-1 mb-4">
+              <div className="w-5 h-5 bg-slate-800 rounded-full flex items-center justify-center p-1 overflow-hidden">
                 <Image
                   src="/images/binance-logo.jpeg"
                   alt="Binance Logo"
-                  width={20}
-                  height={20}
-                  className="w-5 h-5 object-cover scale-125"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 object-cover scale-125"
                 />
               </div>
-              <span className="text-yellow-300 text-sm font-medium">
+              <span className="text-yellow-300 text-xs font-medium">
                 {language === "ru" ? "Торгую на Binance" : "Binance'da savdo qilaman"}
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-4 sm:mb-5">
               <a
                 href="https://t.me/+iawpP4pwqW42YmM6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-sm"
               >
                 {t("trustCapital")}
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight className="ml-2 w-3 h-3" />
               </a>
               <a
                 href="https://t.me/+iawpP4pwqW42YmM6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-6 py-3 rounded-xl inline-flex items-center justify-center"
+                className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-5 py-2.5 rounded-xl inline-flex items-center justify-center text-sm"
               >
                 {t("viewResults")}
               </a>
             </div>
 
             {/* Компактная статистика */}
-            <div className="grid grid-cols-3 gap-4 max-w-lg mx-auto">
-              <div className="text-center p-3 bg-slate-800/30 rounded-lg border border-slate-700">
-                <div className="text-xl font-bold text-cyan-400">
+            <div className="grid grid-cols-3 gap-3 max-w-md mx-auto">
+              <div className="text-center p-2 bg-slate-800/30 rounded-lg border border-slate-700">
+                <div className="text-lg font-bold text-cyan-400">
                   <AnimatedCounter end={7} suffix="+" />
                 </div>
                 <div className="text-slate-400 text-xs">{t("yearsTrading")}</div>
               </div>
-              <div className="text-center p-3 bg-slate-800/30 rounded-lg border border-slate-700">
-                <div className="text-xl font-bold text-cyan-400">
+              <div className="text-center p-2 bg-slate-800/30 rounded-lg border border-slate-700">
+                <div className="text-lg font-bold text-cyan-400">
                   <AnimatedCounter end={15} prefix="x" />
                 </div>
                 <div className="text-slate-400 text-xs">{t("avgGrowth")}</div>
               </div>
-              <div className="text-center p-3 bg-slate-800/30 rounded-lg border border-slate-700">
-                <div className="text-xl font-bold text-cyan-400">
+              <div className="text-center p-2 bg-slate-800/30 rounded-lg border border-slate-700">
+                <div className="text-lg font-bold text-cyan-400">
                   <AnimatedCounter end={30} suffix="%" />
                 </div>
                 <div className="text-slate-400 text-xs">{t("commission")}</div>
@@ -175,28 +175,28 @@ export default function LandingPage() {
       <HalalInfo language={language} />
 
       {/* Компактные отзывы */}
-      <section id="testimonials" className="py-12 sm:py-16 relative overflow-hidden">
+      <section id="testimonials" className="py-8 sm:py-10 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-white">{t("testimonialsTitle")}</h2>
+          <div className="text-center mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white">{t("testimonialsTitle")}</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-4xl mx-auto mb-4">
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
                 className="bg-slate-800/30 border-slate-700 hover:border-cyan-500/50 transition-all duration-300"
               >
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-1 mb-3">
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-1 mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                      <Star key={i} className="w-2.5 h-2.5 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-slate-300 mb-4 italic text-sm">"{testimonial.text}"</p>
-                  <div className="space-y-2">
+                  <p className="text-slate-300 mb-3 italic text-xs">"{testimonial.text}"</p>
+                  <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                      <div className="w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
                         {testimonial.avatar}
                       </div>
                       <div>
@@ -204,7 +204,7 @@ export default function LandingPage() {
                         <div className="text-slate-500 text-xs">{testimonial.period}</div>
                       </div>
                     </div>
-                    <div className="flex justify-between items-center pt-2 border-t border-slate-700">
+                    <div className="flex justify-between items-center pt-1 border-t border-slate-700">
                       <span className="text-slate-400 text-xs">
                         {t("invested")}: {testimonial.investment}
                       </span>
@@ -229,8 +229,8 @@ export default function LandingPage() {
               }
               variant="gradient"
             >
-              <div className="text-center py-8">
-                <p className="text-slate-400 mb-4">
+              <div className="text-center py-6">
+                <p className="text-slate-400 mb-3 text-sm">
                   {language === "ru"
                     ? "Здесь будут дополнительные отзывы, скриншоты переписок и видео-отзывы клиентов"
                     : "Bu yerda qo'shimcha sharhlar, yozishmalar skrinshotlari va mijozlarning video sharhlari bo'ladi"}
@@ -239,7 +239,7 @@ export default function LandingPage() {
                   href="https://t.me/+iawpP4pwqW42YmM6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block border border-cyan-500 text-cyan-400 px-4 py-2 rounded-lg hover:bg-cyan-500/10"
+                  className="inline-block border border-cyan-500 text-cyan-400 px-3 py-1.5 rounded-lg hover:bg-cyan-500/10 text-sm"
                 >
                   {language === "ru" ? "Смотреть все отзывы" : "Barcha sharhlarni ko'rish"}
                 </a>
@@ -250,23 +250,23 @@ export default function LandingPage() {
       </section>
 
       {/* Компактный CTA */}
-      <section className="py-12 sm:py-16 bg-gradient-to-r from-cyan-900/20 to-blue-900/20 relative overflow-hidden">
+      <section className="py-8 sm:py-10 bg-gradient-to-r from-cyan-900/20 to-blue-900/20 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 text-center relative">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-white">{t("ctaTitle")}</h2>
-            <p className="text-base text-slate-300 mb-6">{t("ctaSubtitle")}</p>
+            <h2 className="text-xl sm:text-2xl font-bold mb-2 text-white">{t("ctaTitle")}</h2>
+            <p className="text-sm text-slate-300 mb-4">{t("ctaSubtitle")}</p>
 
             <a
               href="https://t.me/+iawpP4pwqW42YmM6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-6"
+              className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-4 text-sm"
             >
               {t("discussInvestment")}
-              <ArrowRight className="ml-2 w-4 h-4 inline-block" />
+              <ArrowRight className="ml-2 w-3 h-3 inline-block" />
             </a>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
               <div className="flex items-center gap-1">
                 <CheckCircle className="w-3 h-3 text-green-400" />
                 <span>
@@ -288,7 +288,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 py-4">
+      <footer className="bg-slate-950 py-3">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <p className="text-slate-500 text-xs">{t("copyright")}</p>
           <p className="text-slate-600 text-xs mt-1">{t("riskWarning")}</p>
