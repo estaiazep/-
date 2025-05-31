@@ -4,6 +4,7 @@ import { TrendingUp, Shield, Zap, MessageCircle, Target, Users } from "lucide-re
 import { Card, CardContent } from "@/components/ui/card"
 import ExpandableSection from "./expandable-section"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
+import Image from "next/image"
 
 interface CompactFeaturesProps {
   language: Language
@@ -42,6 +43,7 @@ export default function CompactFeatures({ language }: CompactFeaturesProps) {
           ? "Торгую только на Binance — крупнейшей и самой защищенной криптобирже мира"
           : "Faqat Binance'da savdo qilaman — dunyoning eng katta va himoyalangan kripto birjasi",
       color: "text-green-400",
+      customIcon: true,
     },
     {
       icon: MessageCircle,
@@ -108,7 +110,19 @@ export default function CompactFeatures({ language }: CompactFeaturesProps) {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {additionalFeatures.map((feature, index) => (
                 <div key={index} className="text-center p-4 bg-slate-700/30 rounded-xl">
-                  <feature.icon className={`w-8 h-8 ${feature.color} mx-auto mb-3`} />
+                  {feature.customIcon ? (
+                    <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center mx-auto mb-3 p-1">
+                      <Image
+                        src="/images/binance-logo.jpeg"
+                        alt="Binance Logo"
+                        width={24}
+                        height={24}
+                        className="w-6 h-6 object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <feature.icon className={`w-8 h-8 ${feature.color} mx-auto mb-3`} />
+                  )}
                   <h4 className="font-semibold text-white mb-2 text-sm">{feature.title}</h4>
                   <p className="text-slate-400 text-xs leading-relaxed">{feature.description}</p>
                 </div>

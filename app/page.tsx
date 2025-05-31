@@ -13,6 +13,7 @@ import FloatingElements from "@/components/floating-elements"
 import AnimatedCounter from "@/components/animated-counter"
 import ExpandableSection from "@/components/expandable-section"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
+import Image from "next/image"
 
 export default function LandingPage() {
   const [language, setLanguage] = useState<Language>("ru")
@@ -103,8 +104,14 @@ export default function LandingPage() {
 
             {/* Binance Trust Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full px-4 py-2 mb-6">
-              <div className="w-6 h-6 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xs">B</span>
+              <div className="w-6 h-6 bg-slate-800 rounded-full flex items-center justify-center p-1">
+                <Image
+                  src="/images/binance-logo.jpeg"
+                  alt="Binance Logo"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 object-contain"
+                />
               </div>
               <span className="text-yellow-300 text-sm font-medium">
                 {language === "ru" ? "Торгую на Binance" : "Binance'da savdo qilaman"}

@@ -7,6 +7,7 @@ import AnimatedCounter from "./animated-counter"
 import ExpandableSection from "./expandable-section"
 import PhotoGallery from "./photo-gallery"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
+import Image from "next/image"
 
 interface CompactAboutProps {
   language: Language
@@ -87,8 +88,14 @@ export default function CompactAbout({ language }: CompactAboutProps) {
 
               {/* Binance Security Badge */}
               <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-lg mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">B</span>
+                <div className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center p-1">
+                  <Image
+                    src="/images/binance-logo.jpeg"
+                    alt="Binance Logo"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 object-contain"
+                  />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold text-sm">

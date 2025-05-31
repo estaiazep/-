@@ -3,6 +3,7 @@
 import { ArrowRight, DollarSign, TrendingUp, PiggyBank } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
+import Image from "next/image"
 
 interface HowItWorksProps {
   language: Language
@@ -130,9 +131,15 @@ export default function HowItWorks({ language }: HowItWorksProps) {
           </div>
           {/* Binance Security Info */}
           <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-xl">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">B</span>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center p-1">
+                <Image
+                  src="/images/binance-logo.jpeg"
+                  alt="Binance Logo"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 object-contain"
+                />
               </div>
               <h4 className="text-lg font-semibold text-white">
                 {language === "ru" ? "Торгую на Binance" : "Binance'da savdo qilaman"}
