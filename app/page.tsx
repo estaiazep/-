@@ -101,6 +101,16 @@ export default function LandingPage() {
 
             <p className="text-sm sm:text-base text-slate-400 mb-6 sm:mb-8 max-w-2xl mx-auto">{t("heroDescription")}</p>
 
+            {/* Binance Trust Badge */}
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full px-4 py-2 mb-6">
+              <div className="w-6 h-6 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">B</span>
+              </div>
+              <span className="text-yellow-300 text-sm font-medium">
+                {language === "ru" ? "Торгую на Binance" : "Binance'da savdo qilaman"}
+              </span>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6 sm:mb-8">
               <a
                 href="https://t.me/+iawpP4pwqW42YmM6"

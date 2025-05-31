@@ -36,8 +36,11 @@ export default function CompactFeatures({ language }: CompactFeaturesProps) {
   const additionalFeatures = [
     {
       icon: Shield,
-      title: t("feature3Title"),
-      description: t("feature3Description"),
+      title: language === "ru" ? "Binance — максимальная безопасность" : "Binance — maksimal xavfsizlik",
+      description:
+        language === "ru"
+          ? "Торгую только на Binance — крупнейшей и самой защищенной криптобирже мира"
+          : "Faqat Binance'da savdo qilaman — dunyoning eng katta va himoyalangan kripto birjasi",
       color: "text-green-400",
     },
     {

@@ -88,6 +88,14 @@ export const translations = {
     commissionOnly: "30% только с прибыли",
     dailyReports: "Ежедневные отчеты",
 
+    // Binance security
+    binanceSecurity: "Работаю с Binance",
+    binanceDescription:
+      "Использую только проверенную криптобиржу Binance — лидера рынка с максимальной защитой средств",
+    cryptoTrading: "Криптотрейдинг",
+    cryptoTradingDescription:
+      "Специализируюсь на торговле криптовалютами на бирже Binance — самой надежной платформе в мире",
+
     // Footer
     copyright: "© 2025 Шахмир. Все права защищены.",
     riskWarning: "Инвестиции связаны с рисками. Торгуйте ответственно.",
@@ -185,6 +193,14 @@ export const translations = {
     minimum: "Minimal $60",
     commissionOnly: "Faqat foydadan 30%",
     dailyReports: "Kunlik hisobotlar",
+
+    // Binance security
+    binanceSecurity: "Binance bilan ishlayman",
+    binanceDescription:
+      "Faqat tekshirilgan Binance kripto birjasidan foydalanaman — mablag'larni maksimal himoya qiluvchi bozor lideri",
+    cryptoTrading: "Kripto treydingda",
+    cryptoTradingDescription:
+      "Binance birjasida kriptovalyuta savdosida ixtisoslashtim — dunyodagi eng ishonchli platforma",
 
     // Footer
     copyright: "© 2025 Shahmir. Barcha huquqlar himoyalangan.",

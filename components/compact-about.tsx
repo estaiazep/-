@@ -85,6 +85,21 @@ export default function CompactAbout({ language }: CompactAboutProps) {
                   : "7 yil treydingda tajriba. Barcha ishni o'z zimmamga olaman — siz shunchaki investitsiya qilib foyda olasiz."}
               </p>
 
+              {/* Binance Security Badge */}
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-lg mb-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">B</span>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold text-sm">
+                    {language === "ru" ? "Работаю с Binance" : "Binance bilan ishlayman"}
+                  </h4>
+                  <p className="text-slate-400 text-xs">
+                    {language === "ru" ? "Самая надежная криптобиржа" : "Eng ishonchli kripto birja"}
+                  </p>
+                </div>
+              </div>
+
               {/* Компактные достижения */}
               <div className="grid grid-cols-2 gap-3">
                 {achievements.slice(0, 4).map((achievement, index) => (

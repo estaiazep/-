@@ -128,6 +128,22 @@ export default function HowItWorks({ language }: HowItWorksProps) {
               </div>
             </div>
           </div>
+          {/* Binance Security Info */}
+          <div className="mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">B</span>
+              </div>
+              <h4 className="text-lg font-semibold text-white">
+                {language === "ru" ? "Торгую на Binance" : "Binance'da savdo qilaman"}
+              </h4>
+            </div>
+            <p className="text-slate-300 text-sm">
+              {language === "ru"
+                ? "Использую только проверенную криптобиржу Binance — лидера рынка с лицензиями и страхованием депозитов до $1 млрд"
+                : "Faqat tekshirilgan Binance kripto birjasidan foydalanaman — litsenziyalar va 1 milliard dollargacha depozit sug'urtasi bilan bozor lideri"}
+            </p>
+          </div>
         </div>
       </div>
     </section>
