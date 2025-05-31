@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import HowItWorks from "@/components/how-it-works"
 import AboutSection from "@/components/about-section"
+import ProfitCalculator from "@/components/profit-calculator"
 import LanguageSwitcher from "@/components/language-switcher"
 import MobileMenu from "@/components/mobile-menu"
 import FloatingElements from "@/components/floating-elements"
@@ -205,6 +206,7 @@ export default function LandingPage() {
 
       <AboutSection language={language} />
       <HowItWorks language={language} />
+      <ProfitCalculator language={language} />
 
       {/* Enhanced Features Section */}
       <section id="features" className="py-16 sm:py-20 lg:py-24 bg-slate-900/50 relative overflow-hidden">

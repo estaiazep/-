@@ -5,7 +5,7 @@ export const translations = {
     heroTitle: "Шахмир",
     heroSubtitle: "Профессиональный трейдер с 7+ лет опыта",
     heroDescription:
-      "Доверь мне свой капитал — я увеличу его в 10-15 раз за 1-2 дня. Ты получаешь 70% прибыли, я беру 30% за результат.",
+      "Инвестируй без опыта и знаний — я беру всю работу на себя. Увеличу твой капитал в 10-15 раз за 1-2 дня. Ты получаешь 70% прибыли, ничего не делая.",
     trustCapital: "Доверить капитал",
     viewResults: "Мои результаты",
 
@@ -20,15 +20,15 @@ export const translations = {
 
     // How it works
     howItWorksTitle: "Как это работает",
-    howItWorksSubtitle: "Простая и прозрачная схема сотрудничества",
-    step1Title: "Ты доверяешь капитал",
+    howItWorksSubtitle: "Простая схема — ты инвестируешь, я работаю, ты получаешь прибыль",
+    step1Title: "Ты просто переводишь деньги",
     step1Description:
-      "Переводишь деньги на торговый счет. Минимальная сумма — $60. Чем больше капитал, тем больше прибыль.",
-    step2Title: "Я торгую и увеличиваю",
+      "Никакого опыта не нужно. Переводишь от $60 на торговый счет — и всё. Дальше я беру всю работу на себя.",
+    step2Title: "Я торгую за тебя",
     step2Description:
-      "Использую свой 7-летний опыт и проверенные стратегии для роста твоего капитала в 10-15 раз за 1-2 дня.",
-    step3Title: "Ты получаешь прибыль",
-    step3Description: "70% прибыли остается у тебя, 30% беру я. Если прибыли нет — комиссии тоже нет.",
+      "Ты отдыхаешь, а я использую свой 7-летний опыт для роста твоего капитала. Никаких знаний от тебя не требуется.",
+    step3Title: "Ты получаешь готовую прибыль",
+    step3Description: "70% прибыли твоя, 30% моя. Ты ничего не делаешь — просто получаешь деньги.",
     fairPaymentModel: "Справедливая модель оплаты",
     fairPaymentDescription:
       "Я зарабатываю только когда зарабатываешь ты. Это мотивирует меня показывать максимальный результат.",
@@ -36,12 +36,12 @@ export const translations = {
     myCommission: "Моя комиссия",
 
     // Features
-    whyTrustTitle: "Почему доверяют мне капитал",
-    whyTrustSubtitle: "Я торгую твоими деньгами как своими — с максимальной ответственностью",
+    whyTrustTitle: "Почему выбирают инвестиции без опыта",
+    whyTrustSubtitle: "Ты инвестируешь — я работаю. Никаких знаний и усилий с твоей стороны",
 
-    feature1Title: "7+ лет опыта",
+    feature1Title: "Без опыта и знаний",
     feature1Description:
-      "Профессиональный трейдер с проверенными стратегиями. Торгую на всех основных рынках и знаю, как извлекать прибыль.",
+      "Тебе не нужно ничего знать о трейдинге. Я беру всю работу на себя — ты просто получаешь прибыль.",
 
     feature2Title: "Справедливая модель",
     feature2Description:
@@ -55,7 +55,7 @@ export const translations = {
     feature4Description:
       "Ежедневные отчеты о состоянии твоего капитала. Видишь каждую сделку и результат в реальном времени.",
 
-    feature5Title: "Быстрый рост",
+    feature5Title: "Быстрый результат",
     feature5Description: "Средний рост капитала в 10-15 раз за 1-2 дня. Не жду месяцами — делаю деньги здесь и сейчас.",
 
     feature6Title: "Минимальный вход",
@@ -63,16 +63,26 @@ export const translations = {
 
     // Testimonials
     testimonialsTitle: "Что говорят клиенты",
-    testimonial1: "Вложил 85 долларов, через 2 дня получил 1340. Шахмир действительно профессионал своего дела!",
+    testimonial1: "Вложил 85 долларов, ничего не делал, через 2 дня получил 1340. Шахмир всё сделал за меня!",
     testimonial2: "Никогда не думала, что можно так зарабатывать, ничего не делая. Спасибо за прибыль!",
     testimonial3: "Доверил 120 долларов, за день получил 1680. Теперь планирую увеличить сумму инвестиций.",
     invested: "Вложил",
     received: "Получил",
     months: "месяца",
 
+    // Calculator
+    calculatorTitle: "Рассчитай свою прибыль",
+    calculatorSubtitle: "Узнай, сколько можешь заработать, ничего не делая",
+    investmentAmount: "Сумма инвестиций",
+    yourProfit: "Твоя прибыль (70%)",
+    myCommission: "Моя комиссия (30%)",
+    totalProfit: "Общая прибыль",
+    calculateButton: "Рассчитать прибыль",
+    minInvestment: "Минимум $60",
+
     // CTA
-    ctaTitle: "Готов доверить мне свой капитал?",
-    ctaSubtitle: "Начни зарабатывать уже сегодня — я сделаю твои деньги работать",
+    ctaTitle: "Готов инвестировать без опыта?",
+    ctaSubtitle: "Начни зарабатывать уже сегодня — я сделаю всю работу за тебя",
     discussInvestment: "Обсудить инвестиции",
     minimum: "Минимум $60",
     commissionOnly: "30% только с прибыли",
@@ -89,7 +99,7 @@ export const translations = {
     heroTitle: "Shahmir",
     heroSubtitle: "7+ yillik tajribaga ega professional treyder",
     heroDescription:
-      "Kapitalingizni menga ishoning — uni 1-2 kun ichida 10-15 marta oshiraman. Siz foydaning 70%ini olasiz, men natija uchun 30% olaman.",
+      "Tajriba va bilimisiz investitsiya qiling — men barcha ishni o'z zimmamga olaman. Kapitalingizni 1-2 kun ichida 10-15 marta oshiraman. Siz hech narsa qilmasdan foydaning 70%ini olasiz.",
     trustCapital: "Kapitalni ishonib topshirish",
     viewResults: "Mening natijalarim",
 
@@ -104,15 +114,15 @@ export const translations = {
 
     // How it works
     howItWorksTitle: "Bu qanday ishlaydi",
-    howItWorksSubtitle: "Oddiy va shaffof hamkorlik sxemasi",
-    step1Title: "Siz kapitalni ishonib topshirasiz",
+    howItWorksSubtitle: "Oddiy sxema — siz investitsiya qilasiz, men ishlayman, siz foyda olasiz",
+    step1Title: "Siz shunchaki pul o'tkazasiz",
     step1Description:
-      "Pulni savdo hisobiga o'tkazasiz. Minimal summa — $60. Kapital qancha ko'p bo'lsa, foyda shuncha ko'p.",
-    step2Title: "Men savdo qilib ko'paytiraman",
+      "Hech qanday tajriba kerak emas. $60 dan savdo hisobiga o'tkazasiz — va hammasi. Keyin men barcha ishni o'z zimmamga olaman.",
+    step2Title: "Men siz uchun savdo qilaman",
     step2Description:
-      "7 yillik tajribam va isbotlangan strategiyalarimdan foydalanib kapitalingizni 1-2 kun ichida 10-15 marta oshiraman.",
-    step3Title: "Siz foyda olasiz",
-    step3Description: "Foydaning 70%i sizda qoladi, 30%ini men olaman. Agar foyda bo'lmasa — komissiya ham yo'q.",
+      "Siz dam olasiz, men esa 7 yillik tajribamdan foydalanib kapitalingizni oshiraman. Sizdan hech qanday bilim talab qilinmaydi.",
+    step3Title: "Siz tayyor foydani olasiz",
+    step3Description: "Foydaning 70%i sizniki, 30%i meniki. Siz hech narsa qilmaysiz — shunchaki pul olasiz.",
     fairPaymentModel: "Adolatli to'lov modeli",
     fairPaymentDescription:
       "Men faqat siz daromad topganingizda daromad topaman. Bu meni maksimal natija ko'rsatishga undaydi.",
@@ -120,12 +130,12 @@ export const translations = {
     myCommission: "Mening komissiyam",
 
     // Features
-    whyTrustTitle: "Nega menga kapital ishonib topshirishadi",
-    whyTrustSubtitle: "Men sizning pulingiz bilan o'zimnikidek — maksimal mas'uliyat bilan savdo qilaman",
+    whyTrustTitle: "Nega tajribasiz investitsiyani tanlashadi",
+    whyTrustSubtitle: "Siz investitsiya qilasiz — men ishlayman. Sizdan hech qanday bilim va harakat talab qilinmaydi",
 
-    feature1Title: "7+ yil tajriba",
+    feature1Title: "Tajriba va bilimsiz",
     feature1Description:
-      "Isbotlangan strategiyalarga ega professional treyder. Barcha asosiy bozorlarda savdo qilaman va qanday foyda olishni bilaman.",
+      "Sizga treydingdan hech narsa bilish shart emas. Men barcha ishni o'z zimmamga olaman — siz shunchaki foyda olasiz.",
 
     feature2Title: "Adolatli model",
     feature2Description:
@@ -139,7 +149,7 @@ export const translations = {
     feature4Description:
       "Kapitalingiz holati haqida kunlik hisobotlar. Har bir bitimni va natijani real vaqtda ko'rasiz.",
 
-    feature5Title: "Tez o'sish",
+    feature5Title: "Tez natija",
     feature5Description:
       "1-2 kun ichida kapitalning o'rtacha 10-15 marta o'sishi. Oylar kutmayman — bu yerda va hozir pul ishlayman.",
 
@@ -150,7 +160,7 @@ export const translations = {
     // Testimonials
     testimonialsTitle: "Mijozlar nima deyishadi",
     testimonial1:
-      "85 dollar kiritdim, 2 kundan keyin 1340 dollar oldim. Shahmir haqiqatan ham o'z ishining professionalı!",
+      "85 dollar kiritdim, hech narsa qilmadim, 2 kundan keyin 1340 dollar oldim. Shahmir hamma ishni men uchun qildi!",
     testimonial2: "Hech narsa qilmasdan bunday daromad olish mumkinligini hech o'ylamagandim. Foyda uchun rahmat!",
     testimonial3:
       "120 dollar ishonib topshirdim, bir kundan keyin 1680 dollar oldim. Endi investitsiya summasini oshirishni rejalashtirmoqdaman.",
@@ -158,9 +168,19 @@ export const translations = {
     received: "Oldi",
     months: "oy",
 
+    // Calculator
+    calculatorTitle: "Foydangizni hisoblang",
+    calculatorSubtitle: "Hech narsa qilmasdan qancha daromad topishingizni bilib oling",
+    investmentAmount: "Investitsiya summasi",
+    yourProfit: "Sizning foydangiz (70%)",
+    myCommission: "Mening komissiyam (30%)",
+    totalProfit: "Umumiy foyda",
+    calculateButton: "Foydani hisoblash",
+    minInvestment: "Minimal $60",
+
     // CTA
-    ctaTitle: "Menga kapitalingizni ishonib topshirishga tayyormisiz?",
-    ctaSubtitle: "Bugundan boshlab daromad toping — men pulingizni ishlashini ta'minlayman",
+    ctaTitle: "Tajribasiz investitsiya qilishga tayyormisiz?",
+    ctaSubtitle: "Bugundan boshlab daromad toping — men barcha ishni siz uchun qilaman",
     discussInvestment: "Investitsiyani muhokama qilish",
     minimum: "Minimal $60",
     commissionOnly: "Faqat foydadan 30%",
