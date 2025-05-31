@@ -29,25 +29,25 @@ export default function LandingPage() {
   const testimonials = [
     {
       name: "Алексей М. / Aleksey M.",
-      investment: "$500",
-      result: "$2,100",
-      period: language === "ru" ? "3 месяца" : "3 oy",
+      investment: "$85",
+      result: "$1,340",
+      period: language === "ru" ? "2 дня" : "2 kun",
       text: t("testimonial1"),
       avatar: "AM",
     },
     {
       name: "Мария К. / Mariya K.",
-      investment: "$1,000",
-      result: "$4,500",
-      period: language === "ru" ? "4 месяца" : "4 oy",
+      investment: "$150",
+      result: "$1,850",
+      period: language === "ru" ? "3 дня" : "3 kun",
       text: t("testimonial2"),
       avatar: "MK",
     },
     {
       name: "Дмитрий П. / Dmitriy P.",
-      investment: "$2,000",
-      result: "$8,200",
-      period: language === "ru" ? "2 месяца" : "2 oy",
+      investment: "$120",
+      result: "$1,680",
+      period: language === "ru" ? "1 день" : "1 kun",
       text: t("testimonial3"),
       avatar: "DP",
     },
@@ -188,7 +188,7 @@ export default function LandingPage() {
               </div>
               <div className="text-center p-4 bg-slate-800/30 rounded-xl border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 group">
                 <div className="text-2xl sm:text-3xl font-bold text-cyan-400 mb-2 group-hover:scale-110 transition-transform duration-300">
-                  <AnimatedCounter end={8} prefix="x" />
+                  <AnimatedCounter end={15} prefix="x" />
                 </div>
                 <div className="text-slate-400 text-sm sm:text-base">{t("avgGrowth")}</div>
               </div>

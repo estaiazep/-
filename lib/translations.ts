@@ -5,7 +5,7 @@ export const translations = {
     heroTitle: "Шахмир",
     heroSubtitle: "Профессиональный трейдер с 7+ лет опыта",
     heroDescription:
-      "Доверь мне свой капитал — я увеличу его в 5-10 раз. Ты получаешь 70% прибыли, я беру 30% за результат.",
+      "Доверь мне свой капитал — я увеличу его в 10-15 раз за 1-2 дня. Ты получаешь 70% прибыли, я беру 30% за результат.",
     trustCapital: "Доверить капитал",
     viewResults: "Мои результаты",
 
@@ -23,9 +23,10 @@ export const translations = {
     howItWorksSubtitle: "Простая и прозрачная схема сотрудничества",
     step1Title: "Ты доверяешь капитал",
     step1Description:
-      "Переводишь деньги на торговый счет. Минимальная сумма — $1000. Чем больше капитал, тем больше прибыль.",
+      "Переводишь деньги на торговый счет. Минимальная сумма — $60. Чем больше капитал, тем больше прибыль.",
     step2Title: "Я торгую и увеличиваю",
-    step2Description: "Использую свой 7-летний опыт и проверенные стратегии для роста твоего капитала в 5-10 раз.",
+    step2Description:
+      "Использую свой 7-летний опыт и проверенные стратегии для роста твоего капитала в 10-15 раз за 1-2 дня.",
     step3Title: "Ты получаешь прибыль",
     step3Description: "70% прибыли остается у тебя, 30% беру я. Если прибыли нет — комиссии тоже нет.",
     fairPaymentModel: "Справедливая модель оплаты",
@@ -55,17 +56,16 @@ export const translations = {
       "Ежедневные отчеты о состоянии твоего капитала. Видишь каждую сделку и результат в реальном времени.",
 
     feature5Title: "Быстрый рост",
-    feature5Description:
-      "Средний рост капитала в 5-10 раз за 3-6 месяцев. Не жду годами — делаю деньги здесь и сейчас.",
+    feature5Description: "Средний рост капитала в 10-15 раз за 1-2 дня. Не жду месяцами — делаю деньги здесь и сейчас.",
 
     feature6Title: "Минимальный вход",
-    feature6Description: "Начни с любой суммы от $1000. Чем больше капитал — тем больше возможностей для роста.",
+    feature6Description: "Начни с любой суммы от $60. Чем больше капитал — тем больше возможностей для роста.",
 
     // Testimonials
     testimonialsTitle: "Что говорят клиенты",
-    testimonial1: "Вложил 5 тысяч, через 4 месяца получил 17. Шахмир действительно профессионал своего дела!",
+    testimonial1: "Вложил 85 долларов, через 2 дня получил 1340. Шахмир действительно профессионал своего дела!",
     testimonial2: "Никогда не думала, что можно так зарабатывать, ничего не делая. Спасибо за прибыль!",
-    testimonial3: "Доверил 10к, получил почти 30к. Теперь планирую увеличить сумму инвестиций.",
+    testimonial3: "Доверил 120 долларов, за день получил 1680. Теперь планирую увеличить сумму инвестиций.",
     invested: "Вложил",
     received: "Получил",
     months: "месяца",
@@ -74,7 +74,7 @@ export const translations = {
     ctaTitle: "Готов доверить мне свой капитал?",
     ctaSubtitle: "Начни зарабатывать уже сегодня — я сделаю твои деньги работать",
     discussInvestment: "Обсудить инвестиции",
-    minimum: "Минимум $1000",
+    minimum: "Минимум $60",
     commissionOnly: "30% только с прибыли",
     dailyReports: "Ежедневные отчеты",
 
@@ -89,7 +89,7 @@ export const translations = {
     heroTitle: "Shahmir",
     heroSubtitle: "7+ yillik tajribaga ega professional treyder",
     heroDescription:
-      "Kapitalingizni menga ishoning — uni 5-10 marta oshiraman. Siz foydaning 70%ini olasiz, men natija uchun 30% olaman.",
+      "Kapitalingizni menga ishoning — uni 1-2 kun ichida 10-15 marta oshiraman. Siz foydaning 70%ini olasiz, men natija uchun 30% olaman.",
     trustCapital: "Kapitalni ishonib topshirish",
     viewResults: "Mening natijalarim",
 
@@ -107,10 +107,10 @@ export const translations = {
     howItWorksSubtitle: "Oddiy va shaffof hamkorlik sxemasi",
     step1Title: "Siz kapitalni ishonib topshirasiz",
     step1Description:
-      "Pulni savdo hisobiga o'tkazasiz. Minimal summa — $1000. Kapital qancha ko'p bo'lsa, foyda shuncha ko'p.",
+      "Pulni savdo hisobiga o'tkazasiz. Minimal summa — $60. Kapital qancha ko'p bo'lsa, foyda shuncha ko'p.",
     step2Title: "Men savdo qilib ko'paytiraman",
     step2Description:
-      "7 yillik tajribam va isbotlangan strategiyalarimdan foydalanib kapitalingizni 5-10 marta oshiraman.",
+      "7 yillik tajribam va isbotlangan strategiyalarimdan foydalanib kapitalingizni 1-2 kun ichida 10-15 marta oshiraman.",
     step3Title: "Siz foyda olasiz",
     step3Description: "Foydaning 70%i sizda qoladi, 30%ini men olaman. Agar foyda bo'lmasa — komissiya ham yo'q.",
     fairPaymentModel: "Adolatli to'lov modeli",
@@ -141,18 +141,19 @@ export const translations = {
 
     feature5Title: "Tez o'sish",
     feature5Description:
-      "3-6 oy ichida kapitalning o'rtacha 5-10 marta o'sishi. Yillar kutmayman — bu yerda va hozir pul ishlayman.",
+      "1-2 kun ichida kapitalning o'rtacha 10-15 marta o'sishi. Oylar kutmayman — bu yerda va hozir pul ishlayman.",
 
     feature6Title: "Minimal kirish",
     feature6Description:
-      "$1000 dan istalgan summa bilan boshlang. Kapital qancha ko'p bo'lsa — o'sish imkoniyatlari shuncha ko'p.",
+      "$60 dan istalgan summa bilan boshlang. Kapital qancha ko'p bo'lsa — o'sish imkoniyatlari shuncha ko'p.",
 
     // Testimonials
     testimonialsTitle: "Mijozlar nima deyishadi",
-    testimonial1: "5 ming kiritdim, 4 oydan keyin 17 ming oldim. Shahmir haqiqatan ham o'z ishining professionalı!",
+    testimonial1:
+      "85 dollar kiritdim, 2 kundan keyin 1340 dollar oldim. Shahmir haqiqatan ham o'z ishining professionalı!",
     testimonial2: "Hech narsa qilmasdan bunday daromad olish mumkinligini hech o'ylamagandim. Foyda uchun rahmat!",
     testimonial3:
-      "10 ming ishonib topshirdim, deyarli 30 ming oldim. Endi investitsiya summasini oshirishni rejalashtirmoqdaman.",
+      "120 dollar ishonib topshirdim, bir kundan keyin 1680 dollar oldim. Endi investitsiya summasini oshirishni rejalashtirmoqdaman.",
     invested: "Kiritdi",
     received: "Oldi",
     months: "oy",
@@ -161,7 +162,7 @@ export const translations = {
     ctaTitle: "Menga kapitalingizni ishonib topshirishga tayyormisiz?",
     ctaSubtitle: "Bugundan boshlab daromad toping — men pulingizni ishlashini ta'minlayman",
     discussInvestment: "Investitsiyani muhokama qilish",
-    minimum: "Minimal $1000",
+    minimum: "Minimal $60",
     commissionOnly: "Faqat foydadan 30%",
     dailyReports: "Kunlik hisobotlar",
 
