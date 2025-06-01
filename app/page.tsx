@@ -3,25 +3,17 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, CheckCircle, Clock, DollarSign, Shield, TrendingUp, Users } from "lucide-react"
+import { ArrowRight, CheckCircle, Clock, DollarSign, Shield, TrendingUp, Users, Menu, X } from "lucide-react"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import CountUp from "react-countup"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, Autoplay } from "swiper/modules"
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
 import TestimonialCard from "@/components/testimonial-card"
 import FaqAccordion from "@/components/faq-accordion"
-import MobileNav from "@/components/mobile-nav"
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [language, setLanguage] = useState<"uz" | "ru">("uz")
   const [showResults, setShowResults] = useState(false)
-  const [activeTab, setActiveTab] = useState("daily")
-  
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   // Translations
   const t = {
     ru: {
@@ -62,7 +54,8 @@ export default function Home() {
       halal: {
         title: "100% Халяль заработок",
         subtitle: "Одобрено исламскими учеными Узбекистана",
-        quote: "«Торговля криптовалютами разрешена, если это реальная купля-продажа активов, а не азартные игры» — Муфтий Узбекистана",
+        quote:
+          "«Торговля криптовалютами разрешена, если это реальная купля-продажа активов, а не азартные игры» — Муфтий Узбекистана",
         point1: "Реальная торговля активами",
         point2: "Не ставки и не азартные игры",
         point3: "Без процентов (риба)",
@@ -102,7 +95,7 @@ export default function Home() {
         rights: "© 2025 Шахмир Исламов. Все права защищены.",
         disclaimer: "Инвестиции связаны с рисками. Торгуйте ответственно.",
         halal: "100% Халяль бизнес для мусульман",
-      }
+      },
     },
     uz: {
       hero: {
@@ -142,7 +135,8 @@ export default function Home() {
       halal: {
         title: "100% Halol daromad",
         subtitle: "O'zbekiston islom olimlari tomonidan tasdiqlangan",
-        quote: "«Kriptovalyuta savdosi, agar bu haqiqiy aktiv sotib olish-sotish bo'lsa, qimor o'yini emas, ruxsat etilgan» — O'zbekiston muftiysi",
+        quote:
+          "«Kriptovalyuta savdosi, agar bu haqiqiy aktiv sotib olish-sotish bo'lsa, qimor o'yini emas, ruxsat etilgan» — O'zbekiston muftiysi",
         point1: "Haqiqiy aktivlar savdosi",
         point2: "Stavkalar va qimor o'yinlari emas",
         point3: "Foizsiz (ribo)",
@@ -182,8 +176,8 @@ export default function Home() {
         rights: "© 2025 Shahmir Islomov. Barcha huquqlar himoyalangan.",
         disclaimer: "Investitsiyalar xavf bilan bog'liq. Mas'uliyat bilan savdo qiling.",
         halal: "Musulmonlar uchun 100% halol biznes",
-      }
-    }
+      },
+    },
   }
 
   // Scroll effect
@@ -195,67 +189,62 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Animation variants
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
-
   // Testimonials data
   const testimonials = [
     {
       name: "Жахонгир Турсунов",
       location: "Самарканд",
-      image: "/images/testimonial-1.jpg",
-      text: language === "ru" 
-        ? "Я скептически относился к инвестициям, но Шахмир убедил меня попробовать. Вложил 720,000 сум, через 2 дня получил 9,360,000 сум! Теперь смог оплатить лечение отца и купить новый телефон."
-        : "Men investitsiyalarga shubha bilan qarar edim, lekin Shahmir meni sinab ko'rishga ishontirdi. 720,000 so'm tikdim, 2 kundan keyin 9,360,000 so'm oldim! Endi otamning davolanishini to'lay oldim va yangi telefon sotib oldim.",
+      image: "/placeholder.svg?height=100&width=100",
+      text:
+        language === "ru"
+          ? "Я скептически относился к инвестициям, но Шахмир убедил меня попробовать. Вложил 720,000 сум, через 2 дня получил 9,360,000 сум! Теперь смог оплатить лечение отца и купить новый телефон."
+          : "Men investitsiyalarga shubha bilan qarar edim, lekin Shahmir meni sinab ko'rishga ishontirdi. 720,000 so'm tikdim, 2 kundan keyin 9,360,000 so'm oldim! Endi otamning davolanishini to'lay oldim va yangi telefon sotib oldim.",
       invested: "720,000 сум",
       received: "9,360,000 сум",
       days: "2 дня",
-      verified: true
+      verified: true,
     },
     {
       name: "Азиза Каримова",
       location: "Ташкент",
-      image: "/images/testimonial-2.jpg",
-      text: language === "ru"
-        ? "Я мать-одиночка с двумя детьми. Работаю учителем, но зарплаты не хватает. Шахмир помог мне заработать на новую одежду детям к школе и даже отложить на будущее. Очень благодарна!"
-        : "Men ikki bolali yolg'iz onaman. O'qituvchi bo'lib ishlayapman, lekin maosh yetmaydi. Shahmir menga bolalarimga maktabga yangi kiyim sotib olishga va hatto kelajak uchun pul yig'ishga yordam berdi. Juda minnatdorman!",
+      image: "/placeholder.svg?height=100&width=100",
+      text:
+        language === "ru"
+          ? "Я мать-одиночка с двумя детьми. Работаю учителем, но зарплаты не хватает. Шахмир помог мне заработать на новую одежду детям к школе и даже отложить на будущее. Очень благодарна!"
+          : "Men ikki bolali yolg'iz onaman. O'qituvchi bo'lib ishlayapman, lekin maosh yetmaydi. Shahmir menga bolalarimga maktabga yangi kiyim sotib olishga va hatto kelajak uchun pul yig'ishga yordam berdi. Juda minnatdorman!",
       invested: "1,200,000 сум",
       received: "16,800,000 сум",
       days: "3 дня",
-      verified: true
+      verified: true,
     },
     {
       name: "Рустам Ахмедов",
       location: "Фергана",
-      image: "/images/testimonial-3.jpg",
-      text: language === "ru"
-        ? "Копил на свадьбу сына 2 года. Друг посоветовал Шахмира. За неделю заработал больше, чем за год работы на заводе! Свадьба будет лучшей в районе, спасибо Шахмиру!"
-        : "O'g'limning to'yi uchun 2 yil pul yig'dim. Do'stim Shahmirni tavsiya qildi. Bir hafta ichida zavodda bir yillik ishdan ko'proq daromad qildim! To'y tumandagi eng yaxshi bo'ladi, Shahmirga rahmat!",
+      image: "/placeholder.svg?height=100&width=100",
+      text:
+        language === "ru"
+          ? "Копил на свадьбу сына 2 года. Друг посоветовал Шахмира. За неделю заработал больше, чем за год работы на заводе! Свадьба будет лучшей в районе, спасибо Шахмиру!"
+          : "O'g'limning to'yi uchun 2 yil pul yig'dim. Do'stim Shahmirni tavsiya qildi. Bir hafta ichida zavodda bir yillik ishdan ko'proq daromad qildim! To'y tumandagi eng yaxshi bo'ladi, Shahmirga rahmat!",
       invested: "3,600,000 сум",
       received: "43,200,000 сум",
       days: "6 дней",
-      verified: true
+      verified: true,
     },
   ]
 
-  // Daily results data
+  // Results data
   const dailyResults = [
     { pair: "BTCUSDT", profit: "+127%", amount: "1,270,000 сум", time: "24 часа" },
     { pair: "ETHUSDT", profit: "+143%", amount: "2,860,000 сум", time: "36 часов" },
     { pair: "DOGEUSDT", profit: "+215%", amount: "4,300,000 сум", time: "48 часов" },
   ]
 
-  // Weekly results data
   const weeklyResults = [
     { pair: "BTCUSDT", profit: "+327%", amount: "3,270,000 сум", time: "5 дней" },
     { pair: "ETHUSDT", profit: "+412%", amount: "8,240,000 сум", time: "7 дней" },
     { pair: "DOGEUSDT", profit: "+560%", amount: "11,200,000 сум", time: "6 дней" },
   ]
 
-  // Monthly results data
   const monthlyResults = [
     { pair: "BTCUSDT", profit: "+1240%", amount: "12,400,000 сум", time: "28 дней" },
     { pair: "ETHUSDT", profit: "+1560%", amount: "31,200,000 сум", time: "30 дней" },
@@ -265,9 +254,11 @@ export default function Home() {
   return (
     <main className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-slate-900/95 backdrop-blur-md py-2" : "bg-transparent py-4"
-      }`}>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-slate-900/95 backdrop-blur-md py-2" : "bg-transparent py-4"
+        }`}
+      >
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
@@ -277,7 +268,7 @@ export default function Home() {
               Shahmir Trade
             </span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-6">
             <a href="#how" className="text-slate-300 hover:text-emerald-400 transition-colors">
               {language === "ru" ? "Как это работает" : "Bu qanday ishlaydi"}
@@ -292,26 +283,84 @@ export default function Home() {
               {language === "ru" ? "Халяль" : "Halol"}
             </a>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <div className="flex border border-slate-700 rounded-full overflow-hidden">
-              <button 
+              <button
                 onClick={() => setLanguage("uz")}
-                className={`px-3 py-1 text-sm ${language === "uz" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
+                className={`px-3 py-1 text-sm transition-colors ${language === "uz" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
               >
                 🇺🇿 UZ
               </button>
-              <button 
+              <button
                 onClick={() => setLanguage("ru")}
-                className={`px-3 py-1 text-sm ${language === "ru" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
+                className={`px-3 py-1 text-sm transition-colors ${language === "ru" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
               >
                 🇷🇺 RU
               </button>
             </div>
-            <MobileNav language={language} />
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)} className="text-slate-300">
+                <Menu className="w-6 h-6" />
+              </Button>
+            </div>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm md:hidden">
+          <div className="flex justify-end p-4">
+            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="text-slate-300">
+              <X className="w-6 h-6" />
+            </Button>
+          </div>
+
+          <div className="flex flex-col items-center justify-center h-full">
+            <nav className="space-y-8">
+              <a
+                href="#how"
+                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {language === "ru" ? "Как это работает" : "Bu qanday ishlaydi"}
+              </a>
+              <a
+                href="#results"
+                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {language === "ru" ? "Результаты" : "Natijalar"}
+              </a>
+              <a
+                href="#testimonials"
+                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {language === "ru" ? "Отзывы" : "Sharhlar"}
+              </a>
+              <a
+                href="#halal"
+                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {language === "ru" ? "Халяль" : "Halol"}
+              </a>
+
+              <Button
+                size="lg"
+                className="mt-8 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-8 py-6 text-lg rounded-xl"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {language === "ru" ? "Начать зарабатывать" : "Daromad topishni boshlash"}
+              </Button>
+            </nav>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -320,40 +369,33 @@ export default function Home() {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <motion.div 
-              className="text-center md:text-left"
-              initial="hidden"
-              animate="visible"
-              variants={fadeIn}
-            >
+            <div className="text-center md:text-left">
               <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
                 <span className="text-lg">☪️</span>
                 <span className="text-emerald-400 text-sm font-medium">{t[language].hero.badge}</span>
               </div>
-              
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                {t[language].hero.title}
-              </h1>
-              
-              <p className="text-xl text-slate-300 mb-8">
-                {t[language].hero.subtitle}
-              </p>
-              
+
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{t[language].hero.title}</h1>
+
+              <p className="text-xl text-slate-300 mb-8">{t[language].hero.subtitle}</p>
+
               <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center md:justify-start">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-8 py-6 text-lg rounded-xl"
-                >
-                  {t[language].hero.cta}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-                
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-8 py-6 text-lg rounded-xl w-full sm:w-auto"
+                  >
+                    {t[language].hero.cta}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </a>
+
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-6 text-lg rounded-xl"
                   onClick={() => setShowResults(true)}
                 >
@@ -361,54 +403,52 @@ export default function Home() {
                   {t[language].results.viewAll}
                 </Button>
               </div>
-              
+
               <div className="flex items-center gap-2 justify-center md:justify-start">
                 <Users className="w-4 h-4 text-emerald-400" />
                 <span className="text-slate-300 text-sm">{t[language].hero.trustBadge}</span>
               </div>
-              
+
               <div className="mt-2 text-slate-400 text-sm flex items-center gap-2 justify-center md:justify-start">
                 <DollarSign className="w-4 h-4" />
                 {t[language].hero.minInvest}
               </div>
-            </motion.div>
-            
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeIn}
-              className="relative"
-            >
+            </div>
+
+            <div className="relative">
               <div className="relative rounded-2xl overflow-hidden border-8 border-slate-800 shadow-2xl shadow-emerald-500/10">
-                <Image 
-                  src="/images/hero-trader.jpg" 
-                  alt="Professional Trader" 
-                  width={600} 
-                  height={800} 
+                <Image
+                  src="/images/shahmir-main.jpeg"
+                  alt="Professional Trader Shahmir"
+                  width={600}
+                  height={800}
                   className="object-cover w-full h-[500px]"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-full border-4 border-emerald-500 overflow-hidden">
-                      <Image 
-                        src="/images/shahmir-avatar.jpg" 
-                        alt="Shahmir" 
-                        width={100} 
-                        height={100} 
-                        className="object-cover"
+                      <Image
+                        src="/images/shahmir-main.jpeg"
+                        alt="Shahmir"
+                        width={100}
+                        height={100}
+                        className="object-cover w-full h-full"
                       />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Shahmir Islomov</h3>
                       <p className="text-emerald-400">
-                        {language === "ru" ? "Профессиональный трейдер • 7 лет опыта" : "Professional treyder • 7 yillik tajriba"}
+                        {language === "ru"
+                          ? "Профессиональный трейдер • 7 лет опыта"
+                          : "Professional treyder • 7 yillik tajriba"}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               {/* Floating stats cards */}
               <div className="absolute -bottom-10 -right-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
                 <div className="flex items-center gap-3">
@@ -417,11 +457,13 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-emerald-400">+1,240%</div>
-                    <div className="text-xs text-slate-400">{language === "ru" ? "Максимальная прибыль" : "Maksimal foyda"}</div>
+                    <div className="text-xs text-slate-400">
+                      {language === "ru" ? "Максимальная прибыль" : "Maksimal foyda"}
+                    </div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="absolute top-10 -left-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
@@ -429,11 +471,13 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-cyan-400">24-48h</div>
-                    <div className="text-xs text-slate-400">{language === "ru" ? "Быстрый результат" : "Tez natija"}</div>
+                    <div className="text-xs text-slate-400">
+                      {language === "ru" ? "Быстрый результат" : "Tez natija"}
+                    </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -443,21 +487,15 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-4xl font-bold text-emerald-400 mb-2">
-                <CountUp end={500} duration={2.5} suffix="+" />
-              </div>
+              <div className="text-4xl font-bold text-emerald-400 mb-2">500+</div>
               <div className="text-slate-400">{t[language].stats.clients}</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-emerald-400 mb-2">
-                <CountUp end={7} duration={2.5} suffix="+" />
-              </div>
+              <div className="text-4xl font-bold text-emerald-400 mb-2">7+</div>
               <div className="text-slate-400">{t[language].stats.years}</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-emerald-400 mb-2">
-                <CountUp end={15} duration={2.5} prefix="x" />
-              </div>
+              <div className="text-4xl font-bold text-emerald-400 mb-2">x15</div>
               <div className="text-slate-400">{t[language].stats.profit}</div>
             </div>
           </div>
@@ -469,29 +507,17 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].how.title}</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto"></div>
-          </motion.div>
-          
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
-            <motion.div 
-              className="relative"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-            >
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300 group">
-                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="relative">
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mb-6">
                   <DollarSign className="w-8 h-8 text-white" />
                 </div>
                 <div className="absolute -top-3 -left-3 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -499,36 +525,19 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{t[language].how.step1}</h3>
                 <p className="text-slate-400">{t[language].how.step1desc}</p>
-                
-                <div className="mt-6 bg-slate-700/30 rounded-xl p-4">
-                  <Image 
-                    src="/images/binance-deposit.jpg" 
-                    alt="Binance Deposit" 
-                    width={400} 
-                    height={200} 
-                    className="rounded-lg w-full h-auto"
-                  />
-                </div>
               </div>
-              
+
               {/* Arrow for desktop */}
               <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
                 <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center">
                   <ArrowRight className="w-4 h-4 text-white" />
                 </div>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              className="relative"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              style={{ transitionDelay: "0.2s" }}
-            >
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300 group">
-                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            </div>
+
+            <div className="relative">
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mb-6">
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
                 <div className="absolute -top-3 -left-3 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -536,35 +545,19 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{t[language].how.step2}</h3>
                 <p className="text-slate-400">{t[language].how.step2desc}</p>
-                
-                <div className="mt-6 bg-slate-700/30 rounded-xl p-4">
-                  <Image 
-                    src="/images/trading-chart.jpg" 
-                    alt="Trading Chart" 
-                    width={400} 
-                    height={200} 
-                    className="rounded-lg w-full h-auto"
-                  />
-                </div>
               </div>
-              
+
               {/* Arrow for desktop */}
               <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
                 <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
                   <ArrowRight className="w-4 h-4 text-white" />
                 </div>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              style={{ transitionDelay: "0.4s" }}
-            >
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300 group">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            </div>
+
+            <div>
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-6">
                   <DollarSign className="w-8 h-8 text-white" />
                 </div>
                 <div className="absolute -top-3 -left-3 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
@@ -572,18 +565,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-4">{t[language].how.step3}</h3>
                 <p className="text-slate-400">{t[language].how.step3desc}</p>
-                
-                <div className="mt-6 bg-slate-700/30 rounded-xl p-4">
-                  <Image 
-                    src="/images/profit-withdrawal.jpg" 
-                    alt="Profit Withdrawal" 
-                    width={400} 
-                    height={200} 
-                    className="rounded-lg w-full h-auto"
-                  />
-                </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -591,136 +574,86 @@ export default function Home() {
       {/* Results Section */}
       <section id="results" className="py-20 bg-slate-900/30">
         <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].results.title}</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">{t[language].results.subtitle}</p>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
-          </motion.div>
-          
+          </div>
+
           <div className="max-w-4xl mx-auto">
-            <Tabs defaultValue="daily" className="w-full" onValueChange={setActiveTab}>
+            <Tabs defaultValue="daily" className="w-full">
               <TabsList className="grid grid-cols-3 mb-8">
                 <TabsTrigger value="daily">{t[language].results.daily}</TabsTrigger>
                 <TabsTrigger value="weekly">{t[language].results.weekly}</TabsTrigger>
                 <TabsTrigger value="monthly">{t[language].results.monthly}</TabsTrigger>
               </TabsList>
-              
+
               <TabsContent value="daily">
                 <div className="grid md:grid-cols-3 gap-6">
                   {dailyResults.map((result, index) => (
-                    <motion.div 
-                      key={index}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={fadeIn}
-                      style={{ transitionDelay: `${index * 0.1}s` }}
-                    >
+                    <div key={index}>
                       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 hover:border-emerald-500/50 transition-all duration-300">
                         <div className="flex items-center justify-between mb-4">
                           <div className="font-bold">{result.pair}</div>
                           <div className="text-emerald-400 font-bold">{result.profit}</div>
                         </div>
-                        <Image 
-                          src={`/images/result-${index + 1}.jpg`}
-                          alt={`Trading Result ${result.pair}`}
-                          width={400}
-                          height={200}
-                          className="rounded-lg w-full h-auto mb-4"
-                        />
+                        <div className="w-full h-32 bg-slate-700/50 rounded-lg mb-4 flex items-center justify-center">
+                          <TrendingUp className="w-8 h-8 text-emerald-400" />
+                        </div>
                         <div className="flex items-center justify-between text-sm">
                           <div className="text-slate-400">{result.time}</div>
                           <div className="text-emerald-400 font-semibold">{result.amount}</div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="weekly">
                 <div className="grid md:grid-cols-3 gap-6">
                   {weeklyResults.map((result, index) => (
-                    <motion.div 
-                      key={index}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={fadeIn}
-                      style={{ transitionDelay: `${index * 0.1}s` }}
-                    >
+                    <div key={index}>
                       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 hover:border-emerald-500/50 transition-all duration-300">
                         <div className="flex items-center justify-between mb-4">
                           <div className="font-bold">{result.pair}</div>
                           <div className="text-emerald-400 font-bold">{result.profit}</div>
                         </div>
-                        <Image 
-                          src={`/images/result-${index + 4}.jpg`}
-                          alt={`Trading Result ${result.pair}`}
-                          width={400}
-                          height={200}
-                          className="rounded-lg w-full h-auto mb-4"
-                        />
+                        <div className="w-full h-32 bg-slate-700/50 rounded-lg mb-4 flex items-center justify-center">
+                          <TrendingUp className="w-8 h-8 text-emerald-400" />
+                        </div>
                         <div className="flex items-center justify-between text-sm">
                           <div className="text-slate-400">{result.time}</div>
                           <div className="text-emerald-400 font-semibold">{result.amount}</div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </TabsContent>
-              
+
               <TabsContent value="monthly">
                 <div className="grid md:grid-cols-3 gap-6">
                   {monthlyResults.map((result, index) => (
-                    <motion.div 
-                      key={index}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true }}
-                      variants={fadeIn}
-                      style={{ transitionDelay: `${index * 0.1}s` }}
-                    >
+                    <div key={index}>
                       <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 hover:border-emerald-500/50 transition-all duration-300">
                         <div className="flex items-center justify-between mb-4">
                           <div className="font-bold">{result.pair}</div>
                           <div className="text-emerald-400 font-bold">{result.profit}</div>
                         </div>
-                        <Image 
-                          src={`/images/result-${index + 7}.jpg`}
-                          alt={`Trading Result ${result.pair}`}
-                          width={400}
-                          height={200}
-                          className="rounded-lg w-full h-auto mb-4"
-                        />
+                        <div className="w-full h-32 bg-slate-700/50 rounded-lg mb-4 flex items-center justify-center">
+                          <TrendingUp className="w-8 h-8 text-emerald-400" />
+                        </div>
                         <div className="flex items-center justify-between text-sm">
                           <div className="text-slate-400">{result.time}</div>
                           <div className="text-emerald-400 font-semibold">{result.amount}</div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </TabsContent>
             </Tabs>
-            
-            <div className="text-center mt-10">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-8 py-6 text-lg rounded-xl"
-                onClick={() => setShowResults(true)}
-              >
-                <TrendingUp className="mr-2 w-5 h-5" />
-                {t[language].results.viewAll}
-              </Button>
-            </div>
           </div>
         </div>
       </section>
@@ -730,58 +663,35 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].testimonials.title}</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">{t[language].testimonials.subtitle}</p>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
-          </motion.div>
-          
+          </div>
+
           <div className="max-w-6xl mx-auto">
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
-              }}
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 5000 }}
-              className="testimonial-swiper"
-            >
+            <div className="grid md:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
-                <SwiperSlide key={index}>
-                  <TestimonialCard testimonial={testimonial} />
-                </SwiperSlide>
+                <TestimonialCard key={index} testimonial={testimonial} />
               ))}
-            </Swiper>
-            
+            </div>
+
             <div className="mt-16 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-2xl p-6">
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0">
-                  <Image 
-                    src="/images/shahmir-avatar.jpg" 
-                    alt="Shahmir" 
-                    width={100} 
-                    height={100} 
+                  <Image
+                    src="/images/shahmir-main.jpeg"
+                    alt="Shahmir"
+                    width={100}
+                    height={100}
                     className="object-cover w-full h-full"
                   />
                 </div>
                 <div className="flex-1">
                   <p className="text-slate-300 italic mb-4">
-                    {language === "ru" 
+                    {language === "ru"
                       ? "«Я помог более 500 узбекским семьям улучшить их финансовое положение. Моя цель — сделать халяль инвестиции доступными для каждой семьи в Узбекистане. Присоединяйтесь к нам и измените свою жизнь уже сегодня!»"
                       : "«Men 500 dan ortiq o'zbek oilalariga moliyaviy ahvolini yaxshilashga yordam berdim. Mening maqsadim — halol investitsiyalarni O'zbekistondagi har bir oila uchun qulay qilish. Bizga qo'shiling va bugun hayotingizni o'zgartiring!»"}
                   </p>
@@ -804,13 +714,7 @@ export default function Home() {
       {/* Halal Section */}
       <section id="halal" className="py-20 bg-gradient-to-r from-emerald-900/20 to-slate-900/20">
         <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
               <span className="text-lg">☪️</span>
               <span className="text-emerald-400 text-sm font-medium">
@@ -820,15 +724,10 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].halal.title}</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">{t[language].halal.subtitle}</p>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
-          </motion.div>
-          
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-            >
+            <div>
               <div className="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-6">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center">
@@ -838,13 +737,11 @@ export default function Home() {
                     {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
                   </h3>
                 </div>
-                
+
                 <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-6">
-                  <p className="text-slate-300 italic">
-                    {t[language].halal.quote}
-                  </p>
+                  <p className="text-slate-300 italic">{t[language].halal.quote}</p>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-slate-700/30 rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-2">
@@ -852,82 +749,76 @@ export default function Home() {
                       <h4 className="font-semibold">{t[language].halal.point1}</h4>
                     </div>
                     <p className="text-slate-400 text-sm">
-                      {language === "ru" 
+                      {language === "ru"
                         ? "Мы покупаем и продаем реальные криптоактивы"
                         : "Biz haqiqiy kripto aktivlarni sotib olamiz va sotamiz"}
                     </p>
                   </div>
-                  
+
                   <div className="bg-slate-700/30 rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <CheckCircle className="w-5 h-5 text-emerald-400" />
                       <h4 className="font-semibold">{t[language].halal.point2}</h4>
                     </div>
                     <p className="text-slate-400 text-sm">
-                      {language === "ru" 
-                        ? "Не основано на случайности или удаче"
-                        : "Tasodif yoki omadga asoslanmagan"}
+                      {language === "ru" ? "Не основано на случайности или удаче" : "Tasodif yoki omadga asoslanmagan"}
                     </p>
                   </div>
-                  
+
                   <div className="bg-slate-700/30 rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <CheckCircle className="w-5 h-5 text-emerald-400" />
                       <h4 className="font-semibold">{t[language].halal.point3}</h4>
                     </div>
                     <p className="text-slate-400 text-sm">
-                      {language === "ru" 
+                      {language === "ru"
                         ? "Нет процентных ставок, запрещенных исламом"
                         : "Islomda taqiqlangan foiz stavkalari yo'q"}
                     </p>
                   </div>
-                  
+
                   <div className="bg-slate-700/30 rounded-xl p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <CheckCircle className="w-5 h-5 text-emerald-400" />
                       <h4 className="font-semibold">{t[language].halal.point4}</h4>
                     </div>
                     <p className="text-slate-400 text-sm">
-                      {language === "ru" 
+                      {language === "ru"
                         ? "Ты видишь все операции в реальном времени"
                         : "Siz barcha operatsiyalarni real vaqtda ko'rasiz"}
                     </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
-            
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              style={{ transitionDelay: "0.2s" }}
-            >
-              <div className="relative">
-                <Image 
-                  src="/images/halal-certificate.jpg" 
-                  alt="Halal Certificate" 
-                  width={600} 
-                  height={800} 
-                  className="rounded-2xl border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 w-full h-auto"
-                />
-                
-                <div className="absolute -bottom-6 -right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-4 shadow-lg max-w-xs">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Shield className="w-6 h-6 text-emerald-400" />
-                    <h4 className="font-bold text-white">
-                      {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
-                    </h4>
-                  </div>
-                  <p className="text-slate-300 text-sm">
-                    {language === "ru" 
-                      ? "Наша деятельность соответствует принципам шариата и одобрена исламскими учеными"
-                      : "Bizning faoliyatimiz shariat tamoyillariga mos keladi va islom olimlari tomonidan tasdiqlangan"}
+            </div>
+
+            <div className="relative">
+              <div className="w-full h-96 bg-slate-800/50 rounded-2xl border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-6xl mb-4 block">☪️</span>
+                  <h3 className="text-2xl font-bold text-emerald-400 mb-2">
+                    {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
+                  </h3>
+                  <p className="text-slate-300">
+                    {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
                   </p>
                 </div>
               </div>
-            </motion.div>
+
+              <div className="absolute -bottom-6 -right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-4 shadow-lg max-w-xs">
+                <div className="flex items-center gap-3 mb-2">
+                  <Shield className="w-6 h-6 text-emerald-400" />
+                  <h4 className="font-bold text-white">
+                    {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
+                  </h4>
+                </div>
+                <p className="text-slate-300 text-sm">
+                  {language === "ru"
+                    ? "Наша деятельность соответствует принципам шариата и одобрена исламскими учеными"
+                    : "Bizning faoliyatimiz shariat tamoyillariga mos keladi va islom olimlari tomonidan tasdiqlangan"}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -937,99 +828,72 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].guarantee.title}</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
-          </motion.div>
-          
+          </div>
+
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-            >
+            <div>
               <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
                 <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-6">
                   <Shield className="w-8 h-8 text-emerald-400" />
                 </div>
                 <h3 className="text-xl font-bold mb-4">{t[language].guarantee.money}</h3>
                 <p className="text-slate-400">{t[language].guarantee.moneyDesc}</p>
-                
+
                 <div className="mt-6 bg-emerald-500/10 rounded-xl p-4 flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
                   <p className="text-emerald-300 text-sm">
-                    {language === "ru" 
+                    {language === "ru"
                       ? "Я беру на себя все риски — ты получаешь только прибыль"
                       : "Men barcha xavflarni o'z zimmamga olaman — siz faqat foyda olasiz"}
                   </p>
                 </div>
               </div>
-            </motion.div>
-            
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              style={{ transitionDelay: "0.2s" }}
-            >
+            </div>
+
+            <div>
               <div className="bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 rounded-2xl p-6 h-full hover:border-cyan-500/50 transition-all duration-300">
                 <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mb-6">
                   <Shield className="w-8 h-8 text-cyan-400" />
                 </div>
                 <h3 className="text-xl font-bold mb-4">{t[language].guarantee.security}</h3>
                 <p className="text-slate-400">{t[language].guarantee.securityDesc}</p>
-                
+
                 <div className="mt-6 bg-cyan-500/10 rounded-xl p-4 flex items-center gap-3">
-                  <Image 
-                    src="/images/binance-logo.jpg" 
-                    alt="Binance Logo" 
-                    width={40} 
-                    height={40} 
-                    className="rounded-full w-10 h-10 object-cover flex-shrink-0"
-                  />
+                  <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs font-bold">B</span>
+                  </div>
                   <p className="text-cyan-300 text-sm">
-                    {language === "ru" 
+                    {language === "ru"
                       ? "Binance — крупнейшая криптобиржа с защитой средств до $1 млрд"
                       : "Binance — 1 milliard dollargacha mablag'larni himoya qilish bilan eng yirik kripto birja"}
                   </p>
                 </div>
               </div>
-            </motion.div>
-            
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              style={{ transitionDelay: "0.4s" }}
-            >
+            </div>
+
+            <div>
               <div className="bg-gradient-to-r from-blue-500/10 to-blue-500/5 border border-blue-500/20 rounded-2xl p-6 h-full hover:border-blue-500/50 transition-all duration-300">
                 <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-6">
                   <Shield className="w-8 h-8 text-blue-400" />
                 </div>
                 <h3 className="text-xl font-bold mb-4">{t[language].guarantee.transparency}</h3>
                 <p className="text-slate-400">{t[language].guarantee.transparencyDesc}</p>
-                
+
                 <div className="mt-6 bg-blue-500/10 rounded-xl p-4 flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
                   <p className="text-blue-300 text-sm">
-                    {language === "ru" 
+                    {language === "ru"
                       ? "Ежедневные отчеты и полный доступ к торговому счету"
                       : "Kunlik hisobotlar va savdo hisobiga to'liq kirish"}
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1037,23 +901,116 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="py-20 bg-slate-900/30">
         <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeIn}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].faq.title}</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
-          </motion.div>
-          
+          </div>
+
           <div className="max-w-3xl mx-auto">
-            <FaqAccordion 
+            <FaqAccordion
               items={[
-                { 
-                  question: t[language].faq.q1, 
-                  answer: t[language].faq.a1 
+                {
+                  question: t[language].faq.q1,
+                  answer: t[language].faq.a1,
                 },
-                { 
-                  question: t[language].faq.q
+                {
+                  question: t[language].faq.q2,
+                  answer: t[language].faq.a2,
+                },
+                {
+                  question: t[language].faq.q3,
+                  answer: t[language].faq.a3,
+                },
+                {
+                  question: t[language].faq.q4,
+                  answer: t[language].faq.a4,
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].contact.title}</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">{t[language].contact.subtitle}</p>
+            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+          </div>
+
+          <div className="max-w-md mx-auto">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+              <div className="space-y-4 mb-6">
+                <input
+                  type="text"
+                  placeholder={t[language].contact.name}
+                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none"
+                />
+                <input
+                  type="tel"
+                  placeholder={t[language].contact.phone}
+                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none"
+                />
+              </div>
+
+              <Button
+                size="lg"
+                className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold py-4 text-lg rounded-xl mb-6"
+              >
+                {t[language].contact.button}
+              </Button>
+
+              <div className="text-center">
+                <p className="text-slate-400 mb-4">{t[language].contact.or}</p>
+
+                <div className="flex gap-4">
+                  <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button variant="outline" className="w-full border-slate-600 text-slate-300 hover:bg-slate-800">
+                      {t[language].contact.telegram}
+                    </Button>
+                  </a>
+
+                  <a href="https://wa.me/+998901234567" target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button variant="outline" className="w-full border-slate-600 text-slate-300 hover:bg-slate-800">
+                      {t[language].contact.whatsapp}
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-10 bg-slate-900/50 border-t border-slate-800">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 text-white" />
+              </div>
+              <span className="font-bold text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Shahmir Trade
+              </span>
+            </div>
+
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-4">
+              <span className="text-lg">☪️</span>
+              <span className="text-emerald-400 text-sm font-medium">{t[language].footer.halal}</span>
+            </div>
+
+            <p className="text-slate-400 mb-2">{t[language].footer.rights}</p>
+            <p className="text-slate-500 text-sm">{t[language].footer.disclaimer}</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  )
+}
