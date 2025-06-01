@@ -12,6 +12,7 @@ import MobileMenu from "@/components/mobile-menu"
 import FloatingElements from "@/components/floating-elements"
 import AnimatedCounter from "@/components/animated-counter"
 import ExpandableSection from "@/components/expandable-section"
+import ResultsGallery from "@/components/results-gallery"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 import Image from "next/image"
 import CurrencySwitcher, { type Currency } from "@/components/currency-switcher"
@@ -22,6 +23,7 @@ export default function LandingPage() {
   const [language, setLanguage] = useState<Language>("ru")
   const [currency, setCurrency] = useState<Currency>("USD")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isResultsOpen, setIsResultsOpen] = useState(false)
 
   const t = (key: TranslationKey) => translations[language][key]
 
@@ -43,12 +45,15 @@ export default function LandingPage() {
       avatar: "AM",
     },
     {
-      name: "Мария К. / Mariya K.",
+      name: "Жасур Т. / Jasur T.",
       investment: formatCurrency(convertCurrency(150, "USD", currency), currency),
       result: formatCurrency(convertCurrency(1850, "USD", currency), currency),
       period: language === "ru" ? "3 дня" : "3 kun",
-      text: t("testimonial2"),
-      avatar: "MK",
+      text:
+        language === "ru"
+          ? "Никогда не думал, что можно так зарабатывать, ничего не делая. Спасибо за прибыль!"
+          : "Hech narsa qilmasdan bunday daromad olish mumkinligini hech o'ylamagandim. Foyda uchun rahmat!",
+      avatar: "ЖТ",
     },
     {
       name: "Дмитрий П. / Dmitriy P.",
@@ -60,9 +65,59 @@ export default function LandingPage() {
     },
   ]
 
+  const additionalTestimonials = [
+    {
+      name: "Азиза К. / Aziza K.",
+      investment: formatCurrency(convertCurrency(200, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(2800, "USD", currency), currency),
+      period: language === "ru" ? "2 дня" : "2 kun",
+      text:
+        language === "ru"
+          ? "Сначала сомневалась, но результат превзошел ожидания. Теперь регулярно инвестирую!"
+          : "Avval shubhalandim, lekin natija kutganimdan ham yaxshi bo'ldi. Endi muntazam investitsiya qilaman!",
+      avatar: "АК",
+    },
+    {
+      name: "Сергей В. / Sergey V.",
+      investment: formatCurrency(convertCurrency(300, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(3900, "USD", currency), currency),
+      period: language === "ru" ? "1 день" : "1 kun",
+      text:
+        language === "ru"
+          ? "Быстро, надежно, прибыльно. Шахмир действительно профессионал своего дела!"
+          : "Tez, ishonchli, foydali. Shahmir haqiqatan ham o'z ishining professionalı!",
+      avatar: "СВ",
+    },
+    {
+      name: "Фарход У. / Farhod U.",
+      investment: formatCurrency(convertCurrency(180, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(2340, "USD", currency), currency),
+      period: language === "ru" ? "3 дня" : "3 kun",
+      text:
+        language === "ru"
+          ? "Отличный сервис! Получил больше, чем ожидал. Рекомендую всем друзьям!"
+          : "Ajoyib xizmat! Kutganimdan ko'proq oldim. Barcha do'stlarimga tavsiya qilaman!",
+      avatar: "ФУ",
+    },
+    {
+      name: "Анна Л. / Anna L.",
+      investment: formatCurrency(convertCurrency(250, "USD", currency), currency),
+      result: formatCurrency(convertCurrency(3250, "USD", currency), currency),
+      period: language === "ru" ? "2 дня" : "2 kun",
+      text:
+        language === "ru"
+          ? "Профессиональный подход и отличные результаты. Очень довольна сотрудничеством!"
+          : "Professional yondashuv va ajoyib natijalar. Hamkorlikdan juda mamnunman!",
+      avatar: "АЛ",
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-x-hidden">
       <FloatingElements />
+
+      {/* Results Gallery Modal */}
+      <ResultsGallery language={language} isOpen={isResultsOpen} onClose={() => setIsResultsOpen(false)} />
 
       {/* Fixed Header */}
       <header
@@ -135,14 +190,12 @@ export default function LandingPage() {
                 {t("trustCapital")}
                 <ArrowRight className="ml-2 w-3 h-3" />
               </a>
-              <a
-                href="https://t.me/+iawpP4pwqW42YmM6"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setIsResultsOpen(true)}
                 className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-4 rounded-xl inline-flex items-center justify-center text-lg min-h-[56px]"
               >
                 {t("viewResults")}
-              </a>
+              </button>
             </div>
 
             {/* Компактная статистика */}
@@ -223,28 +276,47 @@ export default function LandingPage() {
           {/* Дополнительные отзывы в выпадающем блоке */}
           <div className="max-w-4xl mx-auto">
             <ExpandableSection
-              title={language === "ru" ? "Больше отзывов клиентов" : "Ko'proq mijoz sharhlari"}
+              title={language === "ru" ? "Еще 4 довольных клиента" : "Yana 4 mamnun mijoz"}
               preview={
-                language === "ru"
-                  ? "Еще 10+ довольных клиентов с результатами"
-                  : "Yana 10+ mamnun mijozlar natijalari bilan"
+                language === "ru" ? "Больше реальных результатов и отзывов" : "Ko'proq haqiqiy natijalar va sharhlar"
               }
               variant="gradient"
             >
-              <div className="text-center py-6">
-                <p className="text-slate-400 mb-3 text-sm">
-                  {language === "ru"
-                    ? "Здесь будут дополнительные отзывы, скриншоты переписок и видео-отзывы клиентов"
-                    : "Bu yerda qo'shimcha sharhlar, yozishmalar skrinshotlari va mijozlarning video sharhlari bo'ladi"}
-                </p>
-                <a
-                  href="https://t.me/+iawpP4pwqW42YmM6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block border border-cyan-500 text-cyan-400 px-3 py-1.5 rounded-lg hover:bg-cyan-500/10 text-sm"
-                >
-                  {language === "ru" ? "Смотреть все отзывы" : "Barcha sharhlarni ko'rish"}
-                </a>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {additionalTestimonials.map((testimonial, index) => (
+                  <Card
+                    key={index}
+                    className="bg-slate-800/30 border-slate-700 hover:border-cyan-500/50 transition-all duration-300"
+                  >
+                    <CardContent className="p-3">
+                      <div className="flex items-center gap-1 mb-2">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-2.5 h-2.5 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                      <p className="text-slate-300 mb-3 italic text-xs">"{testimonial.text}"</p>
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs">
+                            {testimonial.avatar}
+                          </div>
+                          <div>
+                            <div className="text-slate-300 font-medium text-xs">{testimonial.name}</div>
+                            <div className="text-slate-500 text-xs">{testimonial.period}</div>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center pt-1 border-t border-slate-700">
+                          <span className="text-slate-400 text-xs">
+                            {t("invested")}: {testimonial.investment}
+                          </span>
+                          <span className="text-green-400 font-semibold text-xs">
+                            {t("received")}: {testimonial.result}
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </ExpandableSection>
           </div>
