@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, CheckCircle, Clock, DollarSign, Shield, TrendingUp, Users, Menu, X, Zap, Gift } from "lucide-react"
 import Image from "next/image"
-import TestimonialCard from "@/components/testimonial-card"
 import FaqAccordion from "@/components/faq-accordion"
+import ProfitCalculator from "@/components/profit-calculator"
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -85,7 +85,6 @@ export default function Home() {
         button: "Получить консультацию",
         or: "или",
         telegram: "Написать в Telegram",
-        whatsapp: "Написать в WhatsApp",
       },
       fomoCta: {
         title: "Не упусти свой шанс!",
@@ -163,7 +162,6 @@ export default function Home() {
         button: "Maslahat olish",
         or: "yoki",
         telegram: "Telegramda yozish",
-        whatsapp: "WhatsAppda yozish",
       },
       fomoCta: {
         title: "Imkoniyatni qo'ldan boy bermang!",
@@ -522,173 +520,87 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0 opacity-30">
-          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-cyan-600/10 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="font-bold mb-3 md:mb-4">{t[language].testimonials.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].testimonials.subtitle}</p>
-            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
-          </div>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {testimonialsData.map((testimonial, index) => (
-                <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <TestimonialCard testimonial={testimonial} />
-                </div>
-              ))}
-            </div>
-            <div
-              className="mt-10 md:mt-16 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-xl md:rounded-2xl p-5 md:p-8 animate-slide-up"
-              style={{ animationDelay: "0.5s" }}
-            >
-              <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-5 md:gap-6">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-emerald-400">
-                  <Image
-                    src="/images/shahmir-main.jpeg" // Shaxmir's photo
-                    alt={t[language].shaxmirName}
-                    width={100}
-                    height={100}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <div className="flex-1">
-                  <p className="text-slate-300 italic mb-3 md:mb-4 text-sm md:text-base">
-                    {language === "ru"
-                      ? `«Я помог более 500 узбекским семьям улучшить их финансовое положение. Моя цель — сделать халяль инвестиции доступными для каждой семьи в Узбекистане. Присоединяйтесь к нам и измените свою жизнь уже сегодня!»`
-                      : `«Men 500 dan ortiq o'zbek oilalariga moliyaviy ahvolini yaxshilashga yordam berdim. Mening maqsadim — halol investitsiyalarni O'zbekistondagi har bir oila uchun qulay qilish. Bizga qo'shiling va bugun hayotingizni o'zgartiring!»`}
-                  </p>
-                  <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <h4 className="font-semibold text-base md:text-lg">{t[language].shaxmirName} Islomov</h4>
-                    <div className="flex items-center gap-1">
-                      <CheckCircle className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400 text-xs md:text-sm">
-                        {language === "ru" ? "Верифицирован" : "Tasdiqlangan"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Halal Section */}
-      <section
-        id="halal"
-        className="py-12 md:py-20 bg-gradient-to-br from-emerald-900/20 via-slate-900/30 to-emerald-900/20"
-      >
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-6">
-              <span className="text-lg md:text-xl">☪️</span>
-              <span className="text-emerald-400 text-xs md:text-sm font-medium">
-                {language === "ru" ? "100% Халяль" : "100% Halol"}
-              </span>
-            </div>
-            <h2 className="font-bold mb-3 md:mb-4">{t[language].halal.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].halal.subtitle}</p>
-            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
+          {/* Professional Trading Setup */}
+          <div className="mt-12 md:mt-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="animate-slide-up">
-              <div className="bg-slate-800/50 border border-emerald-500/30 rounded-xl md:rounded-2xl p-5 md:p-8">
-                <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-2xl md:text-3xl">☪️</span>
-                  </div>
-                  <h3 className="text-lg md:text-xl font-semibold">
-                    {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
-                  </h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
+                {language === "ru" ? "Профессиональная торговая станция" : "Professional savdo stantsiyasi"}
+              </h3>
+              <p className="text-slate-400 mb-4 md:mb-6 text-sm md:text-base">
+                {language === "ru"
+                  ? "Я использую профессиональное оборудование и программное обеспечение для анализа рынка в режиме реального времени. Три монитора позволяют отслеживать множество активов одновременно и принимать быстрые решения."
+                  : "Men bozorni real vaqtda tahlil qilish uchun professional jihozlar va dasturiy ta'minotdan foydalanaman. Uchta monitor bir vaqtning o'zida ko'plab aktivlarni kuzatish va tez qarorlar qabul qilish imkonini beradi."}
+              </p>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>{language === "ru" ? "3 монитора" : "3 ta monitor"}</span>
                 </div>
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 md:p-4 mb-5 md:mb-6">
-                  <p className="text-slate-300 italic text-xs md:text-sm">"{t[language].halal.quote}"</p>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>{language === "ru" ? "Новости в реальном времени" : "Real vaqt yangiliklari"}</span>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-slate-700/40 rounded-lg mb-3">
-                  <Image
-                    src="/images/binance-logo-new.jpeg"
-                    alt="Binance"
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-sm"
-                  />
-                  <p className="text-slate-300 text-xs md:text-sm">{t[language].halal.binanceDesc}</p>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>{language === "ru" ? "Профессиональные графики" : "Professional grafiklar"}</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    {
-                      pointKey: "point1",
-                      descRu: "Мы покупаем и продаем реальные криптоактивы",
-                      descUz: "Biz haqiqiy kripto aktivlarni sotib olamiz va sotamiz",
-                    },
-                    {
-                      pointKey: "point2",
-                      descRu: "Не основано на случайности или удаче",
-                      descUz: "Tasodif yoki omadga asoslanmagan",
-                    },
-                    {
-                      pointKey: "point3",
-                      descRu: "Нет процентных ставок, запрещенных исламом",
-                      descUz: "Islomda taqiqlangan foiz stavkalari yo'q",
-                    },
-                    {
-                      pointKey: "point4",
-                      descRu: "Ты видишь все операции в реальном времени",
-                      descUz: "Siz barcha operatsiyalarni real vaqtda ko'rasiz",
-                    },
-                  ].map((item) => (
-                    <div key={item.pointKey} className="bg-slate-700/40 rounded-lg p-3">
-                      <div className="flex items-start gap-2 mb-1">
-                        <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                        <h4 className="font-medium text-sm md:text-base">
-                          {t[language].halal[item.pointKey as keyof typeof t.ru.halal]}
-                        </h4>
-                      </div>
-                      <p className="text-slate-400 text-xs md:text-sm ml-6 md:ml-7">
-                        {language === "ru" ? item.descRu : item.descUz}
-                      </p>
-                    </div>
-                  ))}
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-emerald-400" />
+                  <span>{language === "ru" ? "Быстрое исполнение" : "Tez bajarish"}</span>
                 </div>
               </div>
             </div>
             <div className="relative animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <div className="w-full aspect-square max-h-[300px] md:max-h-[400px] bg-slate-800/60 rounded-xl md:rounded-2xl border-4 md:border-8 border-slate-800/80 shadow-2xl shadow-emerald-900/40 flex flex-col items-center justify-center p-4 mx-auto">
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden border-4 md:border-8 border-slate-800/70 shadow-2xl shadow-purple-900/30">
                 <Image
-                  src="/images/binance-logo-new.jpeg"
-                  alt="Binance Logo"
-                  width={80}
-                  height={80}
-                  className="w-16 h-16 md:w-20 md:h-20 mb-3 md:mb-4 opacity-90"
+                  src="/images/trading-setup.jpeg"
+                  alt={
+                    language === "ru"
+                      ? "Профессиональная торговая станция Шахмира"
+                      : "Shaxmirning professional savdo stantsiyasi"
+                  }
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-full"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-1 md:mb-2 text-center">
-                  {language === "ru" ? "Торговля на Binance" : "Binance'da Savdo"}
-                </h3>
-                <p className="text-slate-300 text-center text-sm md:text-base">
-                  {language === "ru" ? "Надежно и Прозрачно" : "Ishonchli va Shaffof"}
-                </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
               </div>
-              <div className="hidden md:block absolute -bottom-6 -right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/40 rounded-xl p-4 shadow-xl max-w-xs">
-                <div className="flex items-center gap-3 mb-2">
-                  <Shield className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
-                  <h4 className="font-semibold text-white text-sm md:text-base">
-                    {language === "ru" ? "Гарантия Халяль" : "Halol Kafolati"}
-                  </h4>
+              <div className="absolute -bottom-4 -right-4 bg-slate-800/90 backdrop-blur-sm border border-purple-500/40 rounded-xl p-3 shadow-xl">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 text-purple-400" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-purple-400">24/7</div>
+                    <div className="text-xs text-slate-400">{language === "ru" ? "Мониторинг" : "Monitoring"}</div>
+                  </div>
                 </div>
-                <p className="text-slate-300 text-xs md:text-sm">
-                  {language === "ru"
-                    ? "Наша деятельность проверена и одобрена."
-                    : "Faoliyatimiz tekshirilgan va tasdiqlangan."}
-                </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Profit Calculator Section */}
+      <section id="calculator" className="py-12 md:py-20 relative">
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-emerald-600/10 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">
+              {language === "ru" ? "Рассчитай свою прибыль" : "O'z foydangizni hisoblang"}
+            </h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">
+              {language === "ru"
+                ? "Узнай, сколько ты можешь заработать с разными суммами инвестиций"
+                : "Turli investitsiya summalari bilan qancha daromad qilishingizni bilib oling"}
+            </p>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
+          </div>
+          <div className="max-w-4xl mx-auto animate-slide-up">
+            <ProfitCalculator language={language} />
           </div>
         </div>
       </section>
@@ -781,70 +693,6 @@ export default function Home() {
                 { question: t[language].faq.q4, answer: t[language].faq.a4 },
               ]}
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0 opacity-30">
-          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-emerald-600/10 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="font-bold mb-3 md:mb-4">{t[language].contact.title}</h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">{t[language].contact.subtitle}</p>
-            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
-          </div>
-          <div className="max-w-md mx-auto animate-slide-up">
-            <div className="bg-slate-800/50 border border-slate-700/80 rounded-xl md:rounded-2xl p-5 md:p-8">
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-4 md:space-y-5 mb-5 md:mb-6">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder={t[language].contact.name}
-                  className="w-full px-4 py-3 bg-slate-700/60 border border-slate-600/80 rounded-lg text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-emerald-500/50 focus:ring-1 focus:outline-none text-sm md:text-base"
-                  aria-label={t[language].contact.name}
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder={t[language].contact.phone}
-                  className="w-full px-4 py-3 bg-slate-700/60 border border-slate-600/80 rounded-lg text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-emerald-500/50 focus:ring-1 focus:outline-none text-sm md:text-base"
-                  aria-label={t[language].contact.phone}
-                />
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold text-base md:text-lg rounded-lg"
-                >
-                  {t[language].contact.button}
-                </Button>
-              </form>
-              <div className="text-center">
-                <p className="text-slate-400 mb-3 md:mb-4 text-sm md:text-base">{t[language].contact.or}</p>
-                <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                  <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer" className="flex-1">
-                    <Button
-                      variant="outline"
-                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 text-sm md:text-base rounded-lg"
-                    >
-                      {t[language].contact.telegram}
-                    </Button>
-                  </a>
-                  <a href="https://wa.me/+998901234567" target="_blank" rel="noopener noreferrer" className="flex-1">
-                    {" "}
-                    {/* Replace with actual WhatsApp number */}
-                    <Button
-                      variant="outline"
-                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 text-sm md:text-base rounded-lg"
-                    >
-                      {t[language].contact.whatsapp}
-                    </Button>
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
