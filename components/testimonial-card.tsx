@@ -14,9 +14,10 @@ interface TestimonialProps {
     days: string
     verified: boolean
   }
+  traderName: string
 }
 
-export default function TestimonialCard({ testimonial }: TestimonialProps) {
+export default function TestimonialCard({ testimonial, traderName }: TestimonialProps) {
   return (
     <div className="testimonial-card bg-slate-800/50 border border-slate-700 rounded-xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
       <div className="flex items-center gap-3 mb-3 md:mb-4">

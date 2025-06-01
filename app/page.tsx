@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+// Tabs related imports are removed as the "Results" section is removed
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, CheckCircle, Clock, DollarSign, Shield, TrendingUp, Users, Menu, X, Zap, Gift } from "lucide-react"
 import Image from "next/image"
 import TestimonialCard from "@/components/testimonial-card"
@@ -11,10 +12,9 @@ import FaqAccordion from "@/components/faq-accordion"
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [language, setLanguage] = useState<"uz" | "ru">("uz")
-  const [showResults, setShowResults] = useState(false) // This state seems unused, consider removing or implementing
+  // const [showResults, setShowResults] = useState(false); // This state seems unused
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Translations (assuming t object is complete and correct)
   const t = {
     ru: {
       hero: {
@@ -33,20 +33,13 @@ export default function Home() {
       how: {
         title: "Как это работает",
         step1: "Ты инвестируешь",
-        step1desc: "Минимум 720,000 сум на торговый счет Binance",
+        step1desc: "Минимум 720,000 сум на торговый счет Binance. Я помогу с открытием и пополнением.",
         step2: "Я торгую",
-        step2desc: "Использую свой 7-летний опыт и стратегии",
+        step2desc: "Использую свой 7-летний опыт, анализ рынка и проверенные стратегии.",
         step3: "Ты получаешь прибыль",
-        step3desc: "70% прибыли твои, 30% моя комиссия",
+        step3desc: "70% прибыли твои, 30% моя комиссия. Все прозрачно и честно.",
       },
-      results: {
-        title: "Реальные результаты",
-        subtitle: "Фотографии с реальных счетов моих клиентов",
-        daily: "Ежедневные",
-        weekly: "Еженедельные",
-        monthly: "Ежемесячные",
-        viewAll: "Смотреть все результаты",
-      },
+      // Results section removed
       testimonials: {
         title: "Что говорят узбекские семьи",
         subtitle: "Более 500 семей уже зарабатывают с нами",
@@ -60,15 +53,18 @@ export default function Home() {
         point2: "Не ставки и не азартные игры",
         point3: "Без процентов (риба)",
         point4: "Прозрачность всех операций",
+        binanceDesc:
+          "Торговля ведется на крупнейшей и самой надежной криптобирже Binance, что обеспечивает безопасность и прозрачность.",
       },
       guarantee: {
         title: "Твоя безопасность — мой приоритет",
         money: "Гарантия возврата денег",
         moneyDesc: "Если нет прибыли за 7 дней — возврат 100% + 10% компенсации",
         security: "Максимальная безопасность",
-        securityDesc: "Торгую только на Binance — лидере рынка с лицензиями в 100+ странах",
+        securityDesc:
+          "Торгую только на Binance — лидере рынка с лицензиями в 100+ странах. Твои средства на твоем личном счете.",
         transparency: "Полная прозрачность",
-        transparencyDesc: "Ты видишь все операции в реальном времени через свой аккаунт",
+        transparencyDesc: "Ты видишь все операции в реальном времени через свой аккаунт Binance.",
       },
       faq: {
         title: "Частые вопросы",
@@ -96,6 +92,7 @@ export default function Home() {
         subtitle: "Места ограничены. Присоединяйся к успешным инвесторам прямо сейчас!",
         button: "🚀 Вступить в Telegram канал",
       },
+      shaxmirName: "Шахмир", // Corrected spelling
     },
     uz: {
       hero: {
@@ -114,20 +111,13 @@ export default function Home() {
       how: {
         title: "Bu qanday ishlaydi",
         step1: "Siz investitsiya qilasiz",
-        step1desc: "Minimal 720,000 so'm Binance savdo hisobiga",
+        step1desc: "Minimal 720,000 so'm Binance savdo hisobiga. Ochish va to'ldirishda yordam beraman.",
         step2: "Men savdo qilaman",
-        step2desc: "7 yillik tajribam va strategiyalarimdan foydalanaman",
+        step2desc: "7 yillik tajribam, bozor tahlili va isbotlangan strategiyalardan foydalanaman.",
         step3: "Siz foyda olasiz",
-        step3desc: "Foydaning 70% sizniki, 30% mening komissiyam",
+        step3desc: "Foydaning 70% sizniki, 30% mening komissiyam. Hammasi shaffof va halol.",
       },
-      results: {
-        title: "Haqiqiy natijalar",
-        subtitle: "Mijozlarimning haqiqiy hisoblaridan suratlar",
-        daily: "Kunlik",
-        weekly: "Haftalik",
-        monthly: "Oylik",
-        viewAll: "Barcha natijalarni ko'rish",
-      },
+      // Results section removed
       testimonials: {
         title: "O'zbek oilalari nima deyishadi",
         subtitle: "500 dan ortiq oilalar allaqachon biz bilan daromad topmoqda",
@@ -141,15 +131,18 @@ export default function Home() {
         point2: "Stavkalar va qimor o'yinlari emas",
         point3: "Foizsiz (ribo)",
         point4: "Barcha operatsiyalar shaffofligi",
+        binanceDesc:
+          "Savdo eng yirik va eng ishonchli Binance kripto birjasida olib boriladi, bu xavfsizlik va shaffoflikni ta'minlaydi.",
       },
       guarantee: {
         title: "Sizning xavfsizligingiz — mening ustuvorligim",
         money: "Pul qaytarish kafolati",
         moneyDesc: "Agar 7 kun ichida foyda bo'lmasa — 100% qaytarish + 10% kompensatsiya",
         security: "Maksimal xavfsizlik",
-        securityDesc: "Faqat Binance'da savdo qilaman — 100+ mamlakatlarda litsenziyalari bilan bozor lideri",
+        securityDesc:
+          "Faqat Binance'da savdo qilaman — 100+ mamlakatlarda litsenziyalari bilan bozor lideri. Sizning mablag'laringiz shaxsiy hisobingizda.",
         transparency: "To'liq shaffoflik",
-        transparencyDesc: "Siz o'z hisobingiz orqali barcha operatsiyalarni real vaqtda ko'rasiz",
+        transparencyDesc: "Siz o'z Binance hisobingiz orqali barcha operatsiyalarni real vaqtda ko'rasiz.",
       },
       faq: {
         title: "Ko'p so'raladigan savollar",
@@ -177,10 +170,10 @@ export default function Home() {
         subtitle: "Joylar cheklangan. Hoziroq muvaffaqiyatli investorlar qatoriga qo'shiling!",
         button: "🚀 Telegram kanaliga qo'shilish",
       },
+      shaxmirName: "Shaxmir", // Corrected spelling
     },
   }
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
@@ -189,19 +182,18 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Testimonials data
-  const testimonials = [
+  const testimonialsData = [
     {
       name: "Жахонгир Турсунов",
       location: "Самарканд",
       image: "/placeholder.svg?height=100&width=100",
       text:
         language === "ru"
-          ? "Я скептически относился к инвестициям, но Шахмир убедил меня попробовать. Вложил 720,000 сум, через 2 дня получил 9,360,000 сум! Теперь смог оплатить лечение отца и купить новый телефон."
-          : "Men investitsiyalarga shubha bilan qarar edim, lekin Shahmir meni sinab ko'rishga ishontirdi. 720,000 so'm tikdim, 2 kundan keyin 9,360,000 so'm oldim! Endi otamning davolanishini to'lay oldim va yangi telefon sotib oldim.",
+          ? `Я скептически относился к инвестициям, но ${t.ru.shaxmirName} убедил меня попробовать. Вложил 720,000 сум, через 2 дня получил 9,360,000 сум! Теперь смог оплатить лечение отца и купить новый телефон.`
+          : `Men investitsiyalarga shubha bilan qarar edim, lekin ${t.uz.shaxmirName} meni sinab ko'rishga ishontirdi. 720,000 so'm tikdim, 2 kundan keyin 9,360,000 so'm oldim! Endi otamning davolanishini to'lay oldim va yangi telefon sotib oldim.`,
       invested: "720,000 сум",
       received: "9,360,000 сум",
-      days: "2 дня",
+      days: language === "ru" ? "2 дня" : "2 kun",
       verified: true,
     },
     {
@@ -210,11 +202,11 @@ export default function Home() {
       image: "/placeholder.svg?height=100&width=100",
       text:
         language === "ru"
-          ? "Я мать-одиночка с двумя детьми. Работаю учителем, но зарплаты не хватает. Шахмир помог мне заработать на новую одежду детям к школе и даже отложить на будущее. Очень благодарна!"
-          : "Men ikki bolali yolg'iz onaman. O'qituvchi bo'lib ishlayapman, lekin maosh yetmaydi. Shahmir menga bolalarimga maktabga yangi kiyim sotib olishga va hatto kelajak uchun pul yig'ishga yordam berdi. Juda minnatdorman!",
+          ? `Я мать-одиночка с двумя детьми. Работаю учителем, но зарплаты не хватает. ${t.ru.shaxmirName} помог мне заработать на новую одежду детям к школе и даже отложить на будущее. Очень благодарна!`
+          : `Men ikki bolali yolg'iz onaman. O'qituvchi bo'lib ishlayapman, lekin maosh yetmaydi. ${t.uz.shaxmirName} menga bolalarimga maktabga yangi kiyim sotib olishga va hatto kelajak uchun pul yig'ishga yordam berdi. Juda minnatdorman!`,
       invested: "1,200,000 сум",
       received: "16,800,000 сум",
-      days: "3 дня",
+      days: language === "ru" ? "3 дня" : "3 kun",
       verified: true,
     },
     {
@@ -223,32 +215,20 @@ export default function Home() {
       image: "/placeholder.svg?height=100&width=100",
       text:
         language === "ru"
-          ? "Копил на свадьбу сына 2 года. Друг посоветовал Шахмира. За неделю заработал больше, чем за год работы на заводе! Свадьба будет лучшей в районе, спасибо Шахмиру!"
-          : "O'g'limning to'yi uchun 2 yil pul yig'dim. Do'stim Shahmirni tavsiya qildi. Bir hafta ichida zavodda bir yillik ishdan ko'proq daromad qildim! To'y tumandagi eng yaxshi bo'ladi, Shahmirga rahmat!",
+          ? `Копил на свадьбу сына 2 года. Друг посоветовал ${t.ru.shaxmirName}. За неделю заработал больше, чем за год работы на заводе! Свадьба будет лучшей в районе, спасибо ${t.ru.shaxmirName}!`
+          : `O'g'limning to'yi uchun 2 yil pul yig'dim. Do'stim ${t.uz.shaxmirName}ni tavsiya qildi. Bir hafta ichida zavodda bir yillik ishdan ko'proq daromad qildim! To'y tumandagi eng yaxshi bo'ladi, ${t.uz.shaxmirName}ga rahmat!`,
       invested: "3,600,000 сум",
       received: "43,200,000 сум",
-      days: "6 дней",
+      days: language === "ru" ? "6 дней" : "6 kun",
       verified: true,
     },
   ]
 
-  // Results data
-  const dailyResults = [
-    { pair: "BTCUSDT", profit: "+127%", amount: "1,270,000 сум", time: "24 часа" },
-    { pair: "ETHUSDT", profit: "+143%", amount: "2,860,000 сум", time: "36 часов" },
-    { pair: "DOGEUSDT", profit: "+215%", amount: "4,300,000 сум", time: "48 часов" },
-  ]
-
-  const weeklyResults = [
-    { pair: "BTCUSDT", profit: "+327%", amount: "3,270,000 сум", time: "5 дней" },
-    { pair: "ETHUSDT", profit: "+412%", amount: "8,240,000 сум", time: "7 дней" },
-    { pair: "DOGEUSDT", profit: "+560%", amount: "11,200,000 сум", time: "6 дней" },
-  ]
-
-  const monthlyResults = [
-    { pair: "BTCUSDT", profit: "+1240%", amount: "12,400,000 сум", time: "28 дней" },
-    { pair: "ETHUSDT", profit: "+1560%", amount: "31,200,000 сум", time: "30 дней" },
-    { pair: "DOGEUSDT", profit: "+1890%", amount: "37,800,000 сум", time: "25 дней" },
+  const navLinks = [
+    { href: "#how", labelRu: "Как это работает", labelUz: "Bu qanday ishlaydi" },
+    // { href: "#results", labelRu: "Результаты", labelUz: "Natijalar" }, // Removed
+    { href: "#testimonials", labelRu: "Отзывы", labelUz: "Sharhlar" },
+    { href: "#halal", labelRu: "Халяль", labelUz: "Halol" },
   ]
 
   return (
@@ -268,17 +248,12 @@ export default function Home() {
               <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-white" />
             </div>
             <span className="font-bold text-base md:text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              Shahmir Trade
+              Shaxmir Trade
             </span>
           </a>
 
           <nav className="hidden md:flex items-center gap-5 lg:gap-6">
-            {[
-              { href: "#how", labelRu: "Как это работает", labelUz: "Bu qanday ishlaydi" },
-              { href: "#results", labelRu: "Результаты", labelUz: "Natijalar" },
-              { href: "#testimonials", labelRu: "Отзывы", labelUz: "Sharhlar" },
-              { href: "#halal", labelRu: "Халяль", labelUz: "Halol" },
-            ].map((item) => (
+            {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -341,12 +316,7 @@ export default function Home() {
             </Button>
           </div>
           <nav className="flex flex-col items-center justify-center flex-grow space-y-5 px-4">
-            {[
-              { href: "#how", labelRu: "Как это работает", labelUz: "Bu qanday ishlaydi" },
-              { href: "#results", labelRu: "Результаты", labelUz: "Natijalar" },
-              { href: "#testimonials", labelRu: "Отзывы", labelUz: "Sharhlar" },
-              { href: "#halal", labelRu: "Халяль", labelUz: "Halol" },
-            ].map((item) => (
+            {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -402,15 +372,7 @@ export default function Home() {
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </a>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 rounded-xl"
-                  onClick={() => document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })}
-                >
-                  <TrendingUp className="mr-2 w-5 h-5" />
-                  {t[language].results.viewAll}
-                </Button>
+                {/* Removed "View All Results" button as section is removed */}
               </div>
               <div className="flex items-center gap-2 justify-center md:justify-start text-slate-400 text-sm mb-1">
                 <Users className="w-4 h-4 text-emerald-400" />
@@ -425,8 +387,12 @@ export default function Home() {
             <div className="relative animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <div className="relative rounded-xl md:rounded-2xl overflow-hidden border-4 md:border-8 border-slate-800/70 shadow-2xl shadow-emerald-900/30 aspect-[3/4] max-h-[400px] md:max-h-[500px] mx-auto max-w-sm md:max-w-none">
                 <Image
-                  src="/images/shahmir-main.jpeg"
-                  alt="Professional Trader Shahmir"
+                  src="/images/shahmir-main.jpeg" // Assuming this is Shaxmir's photo
+                  alt={
+                    language === "ru"
+                      ? `Профессиональный трейдер ${t.ru.shaxmirName}`
+                      : `Professional treyder ${t.uz.shaxmirName}`
+                  }
                   fill
                   className="object-cover object-top"
                   priority
@@ -437,15 +403,15 @@ export default function Home() {
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-emerald-500 overflow-hidden flex-shrink-0">
                       <Image
-                        src="/images/shahmir-main.jpeg"
-                        alt="Shahmir"
+                        src="/images/shahmir-main.jpeg" // Assuming this is Shaxmir's photo
+                        alt={t[language].shaxmirName}
                         width={64}
                         height={64}
                         className="object-cover w-full h-full"
                       />
                     </div>
                     <div>
-                      <h3 className="text-base md:text-lg font-bold text-white">Shahmir Islomov</h3>
+                      <h3 className="text-base md:text-lg font-bold text-white">{t[language].shaxmirName} Islomov</h3>
                       <p className="text-emerald-400 text-xs md:text-sm">
                         {language === "ru" ? "Проф. трейдер • 7+ лет опыта" : "Prof. treyder • 7+ yillik tajriba"}
                       </p>
@@ -453,7 +419,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              {/* Floating cards for desktop only */}
               <div
                 className="hidden md:block absolute -bottom-8 -right-8 bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-xl animate-slide-up"
                 style={{ animationDelay: "0.4s" }}
@@ -560,69 +525,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Results Section */}
-      <section id="results" className="py-12 md:py-20 bg-slate-900/40">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="font-bold mb-3 md:mb-4">{t[language].results.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].results.subtitle}</p>
-            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <Tabs defaultValue="daily" className="w-full">
-              <TabsList className="grid grid-cols-3 mb-6 md:mb-8 p-1 bg-slate-800/60 rounded-lg">
-                <TabsTrigger
-                  value="daily"
-                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-slate-300 py-2 text-sm md:text-base rounded-md"
-                >
-                  {t[language].results.daily}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="weekly"
-                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-slate-300 py-2 text-sm md:text-base rounded-md"
-                >
-                  {t[language].results.weekly}
-                </TabsTrigger>
-                <TabsTrigger
-                  value="monthly"
-                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-slate-300 py-2 text-sm md:text-base rounded-md"
-                >
-                  {t[language].results.monthly}
-                </TabsTrigger>
-              </TabsList>
-              {[
-                { value: "daily", data: dailyResults },
-                { value: "weekly", data: weeklyResults },
-                { value: "monthly", data: monthlyResults },
-              ].map((tab) => (
-                <TabsContent key={tab.value} value={tab.value}>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    {tab.data.map((result, index) => (
-                      <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                        <div className="bg-slate-800/50 border border-slate-700/80 rounded-xl p-4 hover:border-emerald-500/60 transition-colors duration-300 h-full flex flex-col">
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="font-semibold text-sm md:text-base">{result.pair}</div>
-                            <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
-                          </div>
-                          <div className="w-full aspect-[4/3] bg-slate-700/60 rounded-lg mb-3 flex items-center justify-center">
-                            {/* Placeholder for chart or image */}
-                            <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-emerald-500 opacity-70" />
-                          </div>
-                          <div className="flex items-center justify-between text-xs md:text-sm mt-auto">
-                            <div className="text-slate-400">{result.time}</div>
-                            <div className="text-emerald-400 font-semibold">{result.amount}</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section id="testimonials" className="py-12 md:py-20 relative">
         <div className="absolute inset-0 z-0 opacity-30">
@@ -636,7 +538,7 @@ export default function Home() {
           </div>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {testimonials.map((testimonial, index) => (
+              {testimonialsData.map((testimonial, index) => (
                 <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.15}s` }}>
                   <TestimonialCard testimonial={testimonial} />
                 </div>
@@ -649,8 +551,8 @@ export default function Home() {
               <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-5 md:gap-6">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-emerald-400">
                   <Image
-                    src="/images/shahmir-main.jpeg"
-                    alt="Shahmir"
+                    src="/images/shahmir-main.jpeg" // Shaxmir's photo
+                    alt={t[language].shaxmirName}
                     width={100}
                     height={100}
                     className="object-cover w-full h-full"
@@ -659,11 +561,11 @@ export default function Home() {
                 <div className="flex-1">
                   <p className="text-slate-300 italic mb-3 md:mb-4 text-sm md:text-base">
                     {language === "ru"
-                      ? "«Я помог более 500 узбекским семьям улучшить их финансовое положение. Моя цель — сделать халяль инвестиции доступными для каждой семьи в Узбекистане. Присоединяйтесь к нам и измените свою жизнь уже сегодня!»"
-                      : "«Men 500 dan ortiq o'zbek oilalariga moliyaviy ahvolini yaxshilashga yordam berdim. Mening maqsadim — halol investitsiyalarni O'zbekistondagi har bir oila uchun qulay qilish. Bizga qo'shiling va bugun hayotingizni o'zgartiring!»"}
+                      ? `«Я помог более 500 узбекским семьям улучшить их финансовое положение. Моя цель — сделать халяль инвестиции доступными для каждой семьи в Узбекистане. Присоединяйтесь к нам и измените свою жизнь уже сегодня!»`
+                      : `«Men 500 dan ortiq o'zbek oilalariga moliyaviy ahvolini yaxshilashga yordam berdim. Mening maqsadim — halol investitsiyalarni O'zbekistondagi har bir oila uchun qulay qilish. Bizga qo'shiling va bugun hayotingizni o'zgartiring!»`}
                   </p>
                   <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <h4 className="font-semibold text-base md:text-lg">Shahmir Islomov</h4>
+                    <h4 className="font-semibold text-base md:text-lg">{t[language].shaxmirName} Islomov</h4>
                     <div className="flex items-center gap-1">
                       <CheckCircle className="w-4 h-4 text-emerald-400" />
                       <span className="text-emerald-400 text-xs md:text-sm">
@@ -709,6 +611,16 @@ export default function Home() {
                 <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 md:p-4 mb-5 md:mb-6">
                   <p className="text-slate-300 italic text-xs md:text-sm">"{t[language].halal.quote}"</p>
                 </div>
+                <div className="flex items-center gap-3 p-3 bg-slate-700/40 rounded-lg mb-3">
+                  <Image
+                    src="/images/binance-logo-new.jpeg"
+                    alt="Binance"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 rounded-sm"
+                  />
+                  <p className="text-slate-300 text-xs md:text-sm">{t[language].halal.binanceDesc}</p>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[
                     {
@@ -749,12 +661,18 @@ export default function Home() {
             </div>
             <div className="relative animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <div className="w-full aspect-square max-h-[300px] md:max-h-[400px] bg-slate-800/60 rounded-xl md:rounded-2xl border-4 md:border-8 border-slate-800/80 shadow-2xl shadow-emerald-900/40 flex flex-col items-center justify-center p-4 mx-auto">
-                <span className="text-5xl md:text-7xl mb-3 md:mb-4 block">☪️</span>
+                <Image
+                  src="/images/binance-logo-new.jpeg"
+                  alt="Binance Logo"
+                  width={80}
+                  height={80}
+                  className="w-16 h-16 md:w-20 md:h-20 mb-3 md:mb-4 opacity-90"
+                />
                 <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-1 md:mb-2 text-center">
-                  {language === "ru" ? "Халяль Сертификация" : "Halol Sertifikatsiya"}
+                  {language === "ru" ? "Торговля на Binance" : "Binance'da Savdo"}
                 </h3>
                 <p className="text-slate-300 text-center text-sm md:text-base">
-                  {language === "ru" ? "Соответствует нормам Шариата" : "Shariat normalariga mos keladi"}
+                  {language === "ru" ? "Надежно и Прозрачно" : "Ishonchli va Shaffof"}
                 </p>
               </div>
               <div className="hidden md:block absolute -bottom-6 -right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/40 rounded-xl p-4 shadow-xl max-w-xs">
@@ -819,10 +737,20 @@ export default function Home() {
                           (language === "ru"
                             ? "Я беру на себя все риски — ты получаешь только прибыль"
                             : "Men barcha xavflarni o'z zimmamga olaman — siz faqat foyda olasiz")}
-                        {guarantee.titleKey === "security" &&
-                          (language === "ru"
-                            ? "Binance — крупнейшая криптобиржа с защитой средств до $1 млрд"
-                            : "Binance — 1 milliard dollargacha mablag'larni himoya qilish bilan eng yirik kripto birja")}
+                        {guarantee.titleKey === "security" && (
+                          <span className="flex items-center gap-2">
+                            <Image
+                              src="/images/binance-logo-new.jpeg"
+                              alt="Binance"
+                              width={16}
+                              height={16}
+                              className="w-4 h-4 rounded-sm"
+                            />
+                            {language === "ru"
+                              ? "Binance — крупнейшая криптобиржа с защитой средств до $1 млрд"
+                              : "Binance — 1 milliard dollargacha mablag'larni himoya qilish bilan eng yirik kripto birja"}
+                          </span>
+                        )}
                         {guarantee.titleKey === "transparency" &&
                           (language === "ru"
                             ? "Ежедневные отчеты и полный доступ к торговому счету"
