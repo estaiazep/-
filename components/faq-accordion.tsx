@@ -20,26 +20,29 @@ export default function FaqAccordion({ items }: FaqAccordionProps) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 md:space-y-4">
       {items.map((item, index) => (
         <div
           key={index}
-          className={`bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden transition-all duration-300 ${
+          className={`faq-item bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden transition-all duration-300 ${
             openIndex === index ? "border-emerald-500/50" : ""
           }`}
         >
-          <button className="w-full flex items-center justify-between p-6 text-left" onClick={() => toggleItem(index)}>
-            <h3 className="font-semibold text-lg">{item.question}</h3>
+          <button
+            className="w-full flex items-center justify-between p-4 md:p-6 text-left"
+            onClick={() => toggleItem(index)}
+          >
+            <h3 className="font-semibold text-sm md:text-lg pr-4">{item.question}</h3>
             {openIndex === index ? (
-              <ChevronUp className="w-5 h-5 text-emerald-400" />
+              <ChevronUp className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 flex-shrink-0" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-slate-400" />
+              <ChevronDown className="w-4 h-4 md:w-5 md:h-5 text-slate-400 flex-shrink-0" />
             )}
           </button>
 
           {openIndex === index && (
-            <div className="p-6 pt-0 border-t border-slate-700">
-              <p className="text-slate-300">{item.answer}</p>
+            <div className="px-4 pb-4 md:px-6 md:pb-6 border-t border-slate-700">
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed pt-3 md:pt-4">{item.answer}</p>
             </div>
           )}
         </div>

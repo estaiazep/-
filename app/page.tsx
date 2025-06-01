@@ -175,7 +175,7 @@ export default function Home() {
       footer: {
         rights: "© 2025 Shahmir Islomov. Barcha huquqlar himoyalangan.",
         disclaimer: "Investitsiyalar xavf bilan bog'liq. Mas'uliyat bilan savdo qiling.",
-        halal: "Musulmonlar uchun 100% halol biznes",
+        halol: "Musulmonlar uchun 100% halol biznes",
       },
     },
   }
@@ -252,49 +252,49 @@ export default function Home() {
   ]
 
   return (
-    <main className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
+    <main className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white min-h-screen">
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-slate-900/95 backdrop-blur-md py-2" : "bg-transparent py-4"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-mobile ${
+          isScrolled ? "bg-slate-900/95 backdrop-blur-md py-2" : "bg-transparent py-3"
         }`}
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-white" />
+            <div className="header-logo-icon w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-white" />
             </div>
-            <span className="font-bold text-xl bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="header-logo font-bold text-lg md:text-xl bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
               Shahmir Trade
             </span>
           </div>
 
           <div className="hidden md:flex items-center gap-6">
-            <a href="#how" className="text-slate-300 hover:text-emerald-400 transition-colors">
+            <a href="#how" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
               {language === "ru" ? "Как это работает" : "Bu qanday ishlaydi"}
             </a>
-            <a href="#results" className="text-slate-300 hover:text-emerald-400 transition-colors">
+            <a href="#results" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
               {language === "ru" ? "Результаты" : "Natijalar"}
             </a>
-            <a href="#testimonials" className="text-slate-300 hover:text-emerald-400 transition-colors">
+            <a href="#testimonials" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
               {language === "ru" ? "Отзывы" : "Sharhlar"}
             </a>
-            <a href="#halal" className="text-slate-300 hover:text-emerald-400 transition-colors">
+            <a href="#halal" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
               {language === "ru" ? "Халяль" : "Halol"}
             </a>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex border border-slate-700 rounded-full overflow-hidden">
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="language-switcher flex border border-slate-700 rounded-full overflow-hidden">
               <button
                 onClick={() => setLanguage("uz")}
-                className={`px-3 py-1 text-sm transition-colors ${language === "uz" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
+                className={`px-2 py-1 text-xs md:text-sm transition-colors ${language === "uz" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
               >
                 🇺🇿 UZ
               </button>
               <button
                 onClick={() => setLanguage("ru")}
-                className={`px-3 py-1 text-sm transition-colors ${language === "ru" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
+                className={`px-2 py-1 text-xs md:text-sm transition-colors ${language === "ru" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
               >
                 🇷🇺 RU
               </button>
@@ -302,8 +302,13 @@ export default function Home() {
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)} className="text-slate-300">
-                <Menu className="w-6 h-6" />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMobileMenuOpen(true)}
+                className="text-slate-300 w-8 h-8"
+              >
+                <Menu className="w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -312,123 +317,134 @@ export default function Home() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm md:hidden">
+        <div className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm md:hidden mobile-menu">
           <div className="flex justify-end p-4">
             <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="text-slate-300">
               <X className="w-6 h-6" />
             </Button>
           </div>
 
-          <div className="flex flex-col items-center justify-center h-full">
-            <nav className="space-y-8">
+          <div className="flex flex-col items-center justify-center h-full px-4">
+            <nav className="space-y-6 text-center w-full">
               <a
                 href="#how"
-                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {language === "ru" ? "Как это работает" : "Bu qanday ishlaydi"}
               </a>
               <a
                 href="#results"
-                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {language === "ru" ? "Результаты" : "Natijalar"}
               </a>
               <a
                 href="#testimonials"
-                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {language === "ru" ? "Отзывы" : "Sharhlar"}
               </a>
               <a
                 href="#halal"
-                className="block text-2xl font-bold text-white hover:text-emerald-400 transition-colors"
+                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {language === "ru" ? "Халяль" : "Halol"}
               </a>
 
-              <Button
-                size="lg"
-                className="mt-8 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-8 py-6 text-lg rounded-xl"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {language === "ru" ? "Начать зарабатывать" : "Daromad topishni boshlash"}
-              </Button>
+              <div className="pt-4">
+                <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-6 py-4 text-lg rounded-xl"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {language === "ru" ? "Начать зарабатывать" : "Daromad topishni boshlash"}
+                  </Button>
+                </a>
+              </div>
             </nav>
           </div>
         </div>
       )}
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="hero-section relative pt-20 md:pt-32 pb-12 md:pb-20 overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
-                <span className="text-lg">☪️</span>
-                <span className="text-emerald-400 text-sm font-medium">{t[language].hero.badge}</span>
+          <div className="hero-grid grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="hero-content text-center md:text-left">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 md:px-4 md:py-2 mb-4 md:mb-6">
+                <span className="text-base md:text-lg">☪️</span>
+                <span className="text-emerald-400 text-xs md:text-sm font-medium">{t[language].hero.badge}</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{t[language].hero.title}</h1>
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                {t[language].hero.title}
+              </h1>
 
-              <p className="text-xl text-slate-300 mb-8">{t[language].hero.subtitle}</p>
+              <p className="text-base md:text-xl text-slate-300 mb-6 md:mb-8">{t[language].hero.subtitle}</p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center md:justify-start">
-                <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer">
+              <div className="hero-buttons flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-8 justify-center md:justify-start">
+                <a
+                  href="https://t.me/+iawpP4pwqW42YmM6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-8 py-6 text-lg rounded-xl w-full sm:w-auto"
+                    className="hero-button w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl"
                   >
                     {t[language].hero.cta}
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
                   </Button>
                 </a>
 
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-6 text-lg rounded-xl"
+                  className="hero-button w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-800 px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl"
                   onClick={() => setShowResults(true)}
                 >
-                  <TrendingUp className="mr-2 w-5 h-5" />
+                  <TrendingUp className="mr-2 w-4 h-4 md:w-5 md:h-5" />
                   {t[language].results.viewAll}
                 </Button>
               </div>
 
-              <div className="flex items-center gap-2 justify-center md:justify-start">
+              <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
                 <Users className="w-4 h-4 text-emerald-400" />
                 <span className="text-slate-300 text-sm">{t[language].hero.trustBadge}</span>
               </div>
 
-              <div className="mt-2 text-slate-400 text-sm flex items-center gap-2 justify-center md:justify-start">
+              <div className="text-slate-400 text-sm flex items-center gap-2 justify-center md:justify-start">
                 <DollarSign className="w-4 h-4" />
                 {t[language].hero.minInvest}
               </div>
             </div>
 
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden border-8 border-slate-800 shadow-2xl shadow-emerald-500/10">
+            <div className="hero-image relative">
+              <div className="hero-image-container relative rounded-xl md:rounded-2xl overflow-hidden border-4 md:border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 h-80 md:h-[500px]">
                 <Image
                   src="/images/shahmir-main.jpeg"
                   alt="Professional Trader Shahmir"
-                  width={600}
-                  height={800}
-                  className="object-cover w-full h-[500px]"
+                  fill
+                  className="object-cover"
                   priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full border-4 border-emerald-500 overflow-hidden">
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6">
+                  <div className="flex items-center gap-3 md:gap-4">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 md:border-4 border-emerald-500 overflow-hidden">
                       <Image
                         src="/images/shahmir-main.jpeg"
                         alt="Shahmir"
@@ -438,8 +454,8 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Shahmir Islomov</h3>
-                      <p className="text-emerald-400">
+                      <h3 className="text-lg md:text-xl font-bold">Shahmir Islomov</h3>
+                      <p className="text-emerald-400 text-sm md:text-base">
                         {language === "ru"
                           ? "Профессиональный трейдер • 7 лет опыта"
                           : "Professional treyder • 7 yillik tajriba"}
@@ -449,8 +465,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Floating stats cards */}
-              <div className="absolute -bottom-10 -right-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
+              {/* Floating stats cards - только для больших экранов */}
+              <div className="hero-floating-card hidden md:block absolute -bottom-10 -right-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-emerald-400" />
@@ -464,7 +480,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="absolute top-10 -left-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
+              <div className="hero-floating-card hidden md:block absolute top-10 -left-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
                     <Clock className="w-5 h-5 text-cyan-400" />
@@ -477,54 +493,68 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+
+              {/* Мобильные статистики под изображением */}
+              <div className="md:hidden mt-4 grid grid-cols-2 gap-3">
+                <div className="bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 text-center">
+                  <div className="text-xl font-bold text-emerald-400">+1,240%</div>
+                  <div className="text-xs text-slate-400">
+                    {language === "ru" ? "Максимальная прибыль" : "Maksimal foyda"}
+                  </div>
+                </div>
+                <div className="bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 text-center">
+                  <div className="text-xl font-bold text-cyan-400">24-48h</div>
+                  <div className="text-xs text-slate-400">{language === "ru" ? "Быстрый результат" : "Tez natija"}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-10 bg-slate-900/50">
+      <section className="py-6 md:py-10 bg-slate-900/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-emerald-400 mb-2">500+</div>
-              <div className="text-slate-400">{t[language].stats.clients}</div>
+          <div className="stats-grid grid grid-cols-3 gap-3 md:gap-6">
+            <div className="stats-item text-center">
+              <div className="stats-number text-2xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">500+</div>
+              <div className="stats-label text-slate-400 text-xs md:text-sm">{t[language].stats.clients}</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-emerald-400 mb-2">7+</div>
-              <div className="text-slate-400">{t[language].stats.years}</div>
+            <div className="stats-item text-center">
+              <div className="stats-number text-2xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">7+</div>
+              <div className="stats-label text-slate-400 text-xs md:text-sm">{t[language].stats.years}</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-emerald-400 mb-2">x15</div>
-              <div className="text-slate-400">{t[language].stats.profit}</div>
+            <div className="stats-item text-center">
+              <div className="stats-number text-2xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">x15</div>
+              <div className="stats-label text-slate-400 text-xs md:text-sm">{t[language].stats.profit}</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section id="how" className="py-20 relative">
+      <section id="how" className="py-12 md:py-20 relative">
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].how.title}</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto"></div>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].how.title}</h2>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="steps-grid grid md:grid-cols-3 gap-4 md:gap-8">
             <div className="relative">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mb-6">
-                  <DollarSign className="w-8 h-8 text-white" />
+              <div className="step-card bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="step-icon w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <div className="absolute -top-3 -left-3 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                   1
                 </div>
-                <h3 className="text-xl font-bold mb-4">{t[language].how.step1}</h3>
-                <p className="text-slate-400">{t[language].how.step1desc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].how.step1}</h3>
+                <p className="text-slate-400 text-sm md:text-base">{t[language].how.step1desc}</p>
               </div>
 
               {/* Arrow for desktop */}
@@ -536,15 +566,15 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mb-6">
-                  <TrendingUp className="w-8 h-8 text-white" />
+              <div className="step-card bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="step-icon w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <div className="absolute -top-3 -left-3 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                   2
                 </div>
-                <h3 className="text-xl font-bold mb-4">{t[language].how.step2}</h3>
-                <p className="text-slate-400">{t[language].how.step2desc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].how.step2}</h3>
+                <p className="text-slate-400 text-sm md:text-base">{t[language].how.step2desc}</p>
               </div>
 
               {/* Arrow for desktop */}
@@ -556,15 +586,15 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-6">
-                  <DollarSign className="w-8 h-8 text-white" />
+              <div className="step-card bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="step-icon w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-white" />
                 </div>
-                <div className="absolute -top-3 -left-3 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                   3
                 </div>
-                <h3 className="text-xl font-bold mb-4">{t[language].how.step3}</h3>
-                <p className="text-slate-400">{t[language].how.step3desc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].how.step3}</h3>
+                <p className="text-slate-400 text-sm md:text-base">{t[language].how.step3desc}</p>
               </div>
             </div>
           </div>
@@ -572,35 +602,41 @@ export default function Home() {
       </section>
 
       {/* Results Section */}
-      <section id="results" className="py-20 bg-slate-900/30">
+      <section id="results" className="py-12 md:py-20 bg-slate-900/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].results.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">{t[language].results.subtitle}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].results.title}</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].results.subtitle}</p>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
 
           <div className="max-w-4xl mx-auto">
             <Tabs defaultValue="daily" className="w-full">
-              <TabsList className="grid grid-cols-3 mb-8">
-                <TabsTrigger value="daily">{t[language].results.daily}</TabsTrigger>
-                <TabsTrigger value="weekly">{t[language].results.weekly}</TabsTrigger>
-                <TabsTrigger value="monthly">{t[language].results.monthly}</TabsTrigger>
+              <TabsList className="tabs-list grid grid-cols-3 mb-6 md:mb-8 w-full">
+                <TabsTrigger value="daily" className="tabs-trigger">
+                  {t[language].results.daily}
+                </TabsTrigger>
+                <TabsTrigger value="weekly" className="tabs-trigger">
+                  {t[language].results.weekly}
+                </TabsTrigger>
+                <TabsTrigger value="monthly" className="tabs-trigger">
+                  {t[language].results.monthly}
+                </TabsTrigger>
               </TabsList>
 
               <TabsContent value="daily">
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="results-grid grid md:grid-cols-3 gap-4 md:gap-6">
                   {dailyResults.map((result, index) => (
                     <div key={index}>
-                      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 hover:border-emerald-500/50 transition-all duration-300">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="font-bold">{result.pair}</div>
-                          <div className="text-emerald-400 font-bold">{result.profit}</div>
+                      <div className="result-card bg-slate-800/50 border border-slate-700 rounded-xl p-3 md:p-4 hover:border-emerald-500/50 transition-all duration-300">
+                        <div className="flex items-center justify-between mb-3 md:mb-4">
+                          <div className="font-bold text-sm md:text-base">{result.pair}</div>
+                          <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
                         </div>
-                        <div className="w-full h-32 bg-slate-700/50 rounded-lg mb-4 flex items-center justify-center">
-                          <TrendingUp className="w-8 h-8 text-emerald-400" />
+                        <div className="w-full h-24 md:h-32 bg-slate-700/50 rounded-lg mb-3 md:mb-4 flex items-center justify-center">
+                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
                         </div>
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center justify-between text-xs md:text-sm">
                           <div className="text-slate-400">{result.time}</div>
                           <div className="text-emerald-400 font-semibold">{result.amount}</div>
                         </div>
@@ -611,18 +647,18 @@ export default function Home() {
               </TabsContent>
 
               <TabsContent value="weekly">
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="results-grid grid md:grid-cols-3 gap-4 md:gap-6">
                   {weeklyResults.map((result, index) => (
                     <div key={index}>
-                      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 hover:border-emerald-500/50 transition-all duration-300">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="font-bold">{result.pair}</div>
-                          <div className="text-emerald-400 font-bold">{result.profit}</div>
+                      <div className="result-card bg-slate-800/50 border border-slate-700 rounded-xl p-3 md:p-4 hover:border-emerald-500/50 transition-all duration-300">
+                        <div className="flex items-center justify-between mb-3 md:mb-4">
+                          <div className="font-bold text-sm md:text-base">{result.pair}</div>
+                          <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
                         </div>
-                        <div className="w-full h-32 bg-slate-700/50 rounded-lg mb-4 flex items-center justify-center">
-                          <TrendingUp className="w-8 h-8 text-emerald-400" />
+                        <div className="w-full h-24 md:h-32 bg-slate-700/50 rounded-lg mb-3 md:mb-4 flex items-center justify-center">
+                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
                         </div>
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center justify-between text-xs md:text-sm">
                           <div className="text-slate-400">{result.time}</div>
                           <div className="text-emerald-400 font-semibold">{result.amount}</div>
                         </div>
@@ -633,18 +669,18 @@ export default function Home() {
               </TabsContent>
 
               <TabsContent value="monthly">
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="results-grid grid md:grid-cols-3 gap-4 md:gap-6">
                   {monthlyResults.map((result, index) => (
                     <div key={index}>
-                      <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 hover:border-emerald-500/50 transition-all duration-300">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="font-bold">{result.pair}</div>
-                          <div className="text-emerald-400 font-bold">{result.profit}</div>
+                      <div className="result-card bg-slate-800/50 border border-slate-700 rounded-xl p-3 md:p-4 hover:border-emerald-500/50 transition-all duration-300">
+                        <div className="flex items-center justify-between mb-3 md:mb-4">
+                          <div className="font-bold text-sm md:text-base">{result.pair}</div>
+                          <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
                         </div>
-                        <div className="w-full h-32 bg-slate-700/50 rounded-lg mb-4 flex items-center justify-center">
-                          <TrendingUp className="w-8 h-8 text-emerald-400" />
+                        <div className="w-full h-24 md:h-32 bg-slate-700/50 rounded-lg mb-3 md:mb-4 flex items-center justify-center">
+                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
                         </div>
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center justify-between text-xs md:text-sm">
                           <div className="text-slate-400">{result.time}</div>
                           <div className="text-emerald-400 font-semibold">{result.amount}</div>
                         </div>
@@ -659,28 +695,30 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 relative">
+      <section id="testimonials" className="py-12 md:py-20 relative">
         <div className="absolute inset-0 z-0">
-          <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].testimonials.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">{t[language].testimonials.subtitle}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
+              {t[language].testimonials.title}
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].testimonials.subtitle}</p>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
 
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="testimonials-grid grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {testimonials.map((testimonial, index) => (
                 <TestimonialCard key={index} testimonial={testimonial} />
               ))}
             </div>
 
-            <div className="mt-16 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-2xl p-6">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0">
+            <div className="mt-8 md:mt-16 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-xl md:rounded-2xl p-4 md:p-6">
+              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0">
                   <Image
                     src="/images/shahmir-main.jpeg"
                     alt="Shahmir"
@@ -689,13 +727,13 @@ export default function Home() {
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <div className="flex-1">
-                  <p className="text-slate-300 italic mb-4">
+                <div className="flex-1 text-center md:text-left">
+                  <p className="text-slate-300 italic mb-3 md:mb-4 text-sm md:text-base">
                     {language === "ru"
                       ? "«Я помог более 500 узбекским семьям улучшить их финансовое положение. Моя цель — сделать халяль инвестиции доступными для каждой семьи в Узбекистане. Присоединяйтесь к нам и измените свою жизнь уже сегодня!»"
                       : "«Men 500 dan ortiq o'zbek oilalariga moliyaviy ahvolini yaxshilashga yordam berdim. Mening maqsadim — halol investitsiyalarni O'zbekistondagi har bir oila uchun qulay qilish. Bizga qo'shiling va bugun hayotingizni o'zgartiring!»"}
                   </p>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 justify-center md:justify-start">
                     <h4 className="font-bold">Shahmir Islomov</h4>
                     <div className="flex items-center gap-1">
                       <CheckCircle className="w-4 h-4 text-emerald-400" />
@@ -712,77 +750,77 @@ export default function Home() {
       </section>
 
       {/* Halal Section */}
-      <section id="halal" className="py-20 bg-gradient-to-r from-emerald-900/20 to-slate-900/20">
+      <section id="halal" className="py-12 md:py-20 bg-gradient-to-r from-emerald-900/20 to-slate-900/20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
-              <span className="text-lg">☪️</span>
-              <span className="text-emerald-400 text-sm font-medium">
+          <div className="text-center mb-8 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 md:px-4 md:py-2 mb-4 md:mb-6">
+              <span className="text-base md:text-lg">☪️</span>
+              <span className="text-emerald-400 text-xs md:text-sm font-medium">
                 {language === "ru" ? "100% Халяль" : "100% Halol"}
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].halal.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">{t[language].halal.subtitle}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].halal.title}</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].halal.subtitle}</p>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl mx-auto">
             <div>
-              <div className="bg-slate-800/50 border border-emerald-500/20 rounded-2xl p-6">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center">
-                    <span className="text-3xl">☪️</span>
+              <div className="bg-slate-800/50 border border-emerald-500/20 rounded-xl md:rounded-2xl p-4 md:p-6">
+                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                    <span className="text-2xl md:text-3xl">☪️</span>
                   </div>
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-lg md:text-xl font-bold">
                     {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
                   </h3>
                 </div>
 
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-6">
-                  <p className="text-slate-300 italic">{t[language].halal.quote}</p>
+                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 md:p-4 mb-4 md:mb-6">
+                  <p className="text-slate-300 italic text-sm md:text-base">{t[language].halal.quote}</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-700/30 rounded-xl p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" />
-                      <h4 className="font-semibold">{t[language].halal.point1}</h4>
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point1}</h4>
                     </div>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 text-xs md:text-sm">
                       {language === "ru"
                         ? "Мы покупаем и продаем реальные криптоактивы"
                         : "Biz haqiqiy kripto aktivlarni sotib olamiz va sotamiz"}
                     </p>
                   </div>
 
-                  <div className="bg-slate-700/30 rounded-xl p-4">
+                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" />
-                      <h4 className="font-semibold">{t[language].halal.point2}</h4>
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point2}</h4>
                     </div>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 text-xs md:text-sm">
                       {language === "ru" ? "Не основано на случайности или удаче" : "Tasodif yoki omadga asoslanmagan"}
                     </p>
                   </div>
 
-                  <div className="bg-slate-700/30 rounded-xl p-4">
+                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" />
-                      <h4 className="font-semibold">{t[language].halal.point3}</h4>
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point3}</h4>
                     </div>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 text-xs md:text-sm">
                       {language === "ru"
                         ? "Нет процентных ставок, запрещенных исламом"
                         : "Islomda taqiqlangan foiz stavkalari yo'q"}
                     </p>
                   </div>
 
-                  <div className="bg-slate-700/30 rounded-xl p-4">
+                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" />
-                      <h4 className="font-semibold">{t[language].halal.point4}</h4>
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point4}</h4>
                     </div>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-slate-400 text-xs md:text-sm">
                       {language === "ru"
                         ? "Ты видишь все операции в реальном времени"
                         : "Siz barcha operatsiyalarni real vaqtda ko'rasiz"}
@@ -793,26 +831,26 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="w-full h-96 bg-slate-800/50 rounded-2xl border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 flex items-center justify-center">
+              <div className="w-full h-64 md:h-96 bg-slate-800/50 rounded-xl md:rounded-2xl border-4 md:border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 flex items-center justify-center">
                 <div className="text-center">
-                  <span className="text-6xl mb-4 block">☪️</span>
-                  <h3 className="text-2xl font-bold text-emerald-400 mb-2">
+                  <span className="text-4xl md:text-6xl mb-3 md:mb-4 block">☪️</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-2">
                     {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
                   </h3>
-                  <p className="text-slate-300">
+                  <p className="text-slate-300 text-sm md:text-base">
                     {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
                   </p>
                 </div>
               </div>
 
-              <div className="absolute -bottom-6 -right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-4 shadow-lg max-w-xs">
-                <div className="flex items-center gap-3 mb-2">
-                  <Shield className="w-6 h-6 text-emerald-400" />
-                  <h4 className="font-bold text-white">
+              <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-3 md:p-4 shadow-lg max-w-xs">
+                <div className="flex items-center gap-2 md:gap-3 mb-2">
+                  <Shield className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
+                  <h4 className="font-bold text-white text-sm md:text-base">
                     {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
                   </h4>
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-slate-300 text-xs md:text-sm">
                   {language === "ru"
                     ? "Наша деятельность соответствует принципам шариата и одобрена исламскими учеными"
                     : "Bizning faoliyatimiz shariat tamoyillariga mos keladi va islom olimlari tomonidan tasdiqlangan"}
@@ -824,29 +862,29 @@ export default function Home() {
       </section>
 
       {/* Guarantees Section */}
-      <section className="py-20 relative">
+      <section className="py-12 md:py-20 relative">
         <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/3 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].guarantee.title}</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].guarantee.title}</h2>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="guarantees-grid grid md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
             <div>
-              <div className="bg-gradient-to-r from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20 rounded-2xl p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-emerald-400" />
+              <div className="guarantee-card bg-gradient-to-r from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <Shield className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{t[language].guarantee.money}</h3>
-                <p className="text-slate-400">{t[language].guarantee.moneyDesc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].guarantee.money}</h3>
+                <p className="text-slate-400 text-sm md:text-base">{t[language].guarantee.moneyDesc}</p>
 
-                <div className="mt-6 bg-emerald-500/10 rounded-xl p-4 flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                  <p className="text-emerald-300 text-sm">
+                <div className="mt-4 md:mt-6 bg-emerald-500/10 rounded-xl p-3 md:p-4 flex items-center gap-3">
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 flex-shrink-0" />
+                  <p className="text-emerald-300 text-xs md:text-sm">
                     {language === "ru"
                       ? "Я беру на себя все риски — ты получаешь только прибыль"
                       : "Men barcha xavflarni o'z zimmamga olaman — siz faqat foyda olasiz"}
@@ -856,18 +894,18 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 rounded-2xl p-6 h-full hover:border-cyan-500/50 transition-all duration-300">
-                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-cyan-400" />
+              <div className="guarantee-card bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-cyan-500/50 transition-all duration-300">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <Shield className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{t[language].guarantee.security}</h3>
-                <p className="text-slate-400">{t[language].guarantee.securityDesc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].guarantee.security}</h3>
+                <p className="text-slate-400 text-sm md:text-base">{t[language].guarantee.securityDesc}</p>
 
-                <div className="mt-6 bg-cyan-500/10 rounded-xl p-4 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs font-bold">B</span>
+                <div className="mt-4 md:mt-6 bg-cyan-500/10 rounded-xl p-3 md:p-4 flex items-center gap-3">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
+                    <span className="text-xs md:text-sm font-bold">B</span>
                   </div>
-                  <p className="text-cyan-300 text-sm">
+                  <p className="text-cyan-300 text-xs md:text-sm">
                     {language === "ru"
                       ? "Binance — крупнейшая криптобиржа с защитой средств до $1 млрд"
                       : "Binance — 1 milliard dollargacha mablag'larni himoya qilish bilan eng yirik kripto birja"}
@@ -877,16 +915,16 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="bg-gradient-to-r from-blue-500/10 to-blue-500/5 border border-blue-500/20 rounded-2xl p-6 h-full hover:border-blue-500/50 transition-all duration-300">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-blue-400" />
+              <div className="guarantee-card bg-gradient-to-r from-blue-500/10 to-blue-500/5 border border-blue-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-blue-500/50 transition-all duration-300">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                  <Shield className="w-6 h-6 md:w-8 md:h-8 text-blue-400" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{t[language].guarantee.transparency}</h3>
-                <p className="text-slate-400">{t[language].guarantee.transparencyDesc}</p>
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].guarantee.transparency}</h3>
+                <p className="text-slate-400 text-sm md:text-base">{t[language].guarantee.transparencyDesc}</p>
 
-                <div className="mt-6 bg-blue-500/10 rounded-xl p-4 flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                  <p className="text-blue-300 text-sm">
+                <div className="mt-4 md:mt-6 bg-blue-500/10 rounded-xl p-3 md:p-4 flex items-center gap-3">
+                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-blue-400 flex-shrink-0" />
+                  <p className="text-blue-300 text-xs md:text-sm">
                     {language === "ru"
                       ? "Ежедневные отчеты и полный доступ к торговому счету"
                       : "Kunlik hisobotlar va savdo hisobiga to'liq kirish"}
@@ -899,11 +937,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-slate-900/30">
+      <section className="py-12 md:py-20 bg-slate-900/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].faq.title}</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].faq.title}</h2>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
 
           <div className="max-w-3xl mx-auto">
@@ -932,52 +970,58 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 relative">
+      <section className="py-12 md:py-20 relative">
         <div className="absolute inset-0 z-0">
-          <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t[language].contact.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">{t[language].contact.subtitle}</p>
-            <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-4"></div>
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].contact.title}</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].contact.subtitle}</p>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
 
           <div className="max-w-md mx-auto">
-            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
-              <div className="space-y-4 mb-6">
+            <div className="contact-form bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6">
+              <div className="space-y-3 md:space-y-4 mb-4 md:mb-6">
                 <input
                   type="text"
                   placeholder={t[language].contact.name}
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none"
+                  className="w-full px-3 py-3 md:px-4 md:py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none text-sm md:text-base"
                 />
                 <input
                   type="tel"
                   placeholder={t[language].contact.phone}
-                  className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none"
+                  className="w-full px-3 py-3 md:px-4 md:py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none text-sm md:text-base"
                 />
               </div>
 
               <Button
                 size="lg"
-                className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold py-4 text-lg rounded-xl mb-6"
+                className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold py-3 md:py-4 text-base md:text-lg rounded-xl mb-4 md:mb-6"
               >
                 {t[language].contact.button}
               </Button>
 
               <div className="text-center">
-                <p className="text-slate-400 mb-4">{t[language].contact.or}</p>
+                <p className="text-slate-400 mb-3 md:mb-4 text-sm md:text-base">{t[language].contact.or}</p>
 
-                <div className="flex gap-4">
+                <div className="contact-buttons flex flex-col sm:flex-row gap-3 md:gap-4">
                   <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer" className="flex-1">
-                    <Button variant="outline" className="w-full border-slate-600 text-slate-300 hover:bg-slate-800">
+                    <Button
+                      variant="outline"
+                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800 text-sm md:text-base py-3"
+                    >
                       {t[language].contact.telegram}
                     </Button>
                   </a>
 
                   <a href="https://wa.me/+998901234567" target="_blank" rel="noopener noreferrer" className="flex-1">
-                    <Button variant="outline" className="w-full border-slate-600 text-slate-300 hover:bg-slate-800">
+                    <Button
+                      variant="outline"
+                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800 text-sm md:text-base py-3"
+                    >
                       {t[language].contact.whatsapp}
                     </Button>
                   </a>
@@ -989,25 +1033,25 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-10 bg-slate-900/50 border-t border-slate-800">
+      <footer className="footer py-6 md:py-10 bg-slate-900/50 border-t border-slate-800">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
-                <TrendingUp className="w-4 h-4 text-white" />
+            <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
+              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
+                <TrendingUp className="w-3 h-3 md:w-4 md:h-4 text-white" />
               </div>
-              <span className="font-bold text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="footer-logo font-bold text-base md:text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                 Shahmir Trade
               </span>
             </div>
 
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-4">
-              <span className="text-lg">☪️</span>
-              <span className="text-emerald-400 text-sm font-medium">{t[language].footer.halal}</span>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 md:px-4 md:py-2 mb-3 md:mb-4">
+              <span className="text-base md:text-lg">☪️</span>
+              <span className="text-emerald-400 text-xs md:text-sm font-medium">{t[language].footer.halal}</span>
             </div>
 
-            <p className="text-slate-400 mb-2">{t[language].footer.rights}</p>
-            <p className="text-slate-500 text-sm">{t[language].footer.disclaimer}</p>
+            <p className="footer-text text-slate-400 mb-2 text-xs md:text-sm">{t[language].footer.rights}</p>
+            <p className="footer-text text-slate-500 text-xs">{t[language].footer.disclaimer}</p>
           </div>
         </div>
       </footer>
