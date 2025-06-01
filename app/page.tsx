@@ -41,7 +41,10 @@ export default function LandingPage() {
       investment: formatCurrency(convertCurrency(85, "USD", currency), currency),
       result: formatCurrency(convertCurrency(1340, "USD", currency), currency),
       period: language === "ru" ? "2 дня" : "2 kun",
-      text: t("testimonial1"),
+      text:
+        language === "ru"
+          ? "Потерял работу в пандемию, было тяжело с деньгами. Рискнул вложить последние 85$, через 2 дня получил 1340$. Это спасло мою семью от долгов. Спасибо, Шахмир!"
+          : "Pandemiya paytida ishimni yo'qotdim, pul bilan qiyin edi. Oxirgi 85$ ni tikishga tavakkal qildim, 2 kundan keyin 1340$ oldim. Bu oilamni qarzlardan qutqardi. Rahmat, Shahmir!",
       avatar: "AM",
     },
     {
@@ -51,8 +54,8 @@ export default function LandingPage() {
       period: language === "ru" ? "3 дня" : "3 kun",
       text:
         language === "ru"
-          ? "Никогда не думал, что можно так зарабатывать, ничего не делая. Спасибо за прибыль!"
-          : "Hech narsa qilmasdan bunday daromad olish mumkinligini hech o'ylamagandim. Foyda uchun rahmat!",
+          ? "Копил на свадьбу целый год, но не хватало. Друг посоветовал Шахмира. Вложил 150$, через 3 дня получил 1850$. Теперь моя невеста счастлива, а свадьба будет лучшей в кишлаке!"
+          : "Butun yil to'y uchun pul yig'dim, lekin yetmadi. Do'stim Shahmir'ni tavsiya qildi. 150$ tikdim, 3 kundan keyin 1850$ oldim. Endi kelin baxtli, to'yimiz qishloqdagi eng yaxshi to'y bo'ladi!",
       avatar: "ЖТ",
     },
     {
@@ -60,7 +63,10 @@ export default function LandingPage() {
       investment: formatCurrency(convertCurrency(120, "USD", currency), currency),
       result: formatCurrency(convertCurrency(1680, "USD", currency), currency),
       period: language === "ru" ? "1 день" : "1 kun",
-      text: t("testimonial3"),
+      text:
+        language === "ru"
+          ? "Не верил в такие заработки, думал - очередной развод. Решил проверить с малой суммы. Вложил 120$, наутро уже 1680$! Теперь регулярно инвестирую и планирую бросить основную работу."
+          : "Bunday daromadlarga ishonmasdim, navbatdagi firibgarlik deb o'yladim. Kichik summa bilan tekshirishga qaror qildim. 120$ tikdim, ertalab 1680$! Endi muntazam investitsiya qilaman va asosiy ishimni tashlashni rejalashtirmoqdaman.",
       avatar: "DP",
     },
   ]
@@ -73,8 +79,8 @@ export default function LandingPage() {
       period: language === "ru" ? "2 дня" : "2 kun",
       text:
         language === "ru"
-          ? "Сначала сомневалась, но результат превзошел ожидания. Теперь регулярно инвестирую!"
-          : "Avval shubhalandim, lekin natija kutganimdan ham yaxshi bo'ldi. Endi muntazam investitsiya qilaman!",
+          ? "Я мать-одиночка с двумя детьми, еле сводила концы с концами. Подруга рассказала о Шахмире. Заняла 200$, очень боялась, не спала ночами. Через 2 дня получила 2800$! Теперь смогла оплатить детский сад и курсы английского для детей."
+          : "Men ikki bolali yolg'iz onaman, zo'rg'a kun ko'rardim. Dugоnam Shahmir haqida aytib berdi. 200$ qarz oldim, juda qo'rqdim, kechalari uxlamasdim. 2 kundan keyin 2800$ oldim! Endi bolalar bog'chasi va bolalar uchun ingliz tili kurslarini to'lay oldim.",
       avatar: "АК",
     },
     {
@@ -84,8 +90,8 @@ export default function LandingPage() {
       period: language === "ru" ? "1 день" : "1 kun",
       text:
         language === "ru"
-          ? "Быстро, надежно, прибыльно. Шахмир действительно профессионал своего дела!"
-          : "Tez, ishonchli, foydali. Shahmir haqiqatan ham o'z ishining professionalı!",
+          ? "Хотел купить машину, но не хватало 30% суммы. Банки отказали в кредите из-за плохой истории. Решил попробовать с Шахмиром, вложил 300$. Через день 3900$ на счету! Купил свою первую машину без кредитов и долгов!"
+          : "Mashina sotib olmoqchi edim, lekin summaning 30% yetmasdi. Banklar yomon tarix tufayli kreditni rad etishdi. Shahmir bilan sinab ko'rishga qaror qildim, 300$ tikdim. Bir kundan keyin hisobimda 3900$! Birinchi mashinamni kreditsiz va qarzsiz sotib oldim!",
       avatar: "СВ",
     },
     {
@@ -95,8 +101,8 @@ export default function LandingPage() {
       period: language === "ru" ? "3 дня" : "3 kun",
       text:
         language === "ru"
-          ? "Отличный сервис! Получил больше, чем ожидал. Рекомендую всем друзьям!"
-          : "Ajoyib xizmat! Kutganimdan ko'proq oldim. Barcha do'stlarimga tavsiya qilaman!",
+          ? "Мечтал открыть свою кофейню, но не было стартового капитала. Услышал о Шахмире от брата. Вложил 180$ семейных сбережений, жена была против. Через 3 дня получил 2340$! Сейчас моя кофейня уже работает и приносит доход."
+          : "O'z kofe do'konimni ochishni orzu qilardim, lekin boshlang'ich kapital yo'q edi. Shahmir haqida akamdan eshitdim. Oilaviy jamg'armadan 180$ tikdim, xotinim qarshi edi. 3 kundan keyin 2340$ oldim! Hozir kofe do'konim ishlayapti va daromad keltiryapti.",
       avatar: "ФУ",
     },
     {
@@ -106,8 +112,8 @@ export default function LandingPage() {
       period: language === "ru" ? "2 дня" : "2 kun",
       text:
         language === "ru"
-          ? "Профессиональный подход и отличные результаты. Очень довольна сотрудничеством!"
-          : "Professional yondashuv va ajoyib natijalar. Hamkorlikdan juda mamnunman!",
+          ? "У дочери обнаружили проблемы со здоровьем, нужна была операция. Страховка покрывала только часть. В отчаянии вложила последние 250$ через Шахмира. Через 2 дня получила 3250$! Операция прошла успешно, дочь здорова. Это чудо!"
+          : "Qizimda sog'liq muammolari aniqlandi, operatsiya kerak edi. Sug'urta faqat bir qismini qoplardi. Umidsizlikda Shahmir orqali oxirgi 250$ ni tikdim. 2 kundan keyin 3250$ oldim! Operatsiya muvaffaqiyatli o'tdi, qizim sog'lom. Bu mo'jiza!",
       avatar: "АЛ",
     },
   ]
