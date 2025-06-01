@@ -6,24 +6,22 @@ import { Card, CardContent } from "@/components/ui/card"
 import HowItWorks from "@/components/how-it-works"
 import CompactAbout from "@/components/compact-about"
 import CompactFeatures from "@/components/compact-features"
-import ProfitCalculator from "@/components/profit-calculator"
 import LanguageSwitcher from "@/components/language-switcher"
 import MobileMenu from "@/components/mobile-menu"
 import FloatingElements from "@/components/floating-elements"
 import AnimatedCounter from "@/components/animated-counter"
 import ExpandableSection from "@/components/expandable-section"
-import ResultsGallery from "@/components/results-gallery"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 import Image from "next/image"
 import CurrencySwitcher, { type Currency } from "@/components/currency-switcher"
-import HalalInfo from "@/components/halal-info"
 import { formatCurrency, convertCurrency } from "@/lib/currency"
+import ExpandableProfitCalculator from "@/components/expandable-profit-calculator"
+import ExpandableHalalInfo from "@/components/expandable-halal-info"
 
 export default function LandingPage() {
   const [language, setLanguage] = useState<Language>("ru")
   const [currency, setCurrency] = useState<Currency>("USD")
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isResultsOpen, setIsResultsOpen] = useState(false)
 
   const t = (key: TranslationKey) => translations[language][key]
 
@@ -66,7 +64,7 @@ export default function LandingPage() {
       text:
         language === "ru"
           ? "Не верил в такие заработки, думал - очередной развод. Решил проверить с малой суммы. Вложил 120$, наутро уже 1680$! Теперь регулярно инвестирую и планирую бросить основную работу."
-          : "Bunday daromadlarga ishonmasdim, navbatdagi firibgarlik deb o'yladim. Kichik summa bilan tekshirishga qaror qildim. 120$ tikdim, ertalab 1680$! Endi muntazam investitsiya qilaman va asosiy ishimni tashlashni rejalashtirmoqdaman.",
+          : "Bunday daromadlarga ishonmasdim, navbatdagi firibgarlik deb o'yladim. Kichik summa bilan tekshirishga qaror qildim. 120$ tikdim, ertalab 1680$! Endi muntazam investitsiya qilaman va asosiy ishimni tashlashni rejalashtiryapman.",
       avatar: "DP",
     },
   ]
@@ -119,11 +117,8 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-x-hidden mobile-spacing">
       <FloatingElements />
-
-      {/* Results Gallery Modal */}
-      <ResultsGallery language={language} isOpen={isResultsOpen} onClose={() => setIsResultsOpen(false)} />
 
       {/* Fixed Header */}
       <header
@@ -196,12 +191,6 @@ export default function LandingPage() {
                 {t("trustCapital")}
                 <ArrowRight className="ml-2 w-3 h-3" />
               </a>
-              <button
-                onClick={() => setIsResultsOpen(true)}
-                className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-4 rounded-xl inline-flex items-center justify-center text-lg min-h-[56px]"
-              >
-                {t("viewResults")}
-              </button>
             </div>
 
             {/* Компактная статистика */}
@@ -229,11 +218,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <ProfitCalculator language={language} currency={currency} />
+      <ExpandableProfitCalculator language={language} currency={currency} />
       <CompactAbout language={language} />
       <HowItWorks language={language} currency={currency} />
       <CompactFeatures language={language} />
-      <HalalInfo language={language} />
+      <ExpandableHalalInfo language={language} />
 
       {/* Компактные отзывы */}
       <section id="testimonials" className="py-8 sm:py-10 relative overflow-hidden">

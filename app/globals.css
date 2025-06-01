@@ -159,12 +159,12 @@ html {
   background: #0891b2;
 }
 
-/* Mobile-first optimizations */
+/* Улучшенная мобильная адаптация */
 @media (max-width: 640px) {
   /* Увеличить размер кликабельных элементов */
   .mobile-touch-target {
-    min-height: 48px;
-    min-width: 48px;
+    min-height: 56px;
+    min-width: 56px;
   }
 
   /* Улучшить читаемость текста */
@@ -187,31 +187,110 @@ html {
   /* Увеличить размер кнопок */
   button,
   .btn {
-    min-height: 48px;
+    min-height: 56px;
     font-size: 16px;
+    padding: 1rem 1.5rem;
   }
 
   /* Оптимизировать input поля */
   input[type="number"],
   input[type="text"] {
     font-size: 16px;
+    min-height: 56px;
+    padding: 1rem;
+  }
+
+  /* Увеличить отступы между секциями */
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Оптимизировать карточки */
+  .card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Улучшить заголовки */
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Оптимизировать текст */
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Увеличить отступы между кликабельными элементами */
+  .mobile-spacing > * + * {
+    margin-top: 1rem;
+  }
+
+  /* Оптимизировать grid для мобильных */
+  .grid {
+    gap: 1rem;
+  }
+
+  /* Улучшить видимость ссылок */
+  a {
     min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
   }
 }
 
-/* Улучшить видимость на маленьких экранах */
-@media (max-width: 480px) {
+/* Дополнительная оптимизация для очень маленьких экранов */
+@media (max-width: 380px) {
   .hero-title {
     font-size: 2rem;
-    line-height: 1.2;
+    line-height: 1.1;
   }
 
   .section-title {
     font-size: 1.5rem;
   }
 
-  /* Увеличить отступы между кликабельными элементами */
+  /* Еще больше увеличить отступы между кликабельными элементами */
   .mobile-spacing > * + * {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  /* Оптимизировать кнопки для маленьких экранов */
+  button,
+  .btn {
+    width: 100%;
+    min-height: 60px;
+    font-size: 18px;
+  }
+}
+
+/* Оптимизация для landscape ориентации на мобильных */
+@media (max-width: 640px) and (orientation: landscape) {
+  section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
   }
 }

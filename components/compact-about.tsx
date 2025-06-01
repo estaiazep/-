@@ -1,8 +1,5 @@
 "use client"
-
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { TrendingUp, Award, Shield, Target, Play, Pause } from "lucide-react"
+import { TrendingUp, Award, Shield, Target } from "lucide-react"
 import AnimatedCounter from "./animated-counter"
 import ExpandableSection from "./expandable-section"
 import PhotoGallery from "./photo-gallery"
@@ -14,7 +11,6 @@ interface CompactAboutProps {
 }
 
 export default function CompactAbout({ language }: CompactAboutProps) {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const t = (key: TranslationKey) => translations[language][key]
 
   const achievements = [
@@ -157,36 +153,6 @@ export default function CompactAbout({ language }: CompactAboutProps) {
                     </p>
                   </div>
                 </div>
-              </div>
-            </ExpandableSection>
-
-            {/* Видео в выпадающем блоке */}
-            <ExpandableSection
-              title={language === "ru" ? "Видео-презентация" : "Video taqdimot"}
-              preview={
-                language === "ru"
-                  ? "Узнайте больше о моем подходе к трейдингу"
-                  : "Treydingga yondashuvim haqida ko'proq bilib oling"
-              }
-            >
-              <div className="text-center p-3 bg-slate-700/30 rounded-lg">
-                <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                  {isVideoPlaying ? <Pause className="w-6 h-6 text-white" /> : <Play className="w-6 h-6 text-white" />}
-                </div>
-                <h4 className="font-semibold text-white mb-1 text-sm">
-                  {language === "ru" ? "Личное обращение" : "Shaxsiy murojaat"}
-                </h4>
-                <p className="text-slate-400 text-xs mb-3">
-                  {language === "ru"
-                    ? "Посмотрите, как я объясняю свой подход к инвестициям"
-                    : "Investitsiyalarga yondashuvimni qanday tushuntirishimni ko'ring"}
-                </p>
-                <Button
-                  onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white text-base px-6 py-3 min-h-[48px]"
-                >
-                  {isVideoPlaying ? "Пауза" : "Смотреть видео"}
-                </Button>
               </div>
             </ExpandableSection>
           </div>
