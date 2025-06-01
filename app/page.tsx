@@ -13,11 +13,6 @@ import FloatingElements from "@/components/floating-elements"
 import AnimatedCounter from "@/components/animated-counter"
 import ExpandableSection from "@/components/expandable-section"
 import ResultsGallery from "@/components/results-gallery"
-import UrgencyBanner from "@/components/urgency-banner"
-import LiveNotifications from "@/components/live-notifications"
-import GuaranteeSection from "@/components/guarantee-section"
-import BonusOffer from "@/components/bonus-offer"
-import SimpleProcess from "@/components/simple-process"
 import { translations, type Language, type TranslationKey } from "@/lib/translations"
 import Image from "next/image"
 import CurrencySwitcher, { type Currency } from "@/components/currency-switcher"
@@ -127,12 +122,6 @@ export default function LandingPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-x-hidden">
       <FloatingElements />
 
-      {/* Live Notifications */}
-      <LiveNotifications language={language} currency={currency} />
-
-      {/* Urgency Banner */}
-      <UrgencyBanner language={language} />
-
       {/* Results Gallery Modal */}
       <ResultsGallery language={language} isOpen={isResultsOpen} onClose={() => setIsResultsOpen(false)} />
 
@@ -202,16 +191,16 @@ export default function LandingPage() {
                 href="https://t.me/+iawpP4pwqW42YmM6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-lg min-h-[56px] animate-pulse"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 inline-flex items-center justify-center text-lg min-h-[56px]"
               >
-                💰 {t("trustCapital")}
+                {t("trustCapital")}
                 <ArrowRight className="ml-2 w-3 h-3" />
               </a>
               <button
                 onClick={() => setIsResultsOpen(true)}
                 className="w-full sm:w-auto border border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-4 rounded-xl inline-flex items-center justify-center text-lg min-h-[56px]"
               >
-                📊 {t("viewResults")}
+                {t("viewResults")}
               </button>
             </div>
 
@@ -240,10 +229,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <BonusOffer language={language} />
       <ProfitCalculator language={language} currency={currency} />
-      <SimpleProcess language={language} />
-      <GuaranteeSection language={language} />
       <CompactAbout language={language} />
       <HowItWorks language={language} currency={currency} />
       <CompactFeatures language={language} />
@@ -354,9 +340,9 @@ export default function LandingPage() {
               href="https://t.me/+iawpP4pwqW42YmM6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-4 text-lg min-h-[56px] flex items-center justify-center animate-pulse"
+              className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 mb-4 text-lg min-h-[56px] flex items-center justify-center"
             >
-              🚀 {t("discussInvestment")}
+              {t("discussInvestment")}
               <ArrowRight className="ml-2 w-3 h-3 inline-block" />
             </a>
 
