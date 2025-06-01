@@ -13,10 +13,10 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142.1 76.2% 36.3%;
+    --primary: 142.1 76.2% 36.3%; /* Emerald-like */
     --primary-foreground: 355.7 100% 97.3%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 180 60% 45%; /* Cyan-like */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -28,46 +28,31 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 142.1 76.2% 36.3%;
+    --border: 217.2 32.6% 25.5%; /* Slightly lighter border */
+    --input: 217.2 32.6% 22.5%; /* Slightly lighter input */
+    --ring: 142.1 76.2% 36.3%; /* Emerald-like */
 
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* Slightly larger radius */
   }
 
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
+  html,
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(6, 182, 212, 0.6);
-  }
-}
-
+/* Custom animations (simplified for performance) */
 @keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -75,77 +60,8 @@
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes gradient-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
 .animate-slide-up {
-  animation: slideInUp 0.6s ease-out;
-}
-
-.animate-slide-left {
-  animation: slideInLeft 0.6s ease-out;
-}
-
-.animate-slide-right {
-  animation: slideInRight 0.6s ease-out;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 4s ease infinite;
+  animation: slideInUp 0.5s ease-out forwards;
 }
 
 /* Smooth scrolling */
@@ -153,429 +69,132 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar (subtle) */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: hsl(var(--background));
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #06b6d4;
+  background: hsl(var(--border));
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #0891b2;
+  background: hsl(var(--primary) / 0.7);
 }
 
-/* Мобильная адаптация */
+/* Base Mobile Styles */
 @media (max-width: 768px) {
-  /* Базовые настройки для мобильных */
   body {
-    font-size: 16px;
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
+    font-size: 15px; /* Slightly smaller base font for mobile */
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
   }
 
-  /* Контейнеры */
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 100%;
+    padding-left: 1rem; /* 16px */
+    padding-right: 1rem; /* 16px */
+    width: 100%;
   }
 
-  /* Заголовки */
   h1 {
-    font-size: 2rem !important;
-    line-height: 1.1 !important;
-    margin-bottom: 1rem;
-  }
-
-  h2 {
-    font-size: 1.5rem !important;
+    font-size: clamp(1.75rem, 7vw, 2.25rem) !important; /* Responsive font size */
     line-height: 1.2 !important;
-    margin-bottom: 0.75rem;
   }
-
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.25 !important;
+  }
   h3 {
-    font-size: 1.25rem !important;
+    font-size: clamp(1.125rem, 5vw, 1.5rem) !important;
     line-height: 1.3 !important;
-    margin-bottom: 0.5rem;
+  }
+  p,
+  li,
+  span,
+  div {
+    /* Apply to common text elements */
+    font-size: clamp(0.875rem, 4vw, 1rem) !important; /* Responsive font size for text */
+    line-height: 1.6 !important;
   }
 
-  /* Параграфы */
-  p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
+  section {
+    padding-top: 2.5rem; /* More space between sections */
+    padding-bottom: 2.5rem;
   }
 
-  /* Кнопки */
+  /* Clickable area improvements */
   button,
   .btn,
-  a[role="button"] {
-    min-height: 48px;
-    font-size: 16px;
-    padding: 0.75rem 1rem;
-    touch-action: manipulation;
+  a[role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 48px; /* WCAG minimum */
+    padding: 0.75rem 1.25rem;
+    font-size: clamp(0.9rem, 4.2vw, 1rem) !important;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
   }
 
-  /* Инпуты */
   input,
-  textarea {
-    font-size: 16px;
+  textarea,
+  select {
     min-height: 48px;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.9rem, 4.2vw, 1rem) !important;
   }
 
-  /* Карточки */
-  .card {
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Сетки */
-  .grid {
-    gap: 0.75rem;
-  }
-
-  /* Отступы секций */
-  section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  /* Убираем hover эффекты на мобильных */
-  .hover\:scale-105:hover {
-    transform: none !important;
-  }
-
+  /* Remove hover effects on touch devices for elements that don't need them */
+  .group:hover .group-hover\:scale-105,
   .hover\:border-emerald-500\/50:hover {
-    border-color: inherit !important;
+    /* Disable these specific hovers on mobile if they cause issues or are not needed */
   }
 
-  /* Оптимизация изображений */
-  img {
+  /* Ensure images don't break layout */
+  img,
+  video,
+  svg {
     max-width: 100%;
     height: auto;
-  }
-
-  /* Флекс контейнеры */
-  .flex {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  /* Статистики */
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-  }
-
-  .stats-item {
-    text-align: center;
-    padding: 0.75rem 0.5rem;
-  }
-
-  .stats-number {
-    font-size: 1.5rem !important;
-    line-height: 1.2;
-  }
-
-  .stats-label {
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-  }
-
-  /* Шаги */
-  .steps-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .step-card {
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .step-icon {
-    width: 3rem !important;
-    height: 3rem !important;
-    margin-bottom: 0.75rem;
-  }
-
-  /* Результаты */
-  .results-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .result-card {
-    padding: 0.75rem;
-  }
-
-  /* Отзывы */
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .testimonial-card {
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Гарантии */
-  .guarantees-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .guarantee-card {
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  /* FAQ */
-  .faq-item {
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  /* Хедер */
-  .header-mobile {
-    padding: 0.75rem 1rem;
-  }
-
-  .header-logo {
-    font-size: 1rem;
-  }
-
-  .header-logo-icon {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  /* Языковой переключатель */
-  .language-switcher {
-    font-size: 0.75rem;
-    padding: 0.25rem;
-  }
-
-  /* Мобильное меню */
-  .mobile-menu {
-    padding: 1rem;
-  }
-
-  .mobile-menu-item {
-    font-size: 1.25rem;
-    padding: 0.75rem 0;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Герой секция */
-  .hero-section {
-    padding-top: 6rem;
-    padding-bottom: 2rem;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .hero-content {
-    text-align: center;
-    order: 2;
-  }
-
-  .hero-image {
-    order: 1;
-    margin-bottom: 1rem;
-  }
-
-  .hero-image-container {
-    height: 300px !important;
-    border-width: 4px;
-  }
-
-  .hero-floating-card {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-    margin-top: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 200px;
-  }
-
-  /* Кнопки героя */
-  .hero-buttons {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: stretch;
-  }
-
-  .hero-button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Табы */
-  .tabs-list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.25rem;
-    padding: 0.25rem;
-  }
-
-  .tabs-trigger {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.25rem;
-  }
-
-  /* Контакт форма */
-  .contact-form {
-    max-width: 100%;
-    padding: 1rem;
-  }
-
-  .contact-buttons {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  /* Футер */
-  .footer {
-    padding: 1.5rem 1rem;
-    text-align: center;
-  }
-
-  .footer-logo {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .footer-text {
-    font-size: 0.75rem;
-    line-height: 1.4;
+    display: block; /* Fixes potential bottom spacing */
   }
 }
 
-/* Очень маленькие экраны */
-@media (max-width: 480px) {
+/* Specific fixes for very small screens */
+@media (max-width: 375px) {
   .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: 0.75rem; /* 12px */
+    padding-right: 0.75rem; /* 12px */
   }
-
   h1 {
-    font-size: 1.75rem !important;
+    font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
   }
-
   h2 {
-    font-size: 1.25rem !important;
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem) !important;
   }
-
-  .hero-image-container {
-    height: 250px !important;
-  }
-
-  .stats-number {
-    font-size: 1.25rem !important;
-  }
-
-  .stats-label {
-    font-size: 0.7rem;
-  }
-
-  .step-icon {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-  }
-
-  .mobile-menu-item {
-    font-size: 1.125rem;
-  }
-
-  section {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+  p,
+  li,
+  span,
+  div {
+    font-size: clamp(0.8rem, 3.8vw, 0.9rem) !important;
   }
 }
 
-/* Ландшафтная ориентация на мобильных */
-@media (max-width: 768px) and (orientation: landscape) {
-  .hero-section {
-    padding-top: 4rem;
-    padding-bottom: 1rem;
-  }
-
-  .hero-image-container {
-    height: 200px !important;
-  }
-
-  section {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  h1 {
-    font-size: 1.5rem !important;
-  }
-
-  h2 {
-    font-size: 1.25rem !important;
-  }
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px hsl(var(--primary) / 0.3);
+}
+/* Remove default outline when focus-visible is supported */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
 
-/* Улучшения для касаний */
-@media (hover: none) and (pointer: coarse) {
-  button,
-  a,
-  [role="button"] {
-    min-height: 48px;
-    min-width: 48px;
-  }
-
-  .hover\:scale-105:hover,
-  .hover\:border-emerald-500\/50:hover,
-  .group:hover .group-hover\:scale-110 {
-    transform: none !important;
-    border-color: inherit !important;
-  }
-}
-
-/* Анимации только для больших экранов */
-@media (min-width: 769px) {
-  .hover\:scale-105:hover {
-    transform: scale(1.05);
-  }
-
-  .group:hover .group-hover\:scale-110 {
-    transform: scale(1.1);
-  }
-
-  .transition-all {
-    transition: all 0.3s ease;
-  }
-}
-
-/* Фиксы для iOS Safari */
-@supports (-webkit-touch-callout: none) {
-  input,
-  textarea {
-    font-size: 16px;
-    transform: translateZ(0);
-  }
-
-  .fixed {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
+/* Ensure fixed elements don't cause overflow issues */
+.fixed-header {
+  width: 100%;
+  left: 0;
+  right: 0;
 }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, CheckCircle, Clock, DollarSign, Shield, TrendingUp, Users, Menu, X } from "lucide-react"
+import { ArrowRight, CheckCircle, Clock, DollarSign, Shield, TrendingUp, Users, Menu, X, Zap, Gift } from "lucide-react"
 import Image from "next/image"
 import TestimonialCard from "@/components/testimonial-card"
 import FaqAccordion from "@/components/faq-accordion"
@@ -11,10 +11,10 @@ import FaqAccordion from "@/components/faq-accordion"
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [language, setLanguage] = useState<"uz" | "ru">("uz")
-  const [showResults, setShowResults] = useState(false)
+  const [showResults, setShowResults] = useState(false) // This state seems unused, consider removing or implementing
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Translations
+  // Translations (assuming t object is complete and correct)
   const t = {
     ru: {
       hero: {
@@ -91,10 +91,10 @@ export default function Home() {
         telegram: "Написать в Telegram",
         whatsapp: "Написать в WhatsApp",
       },
-      footer: {
-        rights: "© 2025 Шахмир Исламов. Все права защищены.",
-        disclaimer: "Инвестиции связаны с рисками. Торгуйте ответственно.",
-        halal: "100% Халяль бизнес для мусульман",
+      fomoCta: {
+        title: "Не упусти свой шанс!",
+        subtitle: "Места ограничены. Присоединяйся к успешным инвесторам прямо сейчас!",
+        button: "🚀 Вступить в Telegram канал",
       },
     },
     uz: {
@@ -172,10 +172,10 @@ export default function Home() {
         telegram: "Telegramda yozish",
         whatsapp: "WhatsAppda yozish",
       },
-      footer: {
-        rights: "© 2025 Shahmir Islomov. Barcha huquqlar himoyalangan.",
-        disclaimer: "Investitsiyalar xavf bilan bog'liq. Mas'uliyat bilan savdo qiling.",
-        halol: "Musulmonlar uchun 100% halol biznes",
+      fomoCta: {
+        title: "Imkoniyatni qo'ldan boy bermang!",
+        subtitle: "Joylar cheklangan. Hoziroq muvaffaqiyatli investorlar qatoriga qo'shiling!",
+        button: "🚀 Telegram kanaliga qo'shilish",
       },
     },
   }
@@ -183,7 +183,7 @@ export default function Home() {
   // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
@@ -255,58 +255,65 @@ export default function Home() {
     <main className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white min-h-screen">
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-mobile ${
-          isScrolled ? "bg-slate-900/95 backdrop-blur-md py-2" : "bg-transparent py-3"
+        className={`fixed-header fixed top-0 z-50 transition-all duration-300 ${
+          isScrolled ? "bg-slate-900/90 backdrop-blur-md shadow-lg py-2" : "bg-transparent py-3"
         }`}
       >
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="header-logo-icon w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
+          <a
+            href="#"
+            className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
+          >
+            <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
               <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-white" />
             </div>
-            <span className="header-logo font-bold text-lg md:text-xl bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="font-bold text-base md:text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
               Shahmir Trade
             </span>
-          </div>
+          </a>
 
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#how" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
-              {language === "ru" ? "Как это работает" : "Bu qanday ishlaydi"}
-            </a>
-            <a href="#results" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
-              {language === "ru" ? "Результаты" : "Natijalar"}
-            </a>
-            <a href="#testimonials" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
-              {language === "ru" ? "Отзывы" : "Sharhlar"}
-            </a>
-            <a href="#halal" className="text-slate-300 hover:text-emerald-400 transition-colors text-sm">
-              {language === "ru" ? "Халяль" : "Halol"}
-            </a>
-          </div>
+          <nav className="hidden md:flex items-center gap-5 lg:gap-6">
+            {[
+              { href: "#how", labelRu: "Как это работает", labelUz: "Bu qanday ishlaydi" },
+              { href: "#results", labelRu: "Результаты", labelUz: "Natijalar" },
+              { href: "#testimonials", labelRu: "Отзывы", labelUz: "Sharhlar" },
+              { href: "#halal", labelRu: "Халяль", labelUz: "Halol" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-slate-300 hover:text-emerald-400 transition-colors text-sm focus:outline-none focus-visible:text-emerald-400 focus-visible:underline"
+              >
+                {language === "ru" ? item.labelRu : item.labelUz}
+              </a>
+            ))}
+          </nav>
 
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="language-switcher flex border border-slate-700 rounded-full overflow-hidden">
+          <div className="flex items-center gap-2">
+            <div className="flex border border-slate-700 rounded-full overflow-hidden text-xs">
               <button
                 onClick={() => setLanguage("uz")}
-                className={`px-2 py-1 text-xs md:text-sm transition-colors ${language === "uz" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
+                className={`px-2.5 py-1.5 transition-colors ${language === "uz" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400 hover:bg-slate-700/50"}`}
+                aria-pressed={language === "uz"}
               >
                 🇺🇿 UZ
               </button>
               <button
                 onClick={() => setLanguage("ru")}
-                className={`px-2 py-1 text-xs md:text-sm transition-colors ${language === "ru" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400"}`}
+                className={`px-2.5 py-1.5 transition-colors ${language === "ru" ? "bg-emerald-500 text-white" : "bg-transparent text-slate-400 hover:bg-slate-700/50"}`}
+                aria-pressed={language === "ru"}
               >
                 🇷🇺 RU
               </button>
             </div>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setMobileMenuOpen(true)}
-                className="text-slate-300 w-8 h-8"
+                className="text-slate-300 w-9 h-9"
+                aria-label="Открыть меню"
               >
                 <Menu className="w-5 h-5" />
               </Button>
@@ -317,83 +324,70 @@ export default function Home() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm md:hidden mobile-menu">
+        <div
+          className="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-lg md:hidden flex flex-col"
+          role="dialog"
+          aria-modal="true"
+        >
           <div className="flex justify-end p-4">
-            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="text-slate-300">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-slate-300 w-10 h-10"
+              aria-label="Закрыть меню"
+            >
               <X className="w-6 h-6" />
             </Button>
           </div>
-
-          <div className="flex flex-col items-center justify-center h-full px-4">
-            <nav className="space-y-6 text-center w-full">
+          <nav className="flex flex-col items-center justify-center flex-grow space-y-5 px-4">
+            {[
+              { href: "#how", labelRu: "Как это работает", labelUz: "Bu qanday ishlaydi" },
+              { href: "#results", labelRu: "Результаты", labelUz: "Natijalar" },
+              { href: "#testimonials", labelRu: "Отзывы", labelUz: "Sharhlar" },
+              { href: "#halal", labelRu: "Халяль", labelUz: "Halol" },
+            ].map((item) => (
               <a
-                href="#how"
-                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
+                key={item.href}
+                href={item.href}
+                className="block text-xl font-semibold text-white hover:text-emerald-400 transition-colors py-2 focus:outline-none focus-visible:text-emerald-400 focus-visible:underline"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {language === "ru" ? "Как это работает" : "Bu qanday ishlaydi"}
+                {language === "ru" ? item.labelRu : item.labelUz}
               </a>
-              <a
-                href="#results"
-                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {language === "ru" ? "Результаты" : "Natijalar"}
+            ))}
+            <div className="pt-5 w-full max-w-xs">
+              <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer" className="block">
+                <Button
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-6 py-3 text-base rounded-xl"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {t[language].hero.cta}
+                </Button>
               </a>
-              <a
-                href="#testimonials"
-                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {language === "ru" ? "Отзывы" : "Sharhlar"}
-              </a>
-              <a
-                href="#halal"
-                className="mobile-menu-item block text-xl font-bold text-white hover:text-emerald-400 transition-colors py-3"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {language === "ru" ? "Халяль" : "Halol"}
-              </a>
-
-              <div className="pt-4">
-                <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer">
-                  <Button
-                    size="lg"
-                    className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-6 py-4 text-lg rounded-xl"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {language === "ru" ? "Начать зарабатывать" : "Daromad topishni boshlash"}
-                  </Button>
-                </a>
-              </div>
-            </nav>
-          </div>
+            </div>
+          </nav>
         </div>
       )}
 
       {/* Hero Section */}
-      <section className="hero-section relative pt-20 md:pt-32 pb-12 md:pb-20 overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <section className="relative pt-24 md:pt-32 pb-16 md:pb-20 overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-50">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="hero-grid grid md:grid-cols-2 gap-6 md:gap-8 items-center">
-            <div className="hero-content text-center md:text-left">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 md:px-4 md:py-2 mb-4 md:mb-6">
-                <span className="text-base md:text-lg">☪️</span>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="text-center md:text-left animate-slide-up">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1.5 mb-4 md:mb-6">
+                <span className="text-lg">☪️</span>
                 <span className="text-emerald-400 text-xs md:text-sm font-medium">{t[language].hero.badge}</span>
               </div>
-
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
-                {t[language].hero.title}
-              </h1>
-
-              <p className="text-base md:text-xl text-slate-300 mb-6 md:mb-8">{t[language].hero.subtitle}</p>
-
-              <div className="hero-buttons flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-8 justify-center md:justify-start">
+              <h1 className="font-bold mb-4 md:mb-6">{t[language].hero.title}</h1>
+              <p className="text-slate-300 mb-6 md:mb-8">{t[language].hero.subtitle}</p>
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 md:mb-8 justify-center md:justify-start">
                 <a
                   href="https://t.me/+iawpP4pwqW42YmM6"
                   target="_blank"
@@ -402,109 +396,90 @@ export default function Home() {
                 >
                   <Button
                     size="lg"
-                    className="hero-button w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl"
+                    className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold rounded-xl"
                   >
                     {t[language].hero.cta}
-                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </a>
-
                 <Button
                   size="lg"
                   variant="outline"
-                  className="hero-button w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-800 px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl"
-                  onClick={() => setShowResults(true)}
+                  className="w-full sm:w-auto border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 rounded-xl"
+                  onClick={() => document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })}
                 >
-                  <TrendingUp className="mr-2 w-4 h-4 md:w-5 md:h-5" />
+                  <TrendingUp className="mr-2 w-5 h-5" />
                   {t[language].results.viewAll}
                 </Button>
               </div>
-
-              <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
+              <div className="flex items-center gap-2 justify-center md:justify-start text-slate-400 text-sm mb-1">
                 <Users className="w-4 h-4 text-emerald-400" />
-                <span className="text-slate-300 text-sm">{t[language].hero.trustBadge}</span>
+                <span>{t[language].hero.trustBadge}</span>
               </div>
-
-              <div className="text-slate-400 text-sm flex items-center gap-2 justify-center md:justify-start">
+              <div className="flex items-center gap-2 justify-center md:justify-start text-slate-400 text-sm">
                 <DollarSign className="w-4 h-4" />
-                {t[language].hero.minInvest}
+                <span>{t[language].hero.minInvest}</span>
               </div>
             </div>
 
-            <div className="hero-image relative">
-              <div className="hero-image-container relative rounded-xl md:rounded-2xl overflow-hidden border-4 md:border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 h-80 md:h-[500px]">
+            <div className="relative animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              <div className="relative rounded-xl md:rounded-2xl overflow-hidden border-4 md:border-8 border-slate-800/70 shadow-2xl shadow-emerald-900/30 aspect-[3/4] max-h-[400px] md:max-h-[500px] mx-auto max-w-sm md:max-w-none">
                 <Image
                   src="/images/shahmir-main.jpeg"
                   alt="Professional Trader Shahmir"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 80vw, 40vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6">
-                  <div className="flex items-center gap-3 md:gap-4">
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 md:border-4 border-emerald-500 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-emerald-500 overflow-hidden flex-shrink-0">
                       <Image
                         src="/images/shahmir-main.jpeg"
                         alt="Shahmir"
-                        width={100}
-                        height={100}
+                        width={64}
+                        height={64}
                         className="object-cover w-full h-full"
                       />
                     </div>
                     <div>
-                      <h3 className="text-lg md:text-xl font-bold">Shahmir Islomov</h3>
-                      <p className="text-emerald-400 text-sm md:text-base">
-                        {language === "ru"
-                          ? "Профессиональный трейдер • 7 лет опыта"
-                          : "Professional treyder • 7 yillik tajriba"}
+                      <h3 className="text-base md:text-lg font-bold text-white">Shahmir Islomov</h3>
+                      <p className="text-emerald-400 text-xs md:text-sm">
+                        {language === "ru" ? "Проф. трейдер • 7+ лет опыта" : "Prof. treyder • 7+ yillik tajriba"}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Floating stats cards - только для больших экранов */}
-              <div className="hero-floating-card hidden md:block absolute -bottom-10 -right-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-emerald-400" />
+              {/* Floating cards for desktop only */}
+              <div
+                className="hidden md:block absolute -bottom-8 -right-8 bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-xl animate-slide-up"
+                style={{ animationDelay: "0.4s" }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 text-emerald-400" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-emerald-400">+1,240%</div>
-                    <div className="text-xs text-slate-400">
-                      {language === "ru" ? "Максимальная прибыль" : "Maksimal foyda"}
-                    </div>
+                    <div className="text-xl font-bold text-emerald-400">+1240%</div>
+                    <div className="text-xs text-slate-400">{language === "ru" ? "Макс. прибыль" : "Maks. foyda"}</div>
                   </div>
                 </div>
               </div>
-
-              <div className="hero-floating-card hidden md:block absolute top-10 -left-10 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-cyan-400" />
+              <div
+                className="hidden md:block absolute top-8 -left-8 bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-xl animate-slide-up"
+                style={{ animationDelay: "0.6s" }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center">
+                    <Clock className="w-4 h-4 text-cyan-400" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-cyan-400">24-48h</div>
-                    <div className="text-xs text-slate-400">
-                      {language === "ru" ? "Быстрый результат" : "Tez natija"}
-                    </div>
+                    <div className="text-xl font-bold text-cyan-400">24-48ч</div>
+                    <div className="text-xs text-slate-400">{language === "ru" ? "Результат" : "Natija"}</div>
                   </div>
-                </div>
-              </div>
-
-              {/* Мобильные статистики под изображением */}
-              <div className="md:hidden mt-4 grid grid-cols-2 gap-3">
-                <div className="bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 text-center">
-                  <div className="text-xl font-bold text-emerald-400">+1,240%</div>
-                  <div className="text-xs text-slate-400">
-                    {language === "ru" ? "Максимальная прибыль" : "Maksimal foyda"}
-                  </div>
-                </div>
-                <div className="bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 text-center">
-                  <div className="text-xl font-bold text-cyan-400">24-48h</div>
-                  <div className="text-xs text-slate-400">{language === "ru" ? "Быстрый результат" : "Tez natija"}</div>
                 </div>
               </div>
             </div>
@@ -513,182 +488,136 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-6 md:py-10 bg-slate-900/50">
+      <section className="py-8 md:py-12 bg-slate-900/60">
         <div className="container mx-auto px-4">
-          <div className="stats-grid grid grid-cols-3 gap-3 md:gap-6">
-            <div className="stats-item text-center">
-              <div className="stats-number text-2xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">500+</div>
-              <div className="stats-label text-slate-400 text-xs md:text-sm">{t[language].stats.clients}</div>
-            </div>
-            <div className="stats-item text-center">
-              <div className="stats-number text-2xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">7+</div>
-              <div className="stats-label text-slate-400 text-xs md:text-sm">{t[language].stats.years}</div>
-            </div>
-            <div className="stats-item text-center">
-              <div className="stats-number text-2xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">x15</div>
-              <div className="stats-label text-slate-400 text-xs md:text-sm">{t[language].stats.profit}</div>
-            </div>
+          <div className="grid grid-cols-3 gap-2 md:gap-6">
+            {[
+              { value: "500+", labelKey: "clients" },
+              { value: "7+", labelKey: "years" },
+              { value: "x15", labelKey: "profit" },
+            ].map((stat) => (
+              <div key={stat.labelKey} className="text-center p-2">
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-400 mb-1">{stat.value}</div>
+                <div className="text-slate-400 text-xs sm:text-sm md:text-base">
+                  {t[language].stats[stat.labelKey as keyof typeof t.ru.stats]}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* How It Works */}
       <section id="how" className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-emerald-600/10 rounded-full blur-3xl"></div>
         </div>
-
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].how.title}</h2>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].how.title}</h2>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto"></div>
           </div>
-
-          <div className="steps-grid grid md:grid-cols-3 gap-4 md:gap-8">
-            <div className="relative">
-              <div className="step-card bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="step-icon w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                  <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-white" />
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { icon: DollarSign, stepKey: "step1", descKey: "step1desc", color: "from-emerald-500 to-cyan-500" },
+              { icon: TrendingUp, stepKey: "step2", descKey: "step2desc", color: "from-cyan-500 to-blue-500" },
+              { icon: Gift, stepKey: "step3", descKey: "step3desc", color: "from-blue-500 to-purple-500" },
+            ].map((step, index) => (
+              <div key={index} className="relative animate-slide-up" style={{ animationDelay: `${index * 0.15}s` }}>
+                <div className="bg-slate-800/50 border border-slate-700/80 rounded-xl p-5 md:p-6 h-full hover:border-emerald-500/60 transition-all duration-300 flex flex-col items-center text-center md:items-start md:text-left">
+                  <div
+                    className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0`}
+                  >
+                    <step.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                  </div>
+                  <div className="absolute -top-2.5 -left-2.5 w-7 h-7 md:w-8 md:h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">
+                    {t[language].how[step.stepKey as keyof typeof t.ru.how]}
+                  </h3>
+                  <p className="text-slate-400 text-sm md:text-base">
+                    {t[language].how[step.descKey as keyof typeof t.ru.how]}
+                  </p>
                 </div>
-                <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                  1
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].how.step1}</h3>
-                <p className="text-slate-400 text-sm md:text-base">{t[language].how.step1desc}</p>
+                {index < 2 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <div
+                      className={`w-7 h-7 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center opacity-70`}
+                    >
+                      <ArrowRight className="w-3.5 h-3.5 text-white" />
+                    </div>
+                  </div>
+                )}
+                {index < 2 && (
+                  <div className="md:hidden flex justify-center my-4">
+                    <ArrowRight className="w-5 h-5 text-slate-600 rotate-90" />
+                  </div>
+                )}
               </div>
-
-              {/* Arrow for desktop */}
-              <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center">
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="step-card bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="step-icon w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                  <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                </div>
-                <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                  2
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].how.step2}</h3>
-                <p className="text-slate-400 text-sm md:text-base">{t[language].how.step2desc}</p>
-              </div>
-
-              {/* Arrow for desktop */}
-              <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center">
-                  <ArrowRight className="w-4 h-4 text-white" />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="step-card bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="step-icon w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                  <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                </div>
-                <div className="absolute -top-2 -left-2 w-6 h-6 md:w-8 md:h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                  3
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].how.step3}</h3>
-                <p className="text-slate-400 text-sm md:text-base">{t[language].how.step3desc}</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Results Section */}
-      <section id="results" className="py-12 md:py-20 bg-slate-900/30">
+      <section id="results" className="py-12 md:py-20 bg-slate-900/40">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].results.title}</h2>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].results.title}</h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].results.subtitle}</p>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
-
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Tabs defaultValue="daily" className="w-full">
-              <TabsList className="tabs-list grid grid-cols-3 mb-6 md:mb-8 w-full">
-                <TabsTrigger value="daily" className="tabs-trigger">
+              <TabsList className="grid grid-cols-3 mb-6 md:mb-8 p-1 bg-slate-800/60 rounded-lg">
+                <TabsTrigger
+                  value="daily"
+                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-slate-300 py-2 text-sm md:text-base rounded-md"
+                >
                   {t[language].results.daily}
                 </TabsTrigger>
-                <TabsTrigger value="weekly" className="tabs-trigger">
+                <TabsTrigger
+                  value="weekly"
+                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-slate-300 py-2 text-sm md:text-base rounded-md"
+                >
                   {t[language].results.weekly}
                 </TabsTrigger>
-                <TabsTrigger value="monthly" className="tabs-trigger">
+                <TabsTrigger
+                  value="monthly"
+                  className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-slate-300 py-2 text-sm md:text-base rounded-md"
+                >
                   {t[language].results.monthly}
                 </TabsTrigger>
               </TabsList>
-
-              <TabsContent value="daily">
-                <div className="results-grid grid md:grid-cols-3 gap-4 md:gap-6">
-                  {dailyResults.map((result, index) => (
-                    <div key={index}>
-                      <div className="result-card bg-slate-800/50 border border-slate-700 rounded-xl p-3 md:p-4 hover:border-emerald-500/50 transition-all duration-300">
-                        <div className="flex items-center justify-between mb-3 md:mb-4">
-                          <div className="font-bold text-sm md:text-base">{result.pair}</div>
-                          <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
-                        </div>
-                        <div className="w-full h-24 md:h-32 bg-slate-700/50 rounded-lg mb-3 md:mb-4 flex items-center justify-center">
-                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
-                        </div>
-                        <div className="flex items-center justify-between text-xs md:text-sm">
-                          <div className="text-slate-400">{result.time}</div>
-                          <div className="text-emerald-400 font-semibold">{result.amount}</div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="weekly">
-                <div className="results-grid grid md:grid-cols-3 gap-4 md:gap-6">
-                  {weeklyResults.map((result, index) => (
-                    <div key={index}>
-                      <div className="result-card bg-slate-800/50 border border-slate-700 rounded-xl p-3 md:p-4 hover:border-emerald-500/50 transition-all duration-300">
-                        <div className="flex items-center justify-between mb-3 md:mb-4">
-                          <div className="font-bold text-sm md:text-base">{result.pair}</div>
-                          <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
-                        </div>
-                        <div className="w-full h-24 md:h-32 bg-slate-700/50 rounded-lg mb-3 md:mb-4 flex items-center justify-center">
-                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
-                        </div>
-                        <div className="flex items-center justify-between text-xs md:text-sm">
-                          <div className="text-slate-400">{result.time}</div>
-                          <div className="text-emerald-400 font-semibold">{result.amount}</div>
+              {[
+                { value: "daily", data: dailyResults },
+                { value: "weekly", data: weeklyResults },
+                { value: "monthly", data: monthlyResults },
+              ].map((tab) => (
+                <TabsContent key={tab.value} value={tab.value}>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    {tab.data.map((result, index) => (
+                      <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                        <div className="bg-slate-800/50 border border-slate-700/80 rounded-xl p-4 hover:border-emerald-500/60 transition-colors duration-300 h-full flex flex-col">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="font-semibold text-sm md:text-base">{result.pair}</div>
+                            <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
+                          </div>
+                          <div className="w-full aspect-[4/3] bg-slate-700/60 rounded-lg mb-3 flex items-center justify-center">
+                            {/* Placeholder for chart or image */}
+                            <TrendingUp className="w-10 h-10 md:w-12 md:h-12 text-emerald-500 opacity-70" />
+                          </div>
+                          <div className="flex items-center justify-between text-xs md:text-sm mt-auto">
+                            <div className="text-slate-400">{result.time}</div>
+                            <div className="text-emerald-400 font-semibold">{result.amount}</div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="monthly">
-                <div className="results-grid grid md:grid-cols-3 gap-4 md:gap-6">
-                  {monthlyResults.map((result, index) => (
-                    <div key={index}>
-                      <div className="result-card bg-slate-800/50 border border-slate-700 rounded-xl p-3 md:p-4 hover:border-emerald-500/50 transition-all duration-300">
-                        <div className="flex items-center justify-between mb-3 md:mb-4">
-                          <div className="font-bold text-sm md:text-base">{result.pair}</div>
-                          <div className="text-emerald-400 font-bold text-sm md:text-base">{result.profit}</div>
-                        </div>
-                        <div className="w-full h-24 md:h-32 bg-slate-700/50 rounded-lg mb-3 md:mb-4 flex items-center justify-center">
-                          <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
-                        </div>
-                        <div className="flex items-center justify-between text-xs md:text-sm">
-                          <div className="text-slate-400">{result.time}</div>
-                          <div className="text-emerald-400 font-semibold">{result.amount}</div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </TabsContent>
+                    ))}
+                  </div>
+                </TabsContent>
+              ))}
             </Tabs>
           </div>
         </div>
@@ -696,29 +625,29 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute bottom-1/3 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-cyan-600/10 rounded-full blur-3xl"></div>
         </div>
-
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">
-              {t[language].testimonials.title}
-            </h2>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].testimonials.title}</h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].testimonials.subtitle}</p>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
-
           <div className="max-w-6xl mx-auto">
-            <div className="testimonials-grid grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {testimonials.map((testimonial, index) => (
-                <TestimonialCard key={index} testimonial={testimonial} />
+                <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.15}s` }}>
+                  <TestimonialCard testimonial={testimonial} />
+                </div>
               ))}
             </div>
-
-            <div className="mt-8 md:mt-16 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-xl md:rounded-2xl p-4 md:p-6">
-              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0">
+            <div
+              className="mt-10 md:mt-16 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 rounded-xl md:rounded-2xl p-5 md:p-8 animate-slide-up"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-5 md:gap-6">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex-shrink-0 border-2 border-emerald-400">
                   <Image
                     src="/images/shahmir-main.jpeg"
                     alt="Shahmir"
@@ -727,17 +656,17 @@ export default function Home() {
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <div className="flex-1 text-center md:text-left">
+                <div className="flex-1">
                   <p className="text-slate-300 italic mb-3 md:mb-4 text-sm md:text-base">
                     {language === "ru"
                       ? "«Я помог более 500 узбекским семьям улучшить их финансовое положение. Моя цель — сделать халяль инвестиции доступными для каждой семьи в Узбекистане. Присоединяйтесь к нам и измените свою жизнь уже сегодня!»"
                       : "«Men 500 dan ortiq o'zbek oilalariga moliyaviy ahvolini yaxshilashga yordam berdim. Mening maqsadim — halol investitsiyalarni O'zbekistondagi har bir oila uchun qulay qilish. Bizga qo'shiling va bugun hayotingizni o'zgartiring!»"}
                   </p>
                   <div className="flex items-center gap-2 justify-center md:justify-start">
-                    <h4 className="font-bold">Shahmir Islomov</h4>
+                    <h4 className="font-semibold text-base md:text-lg">Shahmir Islomov</h4>
                     <div className="flex items-center gap-1">
                       <CheckCircle className="w-4 h-4 text-emerald-400" />
-                      <span className="text-emerald-400 text-sm">
+                      <span className="text-emerald-400 text-xs md:text-sm">
                         {language === "ru" ? "Верифицирован" : "Tasdiqlangan"}
                       </span>
                     </div>
@@ -750,110 +679,95 @@ export default function Home() {
       </section>
 
       {/* Halal Section */}
-      <section id="halal" className="py-12 md:py-20 bg-gradient-to-r from-emerald-900/20 to-slate-900/20">
+      <section
+        id="halal"
+        className="py-12 md:py-20 bg-gradient-to-br from-emerald-900/20 via-slate-900/30 to-emerald-900/20"
+      >
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 md:px-4 md:py-2 mb-4 md:mb-6">
-              <span className="text-base md:text-lg">☪️</span>
+          <div className="text-center mb-10 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1.5 md:px-4 md:py-2 mb-4 md:mb-6">
+              <span className="text-lg md:text-xl">☪️</span>
               <span className="text-emerald-400 text-xs md:text-sm font-medium">
                 {language === "ru" ? "100% Халяль" : "100% Halol"}
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].halal.title}</h2>
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].halal.title}</h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].halal.subtitle}</p>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center max-w-6xl mx-auto">
-            <div>
-              <div className="bg-slate-800/50 border border-emerald-500/20 rounded-xl md:rounded-2xl p-4 md:p-6">
-                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-5xl mx-auto">
+            <div className="animate-slide-up">
+              <div className="bg-slate-800/50 border border-emerald-500/30 rounded-xl md:rounded-2xl p-5 md:p-8">
+                <div className="flex items-center gap-3 md:gap-4 mb-5 md:mb-6">
+                  <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-2xl md:text-3xl">☪️</span>
                   </div>
-                  <h3 className="text-lg md:text-xl font-bold">
+                  <h3 className="text-lg md:text-xl font-semibold">
                     {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
                   </h3>
                 </div>
-
-                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 md:p-4 mb-4 md:mb-6">
-                  <p className="text-slate-300 italic text-sm md:text-base">{t[language].halal.quote}</p>
+                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 md:p-4 mb-5 md:mb-6">
+                  <p className="text-slate-300 italic text-xs md:text-sm">"{t[language].halal.quote}"</p>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point1}</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    {
+                      pointKey: "point1",
+                      descRu: "Мы покупаем и продаем реальные криптоактивы",
+                      descUz: "Biz haqiqiy kripto aktivlarni sotib olamiz va sotamiz",
+                    },
+                    {
+                      pointKey: "point2",
+                      descRu: "Не основано на случайности или удаче",
+                      descUz: "Tasodif yoki omadga asoslanmagan",
+                    },
+                    {
+                      pointKey: "point3",
+                      descRu: "Нет процентных ставок, запрещенных исламом",
+                      descUz: "Islomda taqiqlangan foiz stavkalari yo'q",
+                    },
+                    {
+                      pointKey: "point4",
+                      descRu: "Ты видишь все операции в реальном времени",
+                      descUz: "Siz barcha operatsiyalarni real vaqtda ko'rasiz",
+                    },
+                  ].map((item) => (
+                    <div key={item.pointKey} className="bg-slate-700/40 rounded-lg p-3">
+                      <div className="flex items-start gap-2 mb-1">
+                        <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <h4 className="font-medium text-sm md:text-base">
+                          {t[language].halal[item.pointKey as keyof typeof t.ru.halal]}
+                        </h4>
+                      </div>
+                      <p className="text-slate-400 text-xs md:text-sm ml-6 md:ml-7">
+                        {language === "ru" ? item.descRu : item.descUz}
+                      </p>
                     </div>
-                    <p className="text-slate-400 text-xs md:text-sm">
-                      {language === "ru"
-                        ? "Мы покупаем и продаем реальные криптоактивы"
-                        : "Biz haqiqiy kripto aktivlarni sotib olamiz va sotamiz"}
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point2}</h4>
-                    </div>
-                    <p className="text-slate-400 text-xs md:text-sm">
-                      {language === "ru" ? "Не основано на случайности или удаче" : "Tasodif yoki omadga asoslanmagan"}
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point3}</h4>
-                    </div>
-                    <p className="text-slate-400 text-xs md:text-sm">
-                      {language === "ru"
-                        ? "Нет процентных ставок, запрещенных исламом"
-                        : "Islomda taqiqlangan foiz stavkalari yo'q"}
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-700/30 rounded-xl p-3 md:p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                      <h4 className="font-semibold text-sm md:text-base">{t[language].halal.point4}</h4>
-                    </div>
-                    <p className="text-slate-400 text-xs md:text-sm">
-                      {language === "ru"
-                        ? "Ты видишь все операции в реальном времени"
-                        : "Siz barcha operatsiyalarni real vaqtda ko'rasiz"}
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
-
-            <div className="relative">
-              <div className="w-full h-64 md:h-96 bg-slate-800/50 rounded-xl md:rounded-2xl border-4 md:border-8 border-slate-800 shadow-2xl shadow-emerald-500/10 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-4xl md:text-6xl mb-3 md:mb-4 block">☪️</span>
-                  <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-2">
-                    {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
-                  </h3>
-                  <p className="text-slate-300 text-sm md:text-base">
-                    {language === "ru" ? "Одобрено исламскими учеными" : "Islom olimlari tomonidan tasdiqlangan"}
-                  </p>
-                </div>
+            <div className="relative animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              <div className="w-full aspect-square max-h-[300px] md:max-h-[400px] bg-slate-800/60 rounded-xl md:rounded-2xl border-4 md:border-8 border-slate-800/80 shadow-2xl shadow-emerald-900/40 flex flex-col items-center justify-center p-4 mx-auto">
+                <span className="text-5xl md:text-7xl mb-3 md:mb-4 block">☪️</span>
+                <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-1 md:mb-2 text-center">
+                  {language === "ru" ? "Халяль Сертификация" : "Halol Sertifikatsiya"}
+                </h3>
+                <p className="text-slate-300 text-center text-sm md:text-base">
+                  {language === "ru" ? "Соответствует нормам Шариата" : "Shariat normalariga mos keladi"}
+                </p>
               </div>
-
-              <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/30 rounded-xl p-3 md:p-4 shadow-lg max-w-xs">
-                <div className="flex items-center gap-2 md:gap-3 mb-2">
+              <div className="hidden md:block absolute -bottom-6 -right-6 bg-slate-800/90 backdrop-blur-sm border border-emerald-500/40 rounded-xl p-4 shadow-xl max-w-xs">
+                <div className="flex items-center gap-3 mb-2">
                   <Shield className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
-                  <h4 className="font-bold text-white text-sm md:text-base">
-                    {language === "ru" ? "Халяль сертификат" : "Halol sertifikat"}
+                  <h4 className="font-semibold text-white text-sm md:text-base">
+                    {language === "ru" ? "Гарантия Халяль" : "Halol Kafolati"}
                   </h4>
                 </div>
                 <p className="text-slate-300 text-xs md:text-sm">
                   {language === "ru"
-                    ? "Наша деятельность соответствует принципам шариата и одобрена исламскими учеными"
-                    : "Bizning faoliyatimiz shariat tamoyillariga mos keladi va islom olimlari tomonidan tasdiqlangan"}
+                    ? "Наша деятельность проверена и одобрена."
+                    : "Faoliyatimiz tekshirilgan va tasdiqlangan."}
                 </p>
               </div>
             </div>
@@ -863,106 +777,80 @@ export default function Home() {
 
       {/* Guarantees Section */}
       <section className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/3 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl"></div>
         </div>
-
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].guarantee.title}</h2>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].guarantee.title}</h2>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            {[
+              { titleKey: "money", descKey: "moneyDesc", icon: Shield, color: "emerald" },
+              { titleKey: "security", descKey: "securityDesc", icon: Shield, color: "cyan" },
+              { titleKey: "transparency", descKey: "transparencyDesc", icon: Shield, color: "blue" },
+            ].map((guarantee, index) => {
+              const Icon = guarantee.icon
+              const title = t[language].guarantee[guarantee.titleKey as keyof typeof t.ru.guarantee]
+              const description = t[language].guarantee[guarantee.descKey as keyof typeof t.ru.guarantee]
+              const borderColor = `border-${guarantee.color}-500/30`
+              const bgColor = `bg-gradient-to-br from-${guarantee.color}-500/10 to-${guarantee.color}-500/5`
+              const iconColor = `text-${guarantee.color}-400`
+              const accentBg = `bg-${guarantee.color}-500/10`
+              const accentText = `text-${guarantee.color}-300`
 
-          <div className="guarantees-grid grid md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
-            <div>
-              <div className="guarantee-card bg-gradient-to-r from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-emerald-500/50 transition-all duration-300">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                  <Shield className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].guarantee.money}</h3>
-                <p className="text-slate-400 text-sm md:text-base">{t[language].guarantee.moneyDesc}</p>
-
-                <div className="mt-4 md:mt-6 bg-emerald-500/10 rounded-xl p-3 md:p-4 flex items-center gap-3">
-                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 flex-shrink-0" />
-                  <p className="text-emerald-300 text-xs md:text-sm">
-                    {language === "ru"
-                      ? "Я беру на себя все риски — ты получаешь только прибыль"
-                      : "Men barcha xavflarni o'z zimmamga olaman — siz faqat foyda olasiz"}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="guarantee-card bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-cyan-500/50 transition-all duration-300">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                  <Shield className="w-6 h-6 md:w-8 md:h-8 text-cyan-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].guarantee.security}</h3>
-                <p className="text-slate-400 text-sm md:text-base">{t[language].guarantee.securityDesc}</p>
-
-                <div className="mt-4 md:mt-6 bg-cyan-500/10 rounded-xl p-3 md:p-4 flex items-center gap-3">
-                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xs md:text-sm font-bold">B</span>
+              return (
+                <div key={index} className="animate-slide-up" style={{ animationDelay: `${index * 0.15}s` }}>
+                  <div
+                    className={`${bgColor} ${borderColor} border rounded-xl md:rounded-2xl p-5 md:p-6 h-full hover:border-${guarantee.color}-500/50 transition-all duration-300 flex flex-col`}
+                  >
+                    <div
+                      className={`w-12 h-12 md:w-14 md:h-14 bg-${guarantee.color}-500/20 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0`}
+                    >
+                      <Icon className={`w-6 h-6 md:w-7 md:h-7 ${iconColor}`} />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">{title}</h3>
+                    <p className="text-slate-400 text-sm md:text-base flex-grow">{description}</p>
+                    <div className={`mt-5 md:mt-6 ${accentBg} rounded-lg p-3 md:p-4 flex items-start gap-2.5`}>
+                      <CheckCircle className={`w-4 h-4 md:w-5 md:h-5 ${accentText} flex-shrink-0 mt-0.5`} />
+                      <p className={`${accentText} text-xs md:text-sm`}>
+                        {guarantee.titleKey === "money" &&
+                          (language === "ru"
+                            ? "Я беру на себя все риски — ты получаешь только прибыль"
+                            : "Men barcha xavflarni o'z zimmamga olaman — siz faqat foyda olasiz")}
+                        {guarantee.titleKey === "security" &&
+                          (language === "ru"
+                            ? "Binance — крупнейшая криптобиржа с защитой средств до $1 млрд"
+                            : "Binance — 1 milliard dollargacha mablag'larni himoya qilish bilan eng yirik kripto birja")}
+                        {guarantee.titleKey === "transparency" &&
+                          (language === "ru"
+                            ? "Ежедневные отчеты и полный доступ к торговому счету"
+                            : "Kunlik hisobotlar va savdo hisobiga to'liq kirish")}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-cyan-300 text-xs md:text-sm">
-                    {language === "ru"
-                      ? "Binance — крупнейшая криптобиржа с защитой средств до $1 млрд"
-                      : "Binance — 1 milliard dollargacha mablag'larni himoya qilish bilan eng yirik kripto birja"}
-                  </p>
                 </div>
-              </div>
-            </div>
-
-            <div>
-              <div className="guarantee-card bg-gradient-to-r from-blue-500/10 to-blue-500/5 border border-blue-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 h-full hover:border-blue-500/50 transition-all duration-300">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                  <Shield className="w-6 h-6 md:w-8 md:h-8 text-blue-400" />
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">{t[language].guarantee.transparency}</h3>
-                <p className="text-slate-400 text-sm md:text-base">{t[language].guarantee.transparencyDesc}</p>
-
-                <div className="mt-4 md:mt-6 bg-blue-500/10 rounded-xl p-3 md:p-4 flex items-center gap-3">
-                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-blue-400 flex-shrink-0" />
-                  <p className="text-blue-300 text-xs md:text-sm">
-                    {language === "ru"
-                      ? "Ежедневные отчеты и полный доступ к торговому счету"
-                      : "Kunlik hisobotlar va savdo hisobiga to'liq kirish"}
-                  </p>
-                </div>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 md:py-20 bg-slate-900/30">
+      <section id="faq" className="py-12 md:py-20 bg-slate-900/40">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].faq.title}</h2>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].faq.title}</h2>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
-
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-2xl mx-auto animate-slide-up">
             <FaqAccordion
               items={[
-                {
-                  question: t[language].faq.q1,
-                  answer: t[language].faq.a1,
-                },
-                {
-                  question: t[language].faq.q2,
-                  answer: t[language].faq.a2,
-                },
-                {
-                  question: t[language].faq.q3,
-                  answer: t[language].faq.a3,
-                },
-                {
-                  question: t[language].faq.q4,
-                  answer: t[language].faq.a4,
-                },
+                { question: t[language].faq.q1, answer: t[language].faq.a1 },
+                { question: t[language].faq.q2, answer: t[language].faq.a2 },
+                { question: t[language].faq.q3, answer: t[language].faq.a3 },
+                { question: t[language].faq.q4, answer: t[language].faq.a4 },
               ]}
             />
           </div>
@@ -970,57 +858,58 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute bottom-1/3 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+      <section id="contact" className="py-12 md:py-20 relative">
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-emerald-600/10 rounded-full blur-3xl"></div>
         </div>
-
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">{t[language].contact.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">{t[language].contact.subtitle}</p>
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">{t[language].contact.title}</h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">{t[language].contact.subtitle}</p>
             <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
           </div>
-
-          <div className="max-w-md mx-auto">
-            <div className="contact-form bg-slate-800/50 border border-slate-700 rounded-xl md:rounded-2xl p-4 md:p-6">
-              <div className="space-y-3 md:space-y-4 mb-4 md:mb-6">
+          <div className="max-w-md mx-auto animate-slide-up">
+            <div className="bg-slate-800/50 border border-slate-700/80 rounded-xl md:rounded-2xl p-5 md:p-8">
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-4 md:space-y-5 mb-5 md:mb-6">
                 <input
                   type="text"
+                  name="name"
                   placeholder={t[language].contact.name}
-                  className="w-full px-3 py-3 md:px-4 md:py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none text-sm md:text-base"
+                  className="w-full px-4 py-3 bg-slate-700/60 border border-slate-600/80 rounded-lg text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-emerald-500/50 focus:ring-1 focus:outline-none text-sm md:text-base"
+                  aria-label={t[language].contact.name}
                 />
                 <input
                   type="tel"
+                  name="phone"
                   placeholder={t[language].contact.phone}
-                  className="w-full px-3 py-3 md:px-4 md:py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:border-emerald-500 focus:outline-none text-sm md:text-base"
+                  className="w-full px-4 py-3 bg-slate-700/60 border border-slate-600/80 rounded-lg text-white placeholder-slate-400 focus:border-emerald-500 focus:ring-emerald-500/50 focus:ring-1 focus:outline-none text-sm md:text-base"
+                  aria-label={t[language].contact.phone}
                 />
-              </div>
-
-              <Button
-                size="lg"
-                className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold py-3 md:py-4 text-base md:text-lg rounded-xl mb-4 md:mb-6"
-              >
-                {t[language].contact.button}
-              </Button>
-
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold text-base md:text-lg rounded-lg"
+                >
+                  {t[language].contact.button}
+                </Button>
+              </form>
               <div className="text-center">
                 <p className="text-slate-400 mb-3 md:mb-4 text-sm md:text-base">{t[language].contact.or}</p>
-
-                <div className="contact-buttons flex flex-col sm:flex-row gap-3 md:gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                   <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer" className="flex-1">
                     <Button
                       variant="outline"
-                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800 text-sm md:text-base py-3"
+                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 text-sm md:text-base rounded-lg"
                     >
                       {t[language].contact.telegram}
                     </Button>
                   </a>
-
                   <a href="https://wa.me/+998901234567" target="_blank" rel="noopener noreferrer" className="flex-1">
+                    {" "}
+                    {/* Replace with actual WhatsApp number */}
                     <Button
                       variant="outline"
-                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800 text-sm md:text-base py-3"
+                      className="w-full border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 text-sm md:text-base rounded-lg"
                     >
                       {t[language].contact.whatsapp}
                     </Button>
@@ -1032,29 +921,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer py-6 md:py-10 bg-slate-900/50 border-t border-slate-800">
+      {/* FOMO CTA Section */}
+      <section className="py-12 md:py-20 bg-gradient-to-tr from-emerald-600/20 via-slate-900 to-cyan-600/20">
         <div className="container mx-auto px-4">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-3 md:mb-4">
-              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center">
-                <TrendingUp className="w-3 h-3 md:w-4 md:h-4 text-white" />
-              </div>
-              <span className="footer-logo font-bold text-base md:text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Shahmir Trade
-              </span>
+          <div className="max-w-2xl mx-auto text-center bg-slate-800/70 backdrop-blur-md border border-emerald-500/30 rounded-xl md:rounded-2xl p-6 md:p-10 shadow-2xl shadow-emerald-900/50 animate-slide-up">
+            <div className="flex justify-center mb-4 md:mb-6">
+              <Zap className="w-10 h-10 md:w-12 md:h-12 text-yellow-400 animate-pulse" />
             </div>
-
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-3 py-1 md:px-4 md:py-2 mb-3 md:mb-4">
-              <span className="text-base md:text-lg">☪️</span>
-              <span className="text-emerald-400 text-xs md:text-sm font-medium">{t[language].footer.halal}</span>
-            </div>
-
-            <p className="footer-text text-slate-400 mb-2 text-xs md:text-sm">{t[language].footer.rights}</p>
-            <p className="footer-text text-slate-500 text-xs">{t[language].footer.disclaimer}</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-yellow-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">
+              {t[language].fomoCta.title}
+            </h2>
+            <p className="text-slate-300 mb-6 md:mb-8 text-sm md:text-base">{t[language].fomoCta.subtitle}</p>
+            <a href="https://t.me/+iawpP4pwqW42YmM6" target="_blank" rel="noopener noreferrer" className="inline-block">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-slate-900 font-bold px-8 md:px-10 py-3 md:py-4 text-base md:text-lg rounded-xl shadow-lg shadow-yellow-500/30 transform hover:scale-105 transition-transform duration-300"
+              >
+                {t[language].fomoCta.button}
+              </Button>
+            </a>
+            <p className="text-xs text-slate-500 mt-4">
+              {language === "ru"
+                ? "Присоединяйся к более чем 500+ довольным клиентам!"
+                : "500 dan ortiq mamnun mijozlar qatoriga qo'shiling!"}
+            </p>
           </div>
         </div>
-      </footer>
+      </section>
     </main>
   )
 }
