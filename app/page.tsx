@@ -582,29 +582,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Profit Calculator Section */}
-      <section id="calculator" className="py-12 md:py-20 relative">
-        <div className="absolute inset-0 z-0 opacity-30">
-          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-emerald-600/10 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="font-bold mb-3 md:mb-4">
-              {language === "ru" ? "Рассчитай свою прибыль" : "O'z foydangizni hisoblang"}
-            </h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">
-              {language === "ru"
-                ? "Узнай, сколько ты можешь заработать с разными суммами инвестиций"
-                : "Turli investitsiya summalari bilan qancha daromad qilishingizni bilib oling"}
-            </p>
-            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
-          </div>
-          <div className="max-w-4xl mx-auto animate-slide-up">
-            <ProfitCalculator language={language} />
-          </div>
-        </div>
-      </section>
-
       {/* Guarantees Section */}
       <section className="py-12 md:py-20 relative">
         <div className="absolute inset-0 z-0 opacity-30">
@@ -721,6 +698,29 @@ export default function Home() {
                 ? "Присоединяйся к более чем 500+ довольным клиентам!"
                 : "500 dan ortiq mamnun mijozlar qatoriga qo'shiling!"}
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Profit Calculator Section - MOVED TO BOTTOM */}
+      <section id="calculator" className="py-12 md:py-20 relative bg-slate-950/80">
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-emerald-600/10 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="font-bold mb-3 md:mb-4">
+              {language === "ru" ? "Рассчитай свою прибыль" : "O'z foydangizni hisoblang"}
+            </h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-sm md:text-base">
+              {language === "ru"
+                ? "Узнай, сколько ты можешь заработать с разными суммами инвестиций"
+                : "Turli investitsiya summalari bilan qancha daromad qilishingizni bilib oling"}
+            </p>
+            <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500 mx-auto mt-3 md:mt-4"></div>
+          </div>
+          <div className="max-w-4xl mx-auto animate-slide-up">
+            <ProfitCalculator language={language} />
           </div>
         </div>
       </section>
